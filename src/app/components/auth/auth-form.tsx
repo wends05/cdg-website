@@ -9,7 +9,7 @@ interface AuthFormProps {
 }
 
 export function AuthForm({ onSubmit, error }: AuthFormProps) {
-  const form = useForm<{ accesscode: string }>({
+  const form = useForm({
     defaultValues: {
       accesscode: '',
     },
