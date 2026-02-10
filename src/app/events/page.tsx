@@ -1,6 +1,5 @@
 import { EventCard } from "@/components/ui/event-card";
 import { events } from "@/lib/events";
-import { Button } from "@/components/ui/button";
 
 export default function EventsPage() {
   return (
