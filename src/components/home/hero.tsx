@@ -1,148 +1,137 @@
 "use client";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-linear-to-br from-primary to-primary/90 text-white overflow-hidden pt-20"
+      className="relative overflow-hidden bg-linear-to-r from-[#3186FF] to-[#1B38CC] px-3 pt-20 text-white"
     >
       <style jsx>{`
         @keyframes scrollUp {
           0% {
-            transform: translateY(100%);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateY(-100%);
+            transform: translate3d(0, calc(-50% - 0.375rem), 0);
           }
         }
-        .scroll-animation {
-          animation: scrollUp 15s linear infinite;
+
+        @keyframes scrollDown {
+          0% {
+            transform: translate3d(0, calc(-50% - 0.375rem), 0);
+          }
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
+        }
+
+        .scroll-up {
+          animation: scrollUp 24s linear infinite;
+          will-change: transform;
+          backface-visibility: hidden;
+        }
+
+        .scroll-down {
+          animation: scrollDown 24s linear infinite;
+          will-change: transform;
+          backface-visibility: hidden;
         }
       `}</style>
-      {/* Geometric shapes - circles */}
-      <div className="absolute top-20 left-16 w-32 h-32 border-8 border-white/15 rounded-full"></div>
-      <div className="absolute top-40 right-32 w-56 h-56 border-6 border-white/20 rounded-full"></div>
-      <div className="absolute bottom-32 left-24 w-40 h-40 border-6 border-white/10 rounded-full"></div>
-      <div className="absolute bottom-10 right-10 w-28 h-28 border-5 border-white/15 rounded-full"></div>
+      <div className="relative mx-auto h-full max-w-full overflow-hidden">
+        {/* Geometric accents */}
+        <div className="absolute -left-24 top-6 h-44 w-44 rounded-full border-14 border-white/95"></div>
+        <div className="absolute left-[30%] top-[18%] h-12 w-12 rounded-full border-8 border-white/95"></div>
+        <div className="absolute bottom-4 left-4 h-20 w-20 rounded-full border-10 border-white/95"></div>
+        <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border-12 border-white/95"></div>
+        <div className="absolute right-[35%] top-[16%] h-48 w-48 border-10 border-white/95 rotate-45"></div>
+        <div
+          className="absolute right-[46%] top-[58%] -translate-y-1/2"
+          style={{
+            width: 0,
+            height: 0,
+            borderLeft: "60px solid transparent",
+            borderRight: "60px solid transparent",
+            borderTop: "100px solid rgba(255,255,255,0.95)",
+          }}
+        ></div>
+        <div className="absolute bottom-8 left-[30%] h-20 w-20 rotate-45 border-8 border-white/95"></div>
 
-      {/* Geometric shapes - triangle */}
-      <div
-        className="absolute bottom-32 right-40"
-        style={{
-          width: 0,
-          height: 0,
-          borderLeft: "50px solid transparent",
-          borderRight: "50px solid transparent",
-          borderBottom: "80px solid rgba(255,255,255,0.15)",
-        }}
-      ></div>
-
-      {/* Geometric shapes - inverted triangle */}
-      <div
-        className="absolute top-1/3 left-1/4"
-        style={{
-          width: 0,
-          height: 0,
-          borderLeft: "45px solid transparent",
-          borderRight: "45px solid transparent",
-          borderTop: "75px solid rgba(255,255,255,0.12)",
-        }}
-      ></div>
-
-      {/* Geometric shapes - diamond */}
-      <div className="absolute -top-16 right-16 w-20 h-20 border-6 border-white/20 transform rotate-45"></div>
-      <div className="absolute bottom-1/3 right-1/3 w-24 h-24 border-5 border-white/15 transform rotate-45"></div>
-
-      {/* Geometric shapes - chevron/angle */}
-      <div className="absolute top-1/2 -right-10 w-48 h-48 border-r-6 border-b-6 border-white/10 transform rotate-12"></div>
-      <div className="absolute -bottom-20 left-1/3 w-56 h-40 border-l-6 border-t-6 border-white/12"></div>
-
-      {/* Content */}
-      <div className="relative mx-auto max-w-7xl px-6 py-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left side - Content */}
-          <div>
-            {/* CDG Logo */}
-            <div className="inline-flex items-center gap-3 mb-8 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-              <div className="flex">
-                <div className="w-6 h-6 bg-primary rounded-sm"></div>
-                <div className="w-6 h-6 bg-yellow-400 rounded-sm -ml-1"></div>
+        {/* Content */}
+        <div className="relative mx-auto max-w-full px-4 py-10 md:px-6 md:py-8">
+          <div className="grid items-center gap-8 md:grid-cols-2 md:items-start">
+            {/* Left side - Content */}
+            <div className="z-10 md:pt-6 md:pl-2">
+              {/* CDG Logo + wordmark */}
+              <div className="mb-4 inline-flex items-center gap-4 sm:gap-5">
+                <div className="relative h-16 w-24 sm:h-20 sm:w-32 md:h-24 md:w-36">
+                  <Image
+                    src="/logo_1.svg"
+                    alt="Centralian Developer Group logo"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
+                    className="object-contain object-left"
+                  />
+                </div>
+                <h2 className="text-4xl font-medium leading-[1.08] sm:text-5xl md:text-[3rem]">
+                  Centralian
+                  <br />
+                  Developer
+                  <br />
+                  Group
+                </h2>
               </div>
+
+              <p className="mb-5 max-w-[26rem] text-base leading-relaxed text-white/90">
+                Be a part of CDG to learn, build, and grow with fellow student
+                developers
+              </p>
+
+              <button className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-primary transition-all hover:bg-white/90">
+                Join Now
+                <span className="text-base leading-none">{">"}</span>
+              </button>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Centralian
-              <br />
-              Developer
-              <br />
-              Group
-            </h1>
+            {/* Right side - Photo Collage */}
+            <div className="relative h-full min-h-96 overflow-hidden pt-2 md:pl-6 md:pt-2">
+              {/* Edge fade masks */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-20 bg-linear-to-b from-[#2f79f2] to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-20 bg-linear-to-t from-[#2559d9] to-transparent" />
 
-            <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-lg">
-              Be a part of CDG to learn, build, and grow with fellow student
-              developers
-            </p>
-
-            <button className="rounded-full bg-white text-primary px-8 py-3 font-semibold hover:bg-white/90 transition-all transform hover:scale-105">
-              Join Now
-            </button>
-          </div>
-
-          {/* Right side - Photo Collage */}
-          <div className="relative h-full min-h-96 flex flex-col overflow-hidden">
-            {/* Fade gradient overlay */}
-            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-primary/30 pointer-events-none z-10"></div>
-            <div className="absolute inset-0 bg-linear-to-t from-transparent via-transparent to-primary/20 pointer-events-none z-10"></div>
-            <div className="absolute inset-0 bg-linear-to-r from-primary/20 via-transparent to-transparent pointer-events-none z-10"></div>
-
-            <div className="grid grid-cols-2 gap-4 auto-rows-max scroll-animation relative">
-              {/* Top right - larger image */}
-              <div className="col-span-1 row-span-1">
-                <div className="aspect-square bg-yellow-400 rounded-lg overflow-hidden shadow-lg">
-                  <div className="w-full h-full bg-linear-to-br from-yellow-300 to-yellow-500 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      Photo 1
-                    </span>
+              <div className="grid h-130 grid-cols-2 gap-3">
+                <div className="overflow-hidden">
+                  <div className="scroll-up flex  flex-col gap-3">
+                    {[1, 2, 3, 1, 2, 3].map((photo, idx) => (
+                      <div
+                        key={`left-${photo}-${idx}`}
+                        className="aspect-4/5 rounded-xl bg-yellow-400 shadow-lg overflow-hidden"
+                      >
+                        <div className="w-full h-full bg-yellow-400 flex items-center justify-center">
+                          <span className="text-white text-sm font-medium">
+                            Photo {photo}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
 
-              {/* Right column - stacked images */}
-              <div className="col-span-1 flex flex-col gap-4">
-                <div className="aspect-square bg-yellow-400 rounded-lg overflow-hidden shadow-lg">
-                  <div className="w-full h-full bg-linear-to-br from-yellow-300 to-yellow-500 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      Photo 2
-                    </span>
-                  </div>
-                </div>
-                <div className="aspect-square bg-yellow-400 rounded-lg overflow-hidden shadow-lg">
-                  <div className="w-full h-full bg-linear-to-br from-yellow-300 to-yellow-500 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      Photo 3
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom left */}
-              <div className="col-span-1">
-                <div className="aspect-square bg-yellow-400 rounded-lg overflow-hidden shadow-lg">
-                  <div className="w-full h-full bg-linear-to-br from-yellow-300 to-yellow-500 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      Photo 4
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom right */}
-              <div className="col-span-1">
-                <div className="aspect-square bg-yellow-400 rounded-lg overflow-hidden shadow-lg">
-                  <div className="w-full h-full bg-linear-to-br from-yellow-300 to-yellow-500 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      Photo 5
-                    </span>
+                <div className="overflow-hidden">
+                  <div className="scroll-down flex flex-col gap-3">
+                    {[4, 5, 6, 4, 5, 6].map((photo, idx) => (
+                      <div
+                        key={`right-${photo}-${idx}`}
+                        className="aspect-4/5 rounded-xl bg-yellow-400 shadow-lg overflow-hidden"
+                      >
+                        <div className="w-full h-full bg-yellow-400 flex items-center justify-center">
+                          <span className="text-white text-sm font-medium">
+                            Photo {photo}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
