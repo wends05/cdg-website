@@ -41,7 +41,7 @@ export default function Hero() {
       <div className="relative mx-auto h-full max-w-full overflow-hidden">
         {/* Geometric accents */}
         <div className="absolute -left-24 top-6 h-44 w-44 rounded-full border-14 border-white/95"></div>
-        <div className="absolute left-[30%] top-[18%] h-12 w-12 rounded-full border-8 border-white/95"></div>
+        <div className="absolute left-[30%] top-[10%] h-12 w-12 rounded-full border-8 border-white/95"></div>
         <div className="absolute bottom-4 left-4 h-20 w-20 rounded-full border-10 border-white/95"></div>
         <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border-12 border-white/95"></div>
         <div className="absolute right-[35%] top-[16%] h-48 w-48 border-10 border-white/95 rotate-45"></div>
@@ -61,7 +61,7 @@ export default function Hero() {
         <div className="relative mx-auto max-w-full px-4 py-10 md:px-6 md:py-8">
           <div className="grid items-center gap-8 md:grid-cols-2 md:items-start">
             {/* Left side - Content */}
-            <div className="z-10 md:pt-6 md:pl-2">
+            <div className="z-10 md:pt-35 md:pl-25">
               {/* CDG Logo + wordmark */}
               <div className="mb-4 inline-flex items-center gap-4 sm:gap-5">
                 <div className="relative h-16 w-24 sm:h-20 sm:w-32 md:h-24 md:w-36">
