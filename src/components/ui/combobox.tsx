@@ -3,14 +3,14 @@
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { RiArrowDownSLine, RiCheckLine, RiCloseLine } from "@remixicon/react";
 import * as React from "react";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@//components/ui/button";
 import {
 	InputGroup,
 	InputGroupAddon,
 	InputGroupButton,
 	InputGroupInput,
-} from "@/src/components/ui/input-group";
-import { cn } from "@/src/lib/utils";
+} from "@//components/ui/input-group";
+import { cn } from "@//lib/utils";
 
 const Combobox = ComboboxPrimitive.Root;
 
