@@ -59,8 +59,6 @@ export async function deleteEvent(id: string) {
 
 /* Specialized Actions */
 
-'use server'
-
 
 export async function getEventBySlug(slug: string) {
   const q = query(collection(db, 'events'), where('slug', '==', slug))
