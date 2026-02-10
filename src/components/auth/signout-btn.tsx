@@ -21,7 +21,8 @@ export function SignoutButton({
 
   const handleSignout = async () => {
     setIsLoading(true)
-    await signOut({ callbackUrl: '/events/admin' })
+    const callbackUrl = `${window.location.origin}/events/admin`
+    await signOut({ callbackUrl })
   }
 
   const baseClasses =

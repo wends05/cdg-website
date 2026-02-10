@@ -1,8 +1,8 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
-import { AuthPage } from '@/src/app/components/auth/auth-page'
-import { SignoutButton } from '@/src/app/components/auth/signout-btn'
+import { AuthPage } from '@/src/components/auth/auth-page'
+import { SignoutButton } from '@/src/components/auth/signout-btn'
 
 export default function CreateEventPage() {
   const { data: session, status } = useSession()
