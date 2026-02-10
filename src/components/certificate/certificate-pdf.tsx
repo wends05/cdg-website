@@ -1,7 +1,7 @@
 'use client'
 
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'
-import type { EventRecord, ParticipantRecord } from '@/utils/certificate'
+import type { EventRecord, ParticipantRecord } from '@/types/domain'
 import { formatDate, generateCertificateId } from '@/utils/certificate'
 
 const styles = StyleSheet.create({
@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
 
 export function CertificatePDF({
   event,
-  user,
+  participant,
 }: {
   event: EventRecord
-  user: ParticipantRecord
+  participant: ParticipantRecord
 }) {
   const certId = generateCertificateId()
 
@@ -89,21 +89,21 @@ export function CertificatePDF({
         <Text style={styles.title}>{event.name}</Text>
 
         {/* Recipient Info */}
-        <Text style={styles.recipientName}>{user.name}</Text>
+        <Text style={styles.recipientName}>{participant.name}</Text>
         <Text style={styles.details}>
           <Text style={styles.detailLabel}>Date: </Text>
           {formatDate(event.date)}
         </Text>
         <Text style={styles.details}>
           <Text style={styles.detailLabel}>Email: </Text>
-          {user.email}
+          {participant.email}
         </Text>
 
         {/* Footer Info */}
         <View style={styles.certificateId}>
           <Text style={styles.detailLabel}>{certId}</Text>
           <Text style={styles.footerText}>
-            This certificate verifies that {user.name} successfully completed{' '}
+            This certificate verifies that {participant.name} successfully completed{' '}
             {event.name}. The certificate indicates the entire course was
             completed as validated by the participant. For more information
             about this course, please visit our website.

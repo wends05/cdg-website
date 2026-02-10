@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { CertificateViewer } from './certificate-viewer'
-import { getEventBySlug, getParticipantByEmail } from '@/utils/certificate'
+import { getEventBySlug } from '@/actions/events'
+import { getParticipantByEmail } from '@/actions/participants'
 
 
 interface CertificatePageProps {
@@ -16,15 +17,15 @@ export async function CertificatePage({ slug, email }: CertificatePageProps) {
 
   // Fetch event details by slug
   const event = await getEventBySlug(slug)
-  if (!event) {
+  if (!event || !event.id) {
     return notFound()
   }
 
   // Fetch participant details by email
-  const user = await getParticipantByEmail(email)
-  if (!user) {
+  const participant = await getParticipantByEmail(email, event.id)
+  if (!participant) {
     return notFound()
   }
 
-  return <CertificateViewer event={event} user={user} />
+  return <CertificateViewer event={event} participant={participant} />
 }
