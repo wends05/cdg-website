@@ -3,29 +3,13 @@ export default function Footer() {
     {
       title: "Community",
       links: [
-        { name: "Members", href: "/members" },
-        { name: "Projects", href: "/projects" },
-        { name: "Resources", href: "/resources" },
-        { name: "Blog", href: "/blog" },
+        { name: "Home", href: "/" },
+        { name: "Events", href: "/events" },
       ],
     },
     {
       title: "Support",
-      links: [
-        { name: "Contact Us", href: "/contact" },
-        { name: "FAQ", href: "/faq" },
-        { name: "Documentation", href: "/docs" },
-        { name: "Help Center", href: "/help" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { name: "Privacy Policy", href: "/privacy" },
-        { name: "Terms of Service", href: "/terms" },
-        { name: "Code of Conduct", href: "/code-of-conduct" },
-        { name: "GDPR", href: "/gdpr" },
-      ],
+      links: [{ name: "Contact Us", href: "/contact" }],
     },
   ];
 

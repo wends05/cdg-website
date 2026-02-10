@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 
 export default function Hero() {
@@ -100,13 +99,13 @@ export default function Hero() {
               <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-20 bg-linear-to-b from-[#2f79f2] to-transparent" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-20 bg-linear-to-t from-[#2559d9] to-transparent" />
 
-              <div className="grid h-130 grid-cols-2 gap-3">
+              <div className="grid h-[32.5rem] grid-cols-2 gap-3">
                 <div className="overflow-hidden">
                   <div className="scroll-up flex  flex-col gap-3">
                     {[1, 2, 3, 1, 2, 3].map((photo, idx) => (
                       <div
                         key={`left-${photo}-${idx}`}
-                        className="aspect-4/5 rounded-xl bg-yellow-400 shadow-lg overflow-hidden"
+                        className="aspect-[4/5] rounded-xl bg-yellow-400 shadow-lg overflow-hidden"
                       >
                         <div className="w-full h-full bg-yellow-400 flex items-center justify-center">
                           <span className="text-white text-sm font-medium">
@@ -123,7 +122,7 @@ export default function Hero() {
                     {[4, 5, 6, 4, 5, 6].map((photo, idx) => (
                       <div
                         key={`right-${photo}-${idx}`}
-                        className="aspect-4/5 rounded-xl bg-yellow-400 shadow-lg overflow-hidden"
+                        className="aspect-[4/5] rounded-xl bg-yellow-400 shadow-lg overflow-hidden"
                       >
                         <div className="w-full h-full bg-yellow-400 flex items-center justify-center">
                           <span className="text-white text-sm font-medium">
