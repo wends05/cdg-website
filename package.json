@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
+    "@react-pdf/renderer": "^4.3.2",
     "@remixicon/react": "^4.9.0",
     "@tanstack/react-form": "^1.28.0",
     "@uploadthing/react": "^7.3.3",
