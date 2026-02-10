@@ -3,9 +3,10 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
+import { AuthProvider } from "@/utils/auth-provider";
 import { ourFileRouter } from "./api/uploadthing/core";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -32,8 +33,8 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
+				<AuthProvider>{children}</AuthProvider>
 				<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-				{children}
 			</body>
 		</html>
 	);
