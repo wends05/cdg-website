@@ -77,10 +77,6 @@ export default function Footer() {
               >
                 Contact Us
               </a>
-
-              <button className="rounded-full bg-accent px-6 py-2.5 text-base font-semibold text-accent-foreground transition-all hover:bg-accent/90">
-                Join CDG
-              </button>
             </div>
           </div>
         </div>

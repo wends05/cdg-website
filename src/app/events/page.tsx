@@ -19,7 +19,6 @@ export default function EventsPage() {
 
       <section className="relative px-6 pb-24 pt-10">
         <div className="mx-auto max-w-6xl space-y-8">
-          <div className="flex items-center justify-between gap-4"></div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {events.map((event) => (
               <EventCard key={event.id} event={event} />

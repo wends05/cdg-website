@@ -1,6 +1,7 @@
 import EventsPreview from "@/components/home/events-preview";
 import Footer from "@/components/ui/footer";
 import Hero from "@/components/home/hero";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -19,9 +20,12 @@ export default function Home() {
             </p>
           </div>
           <div className="text-center">
-            <button className="rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg">
+            <Link
+              href="/apply"
+              className="inline-block rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg"
+            >
               Apply for Membership
-            </button>
+            </Link>
           </div>
         </div>
       </section>

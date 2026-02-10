@@ -7,8 +7,8 @@ import { useState } from "react";
 
 const navigation = [
   { label: "Home", href: "/" },
-  { label: "About", href: "#about" },
-  { label: "Teams", href: "#teams" },
+  { label: "About", href: "/#about" },
+  { label: "Teams", href: "/#teams" },
   { label: "Events", href: "/events" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -31,7 +31,7 @@ export default function Header() {
             <span className="sr-only">Centralian Developer Group</span>
 
             {/* BIG logo like your screenshot */}
-            <div className="relative h-4 w-22 sm:h-10 sm:w-36 md:h-14 md:w-78">
+            <div className="relative h-4 w-[5.5rem] sm:h-10 sm:w-36 md:h-14 md:w-[19.5rem]">
               <Image
                 src="/logo_1.svg"
                 alt="Centralian Developer Group logo"
@@ -54,8 +54,8 @@ export default function Header() {
           </button>
 
           {/* MIDDLE: Nav links */}
-          <div className="hidden md:flex items-center md:-ml-30">
-            <ul className="flex items-center gap-14">
+          <div className="hidden md:flex items-center md:-ml-[7.5rem]">
+            <ul className="flex items-center gap-[3.5rem]">
               {navigation.map(({ label, href }) => {
                 const active = isActive(pathname, href);
 
