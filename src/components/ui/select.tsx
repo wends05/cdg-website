@@ -7,7 +7,7 @@ import {
 	RiCheckLine,
 } from "@remixicon/react";
 import type * as React from "react";
-import { cn } from "@/src/lib/utils";
+import { cn } from "@//lib/utils";
 
 const Select = SelectPrimitive.Root;
 

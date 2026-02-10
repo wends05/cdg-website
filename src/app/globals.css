@@ -1,6 +1,11 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
+@import "uploadthing/tw/v4";
+
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+@import "tw-animate-css";
+
+@source "../node_modules/@uploadthing/react/dist"; /** <-- depends on your project structure */
+
 
 @custom-variant dark (&:is(.dark *));
 
