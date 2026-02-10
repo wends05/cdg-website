@@ -140,5 +140,35 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  @keyframes scrollUp {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, calc(-50% - 0.375rem), 0);
+    }
+  }
+
+  @keyframes scrollDown {
+    0% {
+      transform: translate3d(0, calc(-50% - 0.375rem), 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .scroll-up {
+    animation: scrollUp 24s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .scroll-down {
+    animation: scrollDown 24s linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
 }
 

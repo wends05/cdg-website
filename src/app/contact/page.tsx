@@ -17,7 +17,7 @@ export default function ContactPage() {
 
       <div className="py-16 bg-white dark:bg-zinc-900">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-12">
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-6">
                 Get in Touch
@@ -138,8 +138,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-
-            <div></div>
           </div>
         </div>
       </div>

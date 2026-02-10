@@ -14,14 +14,12 @@ const navigation = [
 ] as const;
 
 function isActive(pathname: string, href: string) {
-  return false;
+  if (href.includes("#")) return false;
 
-  // Normalize href by stripping query and hash so "/#about" matches "/" pathname
   const hrefWithoutHash = href.split("#")[0];
   const normalizedHref = hrefWithoutHash.split("?")[0];
 
   return pathname === normalizedHref;
-  return pathname === href;
 }
 
 export default function Header() {

@@ -6,37 +6,6 @@ export default function Hero() {
       id="home"
       className="relative overflow-hidden bg-linear-to-r from-[#3186FF] to-[#1B38CC] px-3 pt-20 text-white"
     >
-      <style jsx>{`
-        @keyframes scrollUp {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            transform: translate3d(0, calc(-50% - 0.375rem), 0);
-          }
-        }
-
-        @keyframes scrollDown {
-          0% {
-            transform: translate3d(0, calc(-50% - 0.375rem), 0);
-          }
-          100% {
-            transform: translate3d(0, 0, 0);
-          }
-        }
-
-        .scroll-up {
-          animation: scrollUp 24s linear infinite;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-
-        .scroll-down {
-          animation: scrollDown 24s linear infinite;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-      `}</style>
       <div className="relative mx-auto h-full max-w-full overflow-hidden">
         {/* Geometric accents */}
         <div className="absolute -left-24 top-6 h-44 w-44 rounded-full border-14 border-white/95"></div>
