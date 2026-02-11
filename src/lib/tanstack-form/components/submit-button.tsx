@@ -7,7 +7,10 @@ import { useFormContext } from "@/lib/tanstack-form/hooks";
 type SubmitButtonProps = {
 	children?: React.ReactNode;
 	pendingText?: string;
-	buttonProps?: Omit<React.ComponentProps<typeof Button>, "type" | "disabled" | "children">;
+	buttonProps?: Omit<
+		React.ComponentProps<typeof Button>,
+		"type" | "disabled" | "children"
+	>;
 };
 
 export function SubmitButton({
@@ -18,7 +21,12 @@ export function SubmitButton({
 	const form = useFormContext();
 
 	return (
-		<form.Subscribe selector={(state) => ({ isSubmitting: state.isSubmitting, canSubmit: state.canSubmit })}>
+		<form.Subscribe
+			selector={(state) => ({
+				isSubmitting: state.isSubmitting,
+				canSubmit: state.canSubmit,
+			})}
+		>
 			{({ isSubmitting, canSubmit }) => (
 				<Button
 					type="submit"
