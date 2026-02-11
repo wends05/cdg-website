@@ -127,6 +127,10 @@
     @apply bg-background text-foreground font-sans;
     font-family: var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
 	}
+
+  button {
+    @apply cursor-pointer;
+  }
 }
 
 @layer utilities {
@@ -169,4 +173,3 @@
     backface-visibility: hidden;
   }
 }
-

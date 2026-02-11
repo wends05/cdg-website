@@ -1,9 +1,12 @@
-import { EventCard } from "@/components/ui/event-card";
-import { events } from "@/lib/events";
+import { getEvents } from "@/actions/events";
+import { EventCard } from "@/components/events/event-card";
 
-export default function EventsPage() {
+export default async function EventsPage() {
+
+  const events = await getEvents()
+
   return (
-    <main className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-secondary to-accent/80 text-foreground">
+    <main className="relative overflow-hidden bg-linear-to-br from-primary/90 via-secondary to-accent/80 text-foreground">
       <div className="pointer-events-none absolute inset-0 opacity-40">
         <div className="absolute inset-y-0 left-0 w-96 bg-white/20 blur-[140px]" />
         <div className="absolute inset-y-0 right-0 w-72 bg-accent/60 blur-[220px]" />
