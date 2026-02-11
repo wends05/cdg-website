@@ -3,7 +3,7 @@
 export default function ContactPage() {
   return (
     <div className="min-h-screen">
-      <div className="bg-linear-to-b from-primary to-primary/90 text-white py-16">
+      <div className="bg-gradient-to-b from-primary to-primary/90 text-white py-16">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Contact Us

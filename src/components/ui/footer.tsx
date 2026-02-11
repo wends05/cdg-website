@@ -1,6 +1,7 @@
 export default function Footer() {
   const footerLinks = [
     {
+      key: "community",
       title: "Community",
       links: [
         { name: "Home", href: "/" },
@@ -8,6 +9,7 @@ export default function Footer() {
       ],
     },
     {
+      key: "support",
       title: "Support",
       links: [{ name: "Contact Us", href: "/contact" }],
     },
@@ -67,14 +69,14 @@ export default function Footer() {
 
         <div className="border-t border-white/20 pt-12">
           <div className="mb-8 grid grid-cols-2 gap-8 md:grid-cols-4">
-            {footerLinks.map((section, index) => (
-              <div key={index}>
+            {footerLinks.map((section) => (
+              <div key={section.key}>
                 <h4 className="mb-4 text-lg font-semibold text-white">
                   {section.title}
                 </h4>
                 <ul className="space-y-2">
-                  {section.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
+                  {section.links.map((link) => (
+                    <li key={`${section.title}-${link.name}`}>
                       <a
                         href={link.href}
                         className="text-base text-white/80 transition-colors hover:text-white"

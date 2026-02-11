@@ -11,20 +11,27 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-const typePills: Record<string, string> = {
-  Workshop: "bg-blue-100 text-blue-900",
-  Competition: "bg-red-100 text-red-900",
-  "Tech Talk": "bg-green-100 text-green-900",
-  Studio: "bg-yellow-100 text-yellow-900",
-  Community: "bg-purple-100 text-purple-900",
-};
-
-const badgeVariants: Record<string, string> = {
-  Workshop: "text-blue-500/90 bg-blue-50/90",
-  Competition: "text-red-500/90 bg-red-50/90",
-  "Tech Talk": "text-emerald-500/90 bg-emerald-50/90",
-  Studio: "text-orange-500/90 bg-orange-50/90",
-  Community: "text-sky-500/90 bg-sky-50/90",
+const eventTypeStyles: Record<string, { pill: string; badge: string }> = {
+  Workshop: {
+    pill: "bg-blue-100 text-blue-900",
+    badge: "text-blue-500/90 bg-blue-50/90",
+  },
+  Competition: {
+    pill: "bg-red-100 text-red-900",
+    badge: "text-red-500/90 bg-red-50/90",
+  },
+  "Tech Talk": {
+    pill: "bg-green-100 text-green-900",
+    badge: "text-emerald-500/90 bg-emerald-50/90",
+  },
+  Studio: {
+    pill: "bg-yellow-100 text-yellow-900",
+    badge: "text-orange-500/90 bg-orange-50/90",
+  },
+  Community: {
+    pill: "bg-purple-100 text-purple-900",
+    badge: "text-sky-500/90 bg-sky-50/90",
+  },
 };
 
 export interface EventCardProps {
@@ -32,9 +39,11 @@ export interface EventCardProps {
 }
 
 export function EventCard({ event }: EventCardProps) {
-  const typePill = typePills[event.type] ?? "bg-zinc-100 text-zinc-900";
+  const typePill =
+    eventTypeStyles[event.type]?.pill ?? "bg-zinc-100 text-zinc-900";
   const badgeClass =
-    badgeVariants[event.type] ?? "text-muted-foreground bg-zinc-900/70";
+    eventTypeStyles[event.type]?.badge ??
+    "text-muted-foreground bg-zinc-900/70";
 
   return (
     <Card className="group flex h-full flex-col border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-lg">

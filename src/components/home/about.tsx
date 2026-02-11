@@ -1,40 +1,40 @@
 export default function About() {
   const features = [
     {
-      title: "Web Design",
+      title: "Hands-on Workshops",
       description:
-        "Stunning, responsive websites that engage your audience and convert visitors into customers.",
-      icon: "🎨",
+        "Build practical skills through guided sessions on web development, app development, and modern tools.",
+      icon: "01",
     },
     {
-      title: "Digital Marketing",
+      title: "Peer Mentorship",
       description:
-        "Strategic marketing campaigns that increase brand awareness and drive measurable results.",
-      icon: "📈",
+        "Learn with support from senior students and alumni through code reviews, study groups, and guidance.",
+      icon: "02",
     },
     {
-      title: "Brand Strategy",
+      title: "Project Building",
       description:
-        "Comprehensive brand development that tells your story and sets you apart from the competition.",
-      icon: "🎯",
+        "Collaborate on real projects that strengthen your portfolio and help you apply concepts beyond the classroom.",
+      icon: "03",
     },
     {
-      title: "Content Creation",
+      title: "Hackathons & Competitions",
       description:
-        "Compelling content that resonates with your target audience and builds lasting relationships.",
-      icon: "✨",
+        "Challenge yourself in team-based events that improve problem-solving, creativity, and technical confidence.",
+      icon: "04",
     },
     {
-      title: "SEO Optimization",
+      title: "Tech Talks",
       description:
-        "Advanced SEO strategies that improve your search rankings and drive organic traffic.",
-      icon: "🔍",
+        "Explore emerging technologies, career paths, and industry practices through speaker sessions and discussions.",
+      icon: "05",
     },
     {
-      title: "Analytics & Reporting",
+      title: "Community & Networking",
       description:
-        "Data-driven insights that help you understand your audience and optimize performance.",
-      icon: "📊",
+        "Connect with like-minded builders, share opportunities, and grow in a collaborative student developer community.",
+      icon: "06",
     },
   ];
 
@@ -43,25 +43,23 @@ export default function About() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl">
-            About Our Agency
+            About CDG
           </h2>
           <p className="mt-4 text-lg leading-8 text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            We&apos;re a team of creative professionals passionate about
-            delivering exceptional digital experiences that help businesses
-            thrive in the modern marketplace.
+            CDG is a student developer group where learners collaborate, build,
+            and grow through practical experiences in technology.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div>
             <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
-              Our Mission
+              Our Purpose
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              To transform businesses through innovative digital solutions that
-              combine creativity, technology, and strategic thinking. We believe
-              in the power of design to create meaningful connections between
-              brands and their audiences.
+              To create an inclusive environment where students can learn
+              development skills, experiment with ideas, and gain confidence by
+              building together.
             </p>
           </div>
           <div>
@@ -69,19 +67,18 @@ export default function About() {
               Our Vision
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              To be the leading digital agency that sets new standards for
-              creativity and innovation, helping businesses navigate the digital
-              landscape with confidence and achieve extraordinary growth.
+              To empower every student in our community to become a capable,
+              curious, and collaborative builder ready for real-world impact.
             </p>
           </div>
         </div>
 
         <div className="text-center mb-12">
           <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
-            Our Services
+            What We Offer
           </h3>
           <p className="text-zinc-600 dark:text-zinc-400">
-            Comprehensive digital solutions tailored to your unique needs
+            Opportunities to learn, build, and grow as a student developer
           </p>
         </div>
 
