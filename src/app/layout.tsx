@@ -36,7 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} no-scrollbar`}>
+    <html
+      lang="en"
+      className={`${inter.variable} no-scrollbar`}
+      suppressHydrationWarning
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased no-scrollbar`}
       >
