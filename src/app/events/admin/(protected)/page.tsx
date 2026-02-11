@@ -1,18 +1,15 @@
-import { getServerSession } from "next-auth";
-import { SignoutButton } from "@/components/auth/signout-btn";
-import { authOptions } from "@/lib/auth";
+import { getEvents } from "@/actions/events";
+import EventsList from "@/components/admin/events-list";
 
 export default async function AdminPage() {
-	const session = await getServerSession(authOptions);
+	const events = await getEvents();
 
 	return (
-		<div className="p-6">
-			<p className="text-lg font-semibold">
-				Welcome, {session?.user?.name ?? "Admin"}
-			</p>
-			<div className="mt-4">
-				<SignoutButton variant="secondary" size="sm" />
+		<main className="p-10">
+			<h2>Events List</h2>
+			<div>
+				<EventsList events={events} />
 			</div>
-		</div>
+		</main>
 	);
 }
