@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "picsum.photos",
       },
+      {
+        protocol: "https",
+        hostname: "hhl5wcanr4.ufs.sh",
+        pathname: "/f/*",
+      },
     ],
   },
 };

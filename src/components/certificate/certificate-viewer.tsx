@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic'
 import { Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CertificatePDF } from './certificate-pdf'
-import type { EventRecord, ParticipantRecord } from '@/utils/certificate'
 import { formatDate, generateCertificateId } from '@/utils/certificate'
+import { EventRecord, ParticipantRecord } from '@/types/domain'
 
 const PDFDownloadLink = dynamic(
   () => import('@react-pdf/renderer').then((mod) => mod.PDFDownloadLink),
@@ -14,15 +14,15 @@ const PDFDownloadLink = dynamic(
 
 export function CertificateViewer({
   event,
-  user,
+  participant,
 }: {
   event: EventRecord
-  user: ParticipantRecord
+  participant: ParticipantRecord
 }) {
   const certId = generateCertificateId()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 py-8 px-4">
       {/* Decorative elements */}
       <div className="absolute top-10 left-10 w-20 h-20 rounded-full border-2 border-blue-500 opacity-20" />
       <div className="absolute bottom-20 right-10 w-32 h-32 border-2 border-yellow-400 opacity-10 transform rotate-45" />
@@ -65,9 +65,9 @@ export function CertificateViewer({
                     This certificate is presented to
                   </p>
                   <h3 className="text-2xl font-bold text-blue-600 mb-1">
-                    {user.name}
+                    {participant.name}
                   </h3>
-                  <p className="text-sm text-gray-600">{user.email}</p>
+                  <p className="text-sm text-gray-600">{participant.email}</p>
                 </div>
 
                 {/* Certificate Details */}
@@ -94,7 +94,7 @@ export function CertificateViewer({
                 <div className="text-center">
                   <p className="text-xs text-gray-600 leading-relaxed">
                     This certificate verifies that{' '}
-                    <span className="font-semibold">{user.name}</span> has
+                    <span className="font-semibold">{participant.name}</span> has
                     successfully completed{' '}
                     <span className="font-semibold">{event.name}</span>. The
                     certificate indicates the entire event was completed as
@@ -120,15 +120,15 @@ export function CertificateViewer({
                 Certificate Recipient
               </p>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
                   <span className="text-white font-bold text-sm">
-                    {user.name.charAt(0)}
+                    {participant.name.charAt(0)}
                   </span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">{user.name}</h4>
+                  <h4 className="font-semibold text-gray-900">{participant.name}</h4>
                   <p className="text-sm text-gray-600 break-all">
-                    {user.email}
+                    {participant.email}
                   </p>
                 </div>
               </div>
@@ -151,10 +151,10 @@ export function CertificateViewer({
             </div>
 
             {/* Download Button */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md p-6 border border-blue-200">
+            <div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-lg shadow-md p-6 border border-blue-200">
               <PDFDownloadLink
-                document={<CertificatePDF event={event} user={user} />}
-                fileName={`${event.slug}-${user.email}-certificate.pdf`}
+                document={<CertificatePDF event={event} participant={participant} />}
+                fileName={`${event.slug}-${participant.email}-certificate.pdf`}
               >
                 {({ loading }) => (
                   <Button
