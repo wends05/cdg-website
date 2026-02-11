@@ -18,7 +18,7 @@ export default function EventPage({ event }: EventPageProps) {
 	}).format(event.date);
 
 	return (
-		<div className="pt-16">
+		<div className="pt-5">
 			<section className="mx-auto max-w-3xl px-4 pt-10 pb-14 sm:px-6">
 				<Link href={"/events"} className="flex items-center pb-5">
 					<RiArrowLeftSLine size={25} /> <span>Back</span>
