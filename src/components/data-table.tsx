@@ -20,12 +20,14 @@ interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
 	onRowSelect?: (row: TData) => void;
+	emptyStateText?: string;
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
 	onRowSelect,
+	emptyStateText,
 }: DataTableProps<TData, TValue>) {
 	// eslint-disable-next-line react-hooks/incompatible-library
 	const table = useReactTable({
@@ -76,7 +78,7 @@ export function DataTable<TData, TValue>({
 					) : (
 						<TableRow>
 							<TableCell colSpan={columns.length} className="h-24 text-center">
-								No results.
+								{emptyStateText ?? "No results."}
 							</TableCell>
 						</TableRow>
 					)}
