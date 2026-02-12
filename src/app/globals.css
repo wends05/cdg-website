@@ -131,6 +131,18 @@
   button {
     @apply cursor-pointer;
   }
+
+  h1 {
+    @apply text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold;
+  }
 }
 
 @layer utilities {
@@ -171,5 +183,43 @@
     animation: scrollDown 24s linear infinite;
     will-change: transform;
     backface-visibility: hidden;
+  }
+}
+
+@layer components {
+  .tiptap {
+    @apply text-foreground;
+  }
+
+  .tiptap h1 {
+    @apply mt-4 mb-2 text-3xl font-bold;
+  }
+
+  .tiptap h2 {
+    @apply mt-4 mb-2 text-2xl font-semibold;
+  }
+
+  .tiptap h3 {
+    @apply mt-3 mb-2 text-xl font-semibold;
+  }
+
+  .tiptap ol {
+    @apply my-3 ml-6 list-decimal;
+  }
+
+  .tiptap ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  .tiptap ol ol ol {
+    list-style-type: decimal;
+  }
+
+  .tiptap ul {
+    @apply my-3 ml-6 list-disc;
+  }
+
+  .tiptap a {
+    @apply text-primary underline;
   }
 }

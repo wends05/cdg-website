@@ -1,7 +1,7 @@
+import { RiArrowLeftSLine } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import { RiArrowLeftSLine } from "@remixicon/react";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import type { EventRecord, ParticipantRecord } from "@/types/domain";
@@ -22,10 +22,15 @@ export default function EventPage({ event, participants }: EventPageProps) {
 	return (
 		<main className="pt-5">
 			<section className="mx-auto max-w-3xl px-4 pt-10 pb-14 sm:px-6">
-				<Link href="/events/admin" className="flex items-center pb-5">
-					<RiArrowLeftSLine size={25} />
-					<span>Back to Events</span>
-				</Link>
+				<Button
+					nativeButton={false}
+					render={
+						<Link href="/events/admin" className="flex items-center">
+							<RiArrowLeftSLine size={25} />
+							<span>Back to Events</span>
+						</Link>
+					}
+				/>
 
 				<h1 className="text-3xl leading-tight font-bold text-foreground sm:text-4xl">
 					{event.name}

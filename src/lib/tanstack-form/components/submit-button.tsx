@@ -24,14 +24,12 @@ export function SubmitButton({
 		<form.Subscribe
 			selector={(state) => ({
 				isSubmitting: state.isSubmitting,
-				canSubmit: state.canSubmit,
 			})}
 		>
-			{({ isSubmitting, canSubmit }) => (
+			{({ isSubmitting }) => (
 				<Button
 					type="submit"
-					disabled={isSubmitting || !canSubmit}
-					aria-busy={isSubmitting}
+					disabled={isSubmitting}
 					{...buttonProps}
 				>
 					{isSubmitting ? pendingText : children}
