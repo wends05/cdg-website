@@ -1,5 +1,5 @@
-import { getEvents } from "@/actions/events";
 import EventsList from "@/components/admin/events-list";
+import { getEvents } from "@/queries/events";
 
 export default async function AdminPage() {
 	const events = await getEvents();

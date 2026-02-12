@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { getEvents } from "@/actions/events";
 import EventsPreview from "@/components/home/events-preview";
 import Hero from "@/components/home/hero";
 import Footer from "@/components/ui/footer";
+import { getEvents } from "@/queries/events";
 
 export default async function Home() {
 	const events = await getEvents();
