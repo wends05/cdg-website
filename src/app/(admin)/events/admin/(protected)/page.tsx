@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { getEvents } from "@/actions/events";
 import EventsList from "@/components/admin/events-list";
 import { Button } from "@/components/ui/button";
+import { getEvents } from "@/queries/events";
 
 export default async function AdminPage() {
 	const events = await getEvents();

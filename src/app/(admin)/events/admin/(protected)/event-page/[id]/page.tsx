@@ -1,5 +1,5 @@
-import { getEvent, getParticipantsByEventId } from "@/actions/events";
 import EventPage from "@/components/admin/event-page";
+import { getEvent, getParticipantsByEventId } from "@/queries/events";
 
 export default async function EventPageWrapper({
 	params,
