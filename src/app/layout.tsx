@@ -5,6 +5,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { AuthProvider } from "@/utils/auth-provider";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -46,6 +47,7 @@ export default function RootLayout({
         <AuthProvider>
           <div className="min-h-screen bg-background text-foreground">
             {children}
+            <Toaster />
           </div>
         </AuthProvider>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />

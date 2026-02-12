@@ -1,5 +1,8 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
 import { CalendarField } from "@/lib/tanstack-form/components/calendar-field";
+import { DatePickerField } from "@/lib/tanstack-form/components/date-picker-field";
+import { RichTextField } from "@/lib/tanstack-form/components/rich-text-field";
+import { SingleImageUploadField } from "@/lib/tanstack-form/components/single-image-upload-field";
 import { SubmitButton } from "@/lib/tanstack-form/components/submit-button";
 import { TextField } from "@/lib/tanstack-form/components/text-field";
 import { TextareaField } from "@/lib/tanstack-form/components/textarea-field";
@@ -14,6 +17,9 @@ export const { useAppForm } = createFormHook({
     TextField,
     TextareaField,
     CalendarField,
+    DatePickerField,
+    RichTextField,
+    SingleImageUploadField,
   },
   formComponents: {
     SubmitButton,
