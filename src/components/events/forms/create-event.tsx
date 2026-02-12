@@ -9,6 +9,7 @@ import parseSlug from "@/lib/helpers/parse-slug";
 import { useAppForm } from "@/lib/tanstack-form/hooks";
 import { useSingleImageUpload } from "@/lib/upload/use-single-image-upload";
 import { EventRecordSchema } from "@/types/domain";
+import { tryCatch } from "@/lib/result";
 
 const CreateEventSchema = EventRecordSchema.omit({
 	id: true,
@@ -68,8 +69,12 @@ export default function CreateEventForm() {
 				slug: value.slug,
 			});
 
-			await createEvent(finalData);
+			const { error } = await tryCatch(() => createEvent(finalData));
 
+			if (error) {
+				toast.error(`Failed to create event: ${error.message}`);
+				return;
+			}
 			toast.success("Event created.");
 			router.push("/events/admin");
 		},

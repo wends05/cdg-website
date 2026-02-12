@@ -1,10 +1,16 @@
+"use client";
+
 import { RiArrowLeftSLine } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import type { EventRecord, ParticipantRecord } from "@/types/domain";
+import CreateParticipantForm from "../events/forms/create-participant";
 import ParticipantList from "./participant-list";
 
 interface EventPageProps {
@@ -13,11 +19,26 @@ interface EventPageProps {
 }
 
 export default function EventPage({ event, participants }: EventPageProps) {
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [participantList] = useState<ParticipantRecord[]>(participants);
+
+	const router = useRouter();
+
 	const formattedDate = new Intl.DateTimeFormat("en-US", {
 		month: "long",
 		day: "numeric",
 		year: "numeric",
 	}).format(event.date);
+
+	const handleParticipantAdded = () => {
+		setIsDialogOpen(false);
+		// Refresh the page to show the new participant
+		router.refresh();
+	};
+
+	const handleDialogOpenChange = (open: boolean) => {
+		setIsDialogOpen(open);
+	};
 
 	return (
 		<main className="pt-5">
@@ -72,11 +93,19 @@ export default function EventPage({ event, participants }: EventPageProps) {
 				<section className="mt-10 space-y-4">
 					<div className="flex items-center justify-between">
 						<h2 className="text-xl font-semibold">
-							Participants ({participants.length})
+							Participants ({participantList.length})
 						</h2>
-						<Button type="button">Add Participant</Button>
+						<Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
+							<DialogTrigger
+								render={<Button type="button">Add Participant</Button>}
+							/>
+							<CreateParticipantForm
+								eventId={event.id ?? ""}
+								onSuccess={handleParticipantAdded}
+							/>
+						</Dialog>
 					</div>
-					<ParticipantList participants={participants} />
+					<ParticipantList participants={participantList} />
 				</section>
 			</section>
 		</main>

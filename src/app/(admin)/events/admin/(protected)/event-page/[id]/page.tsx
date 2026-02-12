@@ -9,6 +9,7 @@ export default async function EventPageWrapper({
 	const { id } = await params;
 	const eventData = await getEvent(id);
 	const participants = await getParticipantsByEventId(id);
+	console.log(participants)
 
 	return <EventPage event={eventData} participants={participants} />;
 }
