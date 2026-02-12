@@ -1,4 +1,4 @@
-import { getEvents, getParticipantsByEventId } from "@/actions/events";
+import { getEvents, getParticipantsByEventId } from "@/queries/events";
 
 /**
  * Sample page for fetching the events data
