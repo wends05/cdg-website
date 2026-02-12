@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getEventBySlug } from "@/actions/events";
 import EventPage from "@/components/events/event-page";
+import { getEventBySlug } from "@/queries/events";
 
 interface EventRoutePageProps {
 	params: Promise<{ slug: string }>;
