@@ -32,10 +32,11 @@ export function RichTextField({
 			<FieldLabel>{label}</FieldLabel>
 			<div onBlurCapture={field.handleBlur}>
 				<RichTextEditor
-					initialValue=""
+					initialValue={field.state.value}
 					placeholder={placeholder}
 					disabled={disabled}
 					onChangeHtml={(html) => field.handleChange(htmlToMarkdown(html))}
+					key={field.state.value}
 				/>
 			</div>
 			{description ? <FieldDescription>{description}</FieldDescription> : null}

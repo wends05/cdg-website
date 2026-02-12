@@ -6,7 +6,11 @@ import { useState } from "react";
 import type { DateRange, Mode } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
 type DatePickerValue = Date | DateRange | Date[] | undefined;
@@ -73,22 +77,25 @@ export function DatePicker({
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger
-			render={
-				<Button
-					type="button"
-					variant="outline"
-					disabled={disabled}
-					className={cn("w-full justify-between font-normal", buttonProps?.className)}
-					{...buttonProps}
-				>
-					<span className={cn(!value && "text-muted-foreground")}>
-						{formatLabel(mode, value, placeholder)}
-					</span>
-					<RiCalendarLine className="size-4 text-muted-foreground" />
-				</Button>
+				render={
+					<Button
+						type="button"
+						variant="outline"
+						disabled={disabled}
+						{...buttonProps}
+						className={cn(
+							"w-full justify-between font-normal",
+							buttonProps?.className,
+						)}
+					>
+						<span className={cn(!value && "text-muted-foreground")}>
+							{formatLabel(mode, value, placeholder)}
+						</span>
+						<RiCalendarLine className="size-4 text-muted-foreground" />
+					</Button>
+				}
+			/>
 
-			}/> 
-			
 			<PopoverContent className="w-auto p-0" align="start">
 				<Calendar
 					mode={mode}

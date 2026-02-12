@@ -57,7 +57,6 @@ export async function addParticipantToEvent(
   const parsed = ParticipantRecordSchema.omit({ id: true }).parse({
     name,
     email,
-    joinedAt: new Date(),
   });
 
   await setDoc(participantRef, parsed);

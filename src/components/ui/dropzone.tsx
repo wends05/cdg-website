@@ -66,8 +66,10 @@ export const Dropzone = ({
 		disabled,
 		onDrop: (acceptedFiles, fileRejections, event) => {
 			if (fileRejections.length > 0) {
-				const message = fileRejections.at(0)?.errors.at(0)?.message;
-				onError?.(new Error(message));
+				const firstErrorMessage =
+					fileRejections.at(0)?.errors.at(0)?.message ??
+					"File was rejected. Please check the file type, size, and number of files.";
+				onError?.(new Error(firstErrorMessage));
 				return;
 			}
 
@@ -78,7 +80,13 @@ export const Dropzone = ({
 
 	return (
 		<DropzoneContext.Provider
-			key={JSON.stringify(src)}
+			key={
+				src && src.length > 0
+					? src
+							.map((file) => `${file.name}-${file.size}-${file.lastModified}`)
+							.join("|")
+					: "no-src"
+			}
 			value={{ src, accept, maxSize, minSize, maxFiles }}
 		>
 			<Button
@@ -201,24 +209,3 @@ export const DropzoneEmptyState = ({
 	);
 };
 
-// Demo
-import { useState } from "react";
-
-export function Demo() {
-	const [files, setFiles] = useState<File[]>();
-
-	return (
-		<div className="fixed inset-0 flex items-center justify-center p-8">
-			<Dropzone
-				src={files}
-				onDrop={(acceptedFiles) => setFiles(acceptedFiles)}
-				accept={{ "image/*": [".png", ".jpg", ".jpeg", ".gif"] }}
-				maxSize={5 * 1024 * 1024}
-				className="w-full max-w-md"
-			>
-				<DropzoneContent />
-				<DropzoneEmptyState />
-			</Dropzone>
-		</div>
-	);
-}
