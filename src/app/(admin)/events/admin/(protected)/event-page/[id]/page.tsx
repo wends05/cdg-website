@@ -1,5 +1,13 @@
+import {
+	dehydrate,
+	HydrationBoundary,
+	QueryClient,
+} from "@tanstack/react-query";
 import EventPage from "@/components/admin/event-page";
-import { getEvent, getParticipantsByEventId } from "@/queries/events";
+import {
+	getEventQueryOptions,
+	getParticipantsByEventIdQueryOptions,
+} from "@/lib/tanstack-query/query-options";
 
 export default async function EventPageWrapper({
 	params,
@@ -7,9 +15,14 @@ export default async function EventPageWrapper({
 	params: Promise<{ id: string }>;
 }) {
 	const { id } = await params;
-	const eventData = await getEvent(id);
-	const participants = await getParticipantsByEventId(id);
-	console.log(participants)
+	const queryClient = new QueryClient();
 
-	return <EventPage event={eventData} participants={participants} />;
+	await queryClient.ensureQueryData(getEventQueryOptions(id));
+	await queryClient.ensureQueryData(getParticipantsByEventIdQueryOptions(id));
+
+	return (
+		<HydrationBoundary state={dehydrate(queryClient)}>
+			<EventPage  />
+		</HydrationBoundary>
+	);
 }

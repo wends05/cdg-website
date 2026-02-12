@@ -1,5 +1,7 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import type z from "zod";
 import { addParticipantToEvent } from "@/actions/participants";
@@ -12,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { tryCatch } from "@/lib/result";
 import { useAppForm } from "@/lib/tanstack-form/hooks";
+import { getParticipantsByEventIdQueryOptions } from "@/lib/tanstack-query/query-options";
 import { ParticipantRecordSchema } from "@/types/domain";
 
 const CreateParticipantSchema = ParticipantRecordSchema.omit({
@@ -21,14 +24,15 @@ const CreateParticipantSchema = ParticipantRecordSchema.omit({
 type CreateParticipantInput = z.infer<typeof CreateParticipantSchema>;
 
 interface CreateParticipantFormProps {
-	eventId: string;
 	onSuccess?: () => void;
 }
 
 export default function CreateParticipantForm({
-	eventId,
 	onSuccess,
 }: CreateParticipantFormProps) {
+	const { id: eventId } = useParams<{ id: string }>();
+	const queryClient = useQueryClient();
+
 	const defaultValues: CreateParticipantInput = {
 		name: "",
 		email: "",
@@ -50,6 +54,10 @@ export default function CreateParticipantForm({
 
 			toast.success("Participant added.");
 			onSuccess?.();
+
+			queryClient.invalidateQueries(
+				getParticipantsByEventIdQueryOptions(eventId),
+			);
 		},
 	});
 

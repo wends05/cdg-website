@@ -1,13 +1,11 @@
 "use client";
 
+import { useSuspenseQuery } from "@tanstack/react-query";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
+import { getEventsQueryOptions } from "@/lib/tanstack-query/query-options";
 import type { EventRecord } from "@/types/domain";
 import { DataTable } from "../data-table";
-
-interface EventsListProps {
-	events: EventRecord[];
-}
 
 const columnDefs: ColumnDef<EventRecord>[] = [
 	{
@@ -20,16 +18,16 @@ const columnDefs: ColumnDef<EventRecord>[] = [
 		header: "Date",
 		accessorKey: "date",
 		cell: ({ row }) => {
-			const date = row.original.date
+			const date = row.original.date;
 			return date.toLocaleDateString();
-		}
+		},
 	},
 ];
 
-export default function EventsList({ events }: EventsListProps) {
+export default function EventsList() {
+	const { data: events } = useSuspenseQuery(getEventsQueryOptions());
 	const router = useRouter();
 	const handleClickRow = (row: EventRecord) => {
-		console.log("Clicked row:", row);
 		router.push(`/events/admin/event-page/${row.id}`);
 	};
 

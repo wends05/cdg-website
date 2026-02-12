@@ -1,26 +1,30 @@
 "use client";
 
 import { RiArrowLeftSLine } from "@remixicon/react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import type { EventRecord, ParticipantRecord } from "@/types/domain";
-import CreateParticipantForm from "../events/forms/create-participant";
+import {
+	getEventQueryOptions,
+	getParticipantsByEventIdQueryOptions,
+} from "@/lib/tanstack-query/query-options";
+import CreateParticipantForm from "./forms/create-participant";
 import ParticipantList from "./participant-list";
 
-interface EventPageProps {
-	event: EventRecord;
-	participants: ParticipantRecord[];
-}
+export default function EventPage() {
+	const { id: eventId } = useParams<{ id: string }>();
+	const { data: event } = useSuspenseQuery(getEventQueryOptions(eventId));
+	const { data: participants } = useSuspenseQuery(
+		getParticipantsByEventIdQueryOptions(eventId),
+	);
 
-export default function EventPage({ event, participants }: EventPageProps) {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const [participantList] = useState<ParticipantRecord[]>(participants);
 
 	const router = useRouter();
 
@@ -93,19 +97,16 @@ export default function EventPage({ event, participants }: EventPageProps) {
 				<section className="mt-10 space-y-4">
 					<div className="flex items-center justify-between">
 						<h2 className="text-xl font-semibold">
-							Participants ({participantList.length})
+							Participants ({participants.length})
 						</h2>
 						<Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
 							<DialogTrigger
 								render={<Button type="button">Add Participant</Button>}
 							/>
-							<CreateParticipantForm
-								eventId={event.id ?? ""}
-								onSuccess={handleParticipantAdded}
-							/>
+							<CreateParticipantForm onSuccess={handleParticipantAdded} />
 						</Dialog>
 					</div>
-					<ParticipantList participants={participantList} />
+					<ParticipantList participants={participants} />
 				</section>
 			</section>
 		</main>

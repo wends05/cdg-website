@@ -1,6 +1,6 @@
 import { RiArrowLeftSLine } from "@remixicon/react";
 import Link from "next/link";
-import CreateEventForm from "@/components/events/forms/create-event";
+import CreateEventForm from "@/components/admin/forms/create-event";
 import { Button } from "@/components/ui/button";
 
 export default function CreateEventPage() {

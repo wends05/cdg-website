@@ -21,7 +21,9 @@ const columnDefs: ColumnDef<ParticipantRecord>[] = [
 	},
 ];
 
-export default function ParticipantList({ participants }: ParticipantListProps) {
+export default function ParticipantList({
+	participants,
+}: ParticipantListProps) {
 	return (
 		<DataTable
 			columns={columnDefs}
