@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
 	DialogClose,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
@@ -51,17 +50,13 @@ export default function CreateParticipantForm({
 
 			toast.success("Participant added.");
 			onSuccess?.();
-			
 		},
 	});
 
 	return (
 		<DialogContent className="sm:max-w-md">
 			<DialogHeader>
-				<DialogTitle>Add Participant</DialogTitle>
-				<DialogDescription>
-					Add a new participant to this event by entering their name and email.
-				</DialogDescription>
+				<DialogTitle>Add A Participant</DialogTitle>
 			</DialogHeader>
 
 			<form
