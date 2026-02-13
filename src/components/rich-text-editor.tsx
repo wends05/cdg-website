@@ -10,7 +10,6 @@ import {
 } from "@remixicon/react";
 import Link from "@tiptap/extension-link";
 import { Markdown } from "@tiptap/markdown";
-import type { Editor } from "@tiptap/react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback, useEffect } from "react";
@@ -25,18 +24,6 @@ type Props = {
 	disabled?: boolean;
 	className?: string;
 };
-
-function getEditorMarkdown(editor: Editor): string {
-	const markdownStorage = editor.storage?.markdown as
-		| { getMarkdown?: () => string }
-		| undefined;
-
-	if (typeof markdownStorage?.getMarkdown === "function") {
-		return markdownStorage.getMarkdown();
-	}
-
-	return editor.getText();
-}
 
 export function RichTextEditor({
 	value = "",
@@ -71,14 +58,17 @@ export function RichTextEditor({
 			},
 		},
 		onUpdate: ({ editor }) => {
-			onChange?.(getEditorMarkdown(editor));
+			onChange?.(editor.getMarkdown());
 		},
 	});
 
 	useEffect(() => {
 		if (!editor) return;
-		if (getEditorMarkdown(editor) === value) return;
-		editor.commands.setContent(value, { emitUpdate: false });
+		if (editor.getMarkdown() === value) return;
+		editor.commands.setContent(value, {
+			contentType: "markdown",
+			emitUpdate: false,
+		});
 	}, [editor, value]);
 
 	useEffect(() => {
