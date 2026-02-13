@@ -24,7 +24,7 @@ export const ourFileRouter = {
     // Skipped the middleware for now
     .onUploadComplete(async ({ file }) => {
       // This code RUNS ON YOUR SERVER after upload
-      return { success: true, fileUrl: file.ufsUrl, name: file.name };
+      return { success: true, fileUrl: file.ufsUrl, name: file.name, key: file.key };
     }),
 } satisfies FileRouter;
 

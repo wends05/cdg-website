@@ -15,6 +15,7 @@ import {
 	getParticipantsByEventIdQueryOptions,
 } from "@/lib/tanstack-query/query-options";
 import CreateParticipantForm from "./forms/create-participant";
+import { EditEventDialogWrapper } from "./forms/edit-event";
 import ParticipantList from "./participant-list";
 
 export default function EventPage() {
@@ -47,15 +48,18 @@ export default function EventPage() {
 	return (
 		<main className="pt-5">
 			<section className="mx-auto max-w-3xl px-4 pt-10 pb-14 sm:px-6">
-				<Button
-					nativeButton={false}
-					render={
-						<Link href="/events/admin" className="flex items-center">
-							<RiArrowLeftSLine size={25} />
-							<span>Back to Events</span>
-						</Link>
-					}
-				/>
+				<div className="flex items-center justify-between">
+					<Button
+						nativeButton={false}
+						render={
+							<Link href="/events/admin" className="flex items-center">
+								<RiArrowLeftSLine size={25} />
+								<span>Back to Events</span>
+							</Link>
+						}
+					/>
+					<EditEventDialogWrapper />
+				</div>
 
 				<h1 className="text-3xl leading-tight font-bold text-foreground sm:text-4xl">
 					{event.name}

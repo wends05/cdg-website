@@ -6,10 +6,10 @@ import z from "zod";
 import { createEvent } from "@/actions/events";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import parseSlug from "@/lib/helpers/parse-slug";
+import { tryCatch } from "@/lib/result";
 import { useAppForm } from "@/lib/tanstack-form/hooks";
 import { useSingleImageUpload } from "@/lib/upload/use-single-image-upload";
 import { EventRecordSchema } from "@/types/domain";
-import { tryCatch } from "@/lib/result";
 
 const CreateEventSchema = EventRecordSchema.omit({
 	id: true,
@@ -39,6 +39,7 @@ export default function CreateEventForm() {
 		imageFile: null,
 		name: "",
 		slug: "",
+		imageKey: "",
 	};
 	const form = useAppForm({
 		defaultValues,
@@ -54,25 +55,29 @@ export default function CreateEventForm() {
 			}),
 		},
 		onSubmit: async ({ value }) => {
-			console.log("Submitting form with value:", value);
-			const uploadResult = await imageUpload.uploadSelected();
-			if (uploadResult.error) {
-				toast.error(uploadResult.error.message);
+			const uploadedImage = await imageUpload.uploadSelected();
+
+			if (!uploadedImage) {
+				toast.error(
+					`Image upload failed: ${imageUpload.uploadError || "Unknown error"}`,
+				);
 				return;
 			}
-
 			const finalData = EventRecordSchema.parse({
 				date: value.date,
 				details: value.details,
-				imageUrl: uploadResult.data,
+				imageUrl: uploadedImage.ufsUrl,
 				name: value.name,
 				slug: value.slug,
+				imageKey: uploadedImage.key,
 			});
 
-			const { error } = await tryCatch(() => createEvent(finalData));
+			const { error: createEventError } = await tryCatch(() =>
+				createEvent(finalData),
+			);
 
-			if (error) {
-				toast.error(`Failed to create event: ${error.message}`);
+			if (createEventError) {
+				toast.error(`Failed to create event: ${createEventError.message}`);
 				return;
 			}
 			toast.success("Event created.");

@@ -10,6 +10,7 @@ import {
 } from "@remixicon/react";
 import Link from "@tiptap/extension-link";
 import { Markdown } from "@tiptap/markdown";
+import type { Editor } from "@tiptap/react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback, useEffect } from "react";
@@ -18,16 +19,28 @@ import { Button } from "./ui/button";
 import { ButtonGroup, ButtonGroupSeparator } from "./ui/button-group";
 
 type Props = {
-	initialValue?: string;
-	onChangeHtml: (html: string) => void;
+	value?: string;
+	onChange?: (value: string) => void;
 	placeholder?: string;
 	disabled?: boolean;
 	className?: string;
 };
 
+function getEditorMarkdown(editor: Editor): string {
+	const markdownStorage = editor.storage?.markdown as
+		| { getMarkdown?: () => string }
+		| undefined;
+
+	if (typeof markdownStorage?.getMarkdown === "function") {
+		return markdownStorage.getMarkdown();
+	}
+
+	return editor.getText();
+}
+
 export function RichTextEditor({
-	initialValue = "",
-	onChangeHtml,
+	value = "",
+	onChange,
 	placeholder,
 	disabled = false,
 	className,
@@ -48,7 +61,7 @@ export function RichTextEditor({
 			}),
 		],
 		contentType: "markdown",
-		content: initialValue,
+		content: value,
 		editable: !disabled,
 		editorProps: {
 			attributes: {
@@ -58,9 +71,15 @@ export function RichTextEditor({
 			},
 		},
 		onUpdate: ({ editor }) => {
-			onChangeHtml(editor.getHTML());
+			onChange?.(getEditorMarkdown(editor));
 		},
 	});
+
+	useEffect(() => {
+		if (!editor) return;
+		if (getEditorMarkdown(editor) === value) return;
+		editor.commands.setContent(value, { emitUpdate: false });
+	}, [editor, value]);
 
 	useEffect(() => {
 		if (!editor) return;

@@ -7,6 +7,7 @@ export const EventRecordSchema = z.object({
   details: z.string().min(1),
   imageUrl: z.string().min(1),
   date: FirestoreTimestamp,
+  imageKey: z.string(),
 });
 
 export const ParticipantRecordSchema = z.object({

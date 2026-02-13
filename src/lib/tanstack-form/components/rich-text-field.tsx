@@ -7,7 +7,6 @@ import {
 	FieldError,
 	FieldLabel,
 } from "@/components/ui/field";
-import { htmlToMarkdown } from "@/lib/markdown/html-to-markdown";
 import { useFieldContext } from "@/lib/tanstack-form/hooks";
 
 type RichTextFieldProps = {
@@ -32,11 +31,10 @@ export function RichTextField({
 			<FieldLabel>{label}</FieldLabel>
 			<div onBlurCapture={field.handleBlur}>
 				<RichTextEditor
-					initialValue={field.state.value}
+					value={field.state.value}
 					placeholder={placeholder}
 					disabled={disabled}
-					onChangeHtml={(html) => field.handleChange(htmlToMarkdown(html))}
-					key={field.state.value}
+					onChange={(nextValue) => field.handleChange(nextValue)}
 				/>
 			</div>
 			{description ? <FieldDescription>{description}</FieldDescription> : null}
@@ -48,4 +46,3 @@ export function RichTextField({
 		</Field>
 	);
 }
-
