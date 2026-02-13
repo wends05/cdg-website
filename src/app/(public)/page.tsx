@@ -1,7 +1,6 @@
 import Link from "next/link";
 import EventsPreview from "@/components/home/events-preview";
 import Hero from "@/components/home/hero";
-import Footer from "@/components/ui/footer";
 import { getEvents } from "@/queries/events";
 
 export default async function Home() {
@@ -34,7 +33,6 @@ export default async function Home() {
 			</section>
 
 			<EventsPreview events={events.slice(0, 3)} />
-			<Footer />
 		</div>
 	);
 }

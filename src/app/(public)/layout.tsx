@@ -1,15 +1,17 @@
+import type React from "react";
+import Footer from "@/components/home/footer";
 import Header from "@/components/ui/header";
-import React from "react";
 
 export default function PublicLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <div>
-      <Header />
-      {children}
-    </div>
-  );
+	return (
+		<div>
+			<Header />
+			{children}
+			<Footer />
+		</div>
+	);
 }
