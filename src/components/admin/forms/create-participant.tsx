@@ -1,10 +1,9 @@
 "use client";
 
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import type z from "zod";
-import { addParticipantToEvent } from "@/actions/participants";
 import { Button } from "@/components/ui/button";
 import {
 	DialogClose,
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { tryCatch } from "@/lib/result";
 import { useAppForm } from "@/lib/tanstack-form/hooks";
+import { addParticipantToEventMutationOptions } from "@/lib/tanstack-query/mutation-options";
 import { getParticipantsByEventIdQueryOptions } from "@/lib/tanstack-query/query-options";
 import { ParticipantRecordSchema } from "@/types/domain";
 
@@ -32,6 +32,9 @@ export default function CreateParticipantForm({
 }: CreateParticipantFormProps) {
 	const { id: eventId } = useParams<{ id: string }>();
 	const queryClient = useQueryClient();
+	const addParticipantToEventMutation = useMutation(
+		addParticipantToEventMutationOptions(),
+	);
 
 	const defaultValues: CreateParticipantInput = {
 		name: "",
@@ -45,7 +48,11 @@ export default function CreateParticipantForm({
 		},
 		onSubmit: async ({ value }) => {
 			const { error } = await tryCatch(() =>
-				addParticipantToEvent(value.email, value.name, eventId),
+				addParticipantToEventMutation.mutateAsync({
+					email: value.email,
+					name: value.name,
+					eventId,
+				}),
 			);
 			if (error) {
 				toast.error(`Failed to add participant: ${error.message}`);

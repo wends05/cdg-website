@@ -1,19 +1,21 @@
 "use client";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import z from "zod";
-import { createEvent } from "@/actions/events";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import parseSlug from "@/lib/helpers/parse-slug";
 import { tryCatch } from "@/lib/result";
 import { useAppForm } from "@/lib/tanstack-form/hooks";
+import { createEventMutationOptions } from "@/lib/tanstack-query/mutation-options";
 import { useSingleImageUpload } from "@/lib/upload/use-single-image-upload";
 import { EventRecordSchema } from "@/types/domain";
 
 const CreateEventSchema = EventRecordSchema.omit({
 	id: true,
 	imageUrl: true,
+	imageKey: true,
 }).extend({
 	imageFile: z.file().nullable(),
 	date: z.date(),
@@ -24,6 +26,7 @@ type CreateEventInput = z.infer<typeof CreateEventSchema>;
 export default function CreateEventForm() {
 	const router = useRouter();
 	const imageUpload = useSingleImageUpload();
+	const createEventMutation = useMutation(createEventMutationOptions());
 	const [isSlugAutoSync, setIsSlugAutoSync] = useState(true);
 	const today = new Date();
 	const minDate = new Date(
@@ -39,7 +42,6 @@ export default function CreateEventForm() {
 		imageFile: null,
 		name: "",
 		slug: "",
-		imageKey: "",
 	};
 	const form = useAppForm({
 		defaultValues,
@@ -73,7 +75,7 @@ export default function CreateEventForm() {
 			});
 
 			const { error: createEventError } = await tryCatch(() =>
-				createEvent(finalData),
+				createEventMutation.mutateAsync(finalData),
 			);
 
 			if (createEventError) {

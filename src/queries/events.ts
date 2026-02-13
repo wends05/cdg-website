@@ -9,7 +9,7 @@ import {
 import { db } from "@/lib/firebase";
 import {
 	type EventRecord,
-	EventRecordSchema,
+	EventRecordReadSchema,
 	ParticipantRecordSchema,
 } from "@/types/domain";
 
@@ -18,7 +18,7 @@ export async function getEvents() {
 	const snapshot = await getDocs(collection(db, "events"));
 	return snapshot.docs
 		.map((snapshotDoc) => {
-			const parsed = EventRecordSchema.safeParse({
+			const parsed = EventRecordReadSchema.safeParse({
 				id: snapshotDoc.id,
 				...snapshotDoc.data(),
 			});
@@ -41,7 +41,7 @@ export async function getEvent(id: string) {
 		throw new Error(`Event with ID ${id} not found`);
 	}
 
-	return EventRecordSchema.parse({
+	return EventRecordReadSchema.parse({
 		id: snapshot.id,
 		...snapshot.data(),
 	});
@@ -57,7 +57,7 @@ export async function getEventBySlug(slug: string) {
 	}
 
 	const eventDoc = snapshot.docs[0];
-	return EventRecordSchema.parse({ id: eventDoc.id, ...eventDoc.data() });
+	return EventRecordReadSchema.parse({ id: eventDoc.id, ...eventDoc.data() });
 }
 
 // GET PARTICIPANTS FOR EVENT (by event ID)

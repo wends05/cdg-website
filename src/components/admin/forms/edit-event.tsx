@@ -1,13 +1,16 @@
 "use client";
 
 import { RiPencilLine } from "@remixicon/react";
-import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+	useMutation,
+	useQueryClient,
+	useSuspenseQuery,
+} from "@tanstack/react-query";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import z from "zod";
-import { deleteEventImageByKey, updateEvent } from "@/actions/events";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -20,6 +23,10 @@ import {
 import parseSlug from "@/lib/helpers/parse-slug";
 import { tryCatch } from "@/lib/result";
 import { useAppForm } from "@/lib/tanstack-form/hooks";
+import {
+	deleteEventImageByKeyMutationOptions,
+	updateEventMutationOptions,
+} from "@/lib/tanstack-query/mutation-options";
 import {
 	eventKeys,
 	getEventQueryOptions,
@@ -49,6 +56,10 @@ export function EditEventDialog({
 	onSuccess,
 }: EditEventDialogProps) {
 	const queryClient = useQueryClient();
+	const updateEventMutation = useMutation(updateEventMutationOptions());
+	const deleteEventImageMutation = useMutation(
+		deleteEventImageByKeyMutationOptions(),
+	);
 	const imageUpload = useSingleImageUpload();
 	const [isSlugAutoSync, setIsSlugAutoSync] = useState(true);
 
@@ -109,13 +120,13 @@ export function EditEventDialog({
 			});
 
 			const { error: updateEventError } = await tryCatch(() =>
-				updateEvent(eventId, finalData),
+				updateEventMutation.mutateAsync({ id: eventId, data: finalData }),
 			);
 
 			if (updateEventError) {
 				if (uploadedImage) {
 					await tryCatch(
-						() => deleteEventImageByKey(uploadedImage.key),
+						() => deleteEventImageMutation.mutateAsync(uploadedImage.key),
 						"UPLOAD",
 					);
 				}
@@ -125,7 +136,8 @@ export function EditEventDialog({
 
 			if (uploadedImage && originalEventData.imageKey) {
 				const { error: deleteOldImageError } = await tryCatch(
-					() => deleteEventImageByKey(originalEventData.imageKey),
+					() =>
+						deleteEventImageMutation.mutateAsync(originalEventData.imageKey),
 					"UPLOAD",
 				);
 

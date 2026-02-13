@@ -1,10 +1,10 @@
 "use client";
 
 import { RiArrowLeftSLine } from "@remixicon/react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -27,18 +27,20 @@ export default function EventPage() {
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-	const router = useRouter();
-
 	const formattedDate = new Intl.DateTimeFormat("en-US", {
 		month: "long",
 		day: "numeric",
 		year: "numeric",
 	}).format(event.date);
 
+	const queryClient = useQueryClient();
+
 	const handleParticipantAdded = () => {
 		setIsDialogOpen(false);
-		// Refresh the page to show the new participant
-		router.refresh();
+
+		queryClient.invalidateQueries(
+			getParticipantsByEventIdQueryOptions(eventId),
+		);
 	};
 
 	const handleDialogOpenChange = (open: boolean) => {
