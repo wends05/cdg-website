@@ -9,7 +9,6 @@ import {
 	RiListUnordered,
 } from "@remixicon/react";
 import Link from "@tiptap/extension-link";
-import { Markdown } from "@tiptap/markdown";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback, useEffect } from "react";
@@ -35,7 +34,6 @@ export function RichTextEditor({
 	const editor = useEditor({
 		immediatelyRender: false,
 		extensions: [
-			Markdown,
 			StarterKit.configure({
 				heading: {
 					levels: [1, 2, 3],
@@ -47,7 +45,6 @@ export function RichTextEditor({
 				defaultProtocol: "https",
 			}),
 		],
-		contentType: "markdown",
 		content: value,
 		editable: !disabled,
 		editorProps: {
@@ -58,17 +55,14 @@ export function RichTextEditor({
 			},
 		},
 		onUpdate: ({ editor }) => {
-			onChange?.(editor.getMarkdown());
+			onChange?.(editor.getHTML());
 		},
 	});
 
 	useEffect(() => {
 		if (!editor) return;
-		if (editor.getMarkdown() === value) return;
-		editor.commands.setContent(value, {
-			contentType: "markdown",
-			emitUpdate: false,
-		});
+		if (editor.getHTML() === value) return;
+		editor.commands.setContent(value, { emitUpdate: false });
 	}, [editor, value]);
 
 	useEffect(() => {
