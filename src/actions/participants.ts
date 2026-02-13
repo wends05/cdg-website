@@ -15,34 +15,34 @@ import { ParticipantRecordSchema } from "@/types/domain";
 
 // UPDATE participant
 export async function updateParticipant(
-	id: string,
-	data: unknown,
-	eventId: string,
+  id: string,
+  data: unknown,
+  eventId: string,
 ) {
-	const parsed = ParticipantRecordSchema.omit({ id: true })
-		.partial()
-		.parse(data);
-	await updateDoc(doc(db, "events", eventId, "participants", id), parsed);
-	return { id, ...parsed };
+  const parsed = ParticipantRecordSchema.omit({ id: true })
+    .partial()
+    .parse(data);
+  await updateDoc(doc(db, "events", eventId, "participants", id), parsed);
+  return { id, ...parsed };
 }
 
 // DELETE participant
 export async function deleteParticipant(id: string, eventId: string) {
-	await deleteDoc(doc(db, "events", eventId, "participants", id));
-	return { id };
+  await deleteDoc(doc(db, "events", eventId, "participants", id));
+  return { id };
 }
 
 // ADD participant to event and create if not exist
 export async function addParticipantToEvent(
-	email: string,
-	name: string,
-	eventId: string,
+  email: string,
+  name: string,
+  eventId: string,
 ) {
-	const q = query(
-		collection(db, "events", eventId, "participants"),
-		where("email", "==", email),
-	);
-	const snapshot = await getDocs(q);
+  const q = query(
+    collection(db, "events", eventId, "participants"),
+    where("email", "==", email),
+  );
+  const snapshot = await getDocs(q);
 
 	if (!snapshot.empty) {
 		// Participant already exists, return existing participant
@@ -53,13 +53,13 @@ export async function addParticipantToEvent(
 		});
 	}
 
-	const participantRef = doc(collection(db, "events", eventId, "participants"));
-	const parsed = ParticipantRecordSchema.omit({ id: true }).parse({
-		name,
-		email,
-		joinedAt: new Date(),
-	});
+  const participantRef = doc(collection(db, "events", eventId, "participants"));
+  const parsed = ParticipantRecordSchema.omit({ id: true }).parse({
+    name,
+    email,
+  });
 
-	await setDoc(participantRef, parsed);
-	return { id: participantRef.id, ...parsed };
+  await setDoc(participantRef, parsed);
+
+  return { id: participantRef.id, ...parsed };
 }

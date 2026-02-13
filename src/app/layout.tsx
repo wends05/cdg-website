@@ -6,6 +6,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { QueryProvider } from "@/lib/tanstack-query/provider";
 import { AuthProvider } from "@/utils/auth-provider";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -48,6 +49,7 @@ export default function RootLayout({
 					<AuthProvider>
 						<div className="min-h-screen bg-background text-foreground">
 							{children}
+            <Toaster />
 						</div>
 					</AuthProvider>
 				</QueryProvider>

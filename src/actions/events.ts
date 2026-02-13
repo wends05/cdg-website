@@ -7,8 +7,11 @@ import {
 	doc,
 	updateDoc,
 } from "firebase/firestore";
+import { UTApi } from "uploadthing/server";
 import { db } from "@/lib/firebase";
 import { EventRecordSchema } from "@/types/domain";
+
+const utapi = new UTApi();
 
 // CREATE ONE
 export async function createEvent(data: unknown) {
@@ -28,4 +31,9 @@ export async function updateEvent(id: string, data: unknown) {
 export async function deleteEvent(id: string) {
 	await deleteDoc(doc(db, "events", id));
 	return { id };
+}
+
+export async function deleteEventImageByKey(imageKey: string) {
+	if (!imageKey) return;
+	await utapi.deleteFiles(imageKey);
 }
