@@ -15,8 +15,15 @@ export default function Footer() {
 			{/* Upper Footer */}
 			<section
 				className="relative isolate flex min-h-130 items-center justify-center overflow-hidden bg-white px-6 py-20 text-[#0D1749] md:min-h-155"
-				style={{ backgroundImage: "url('/footer-graphic.svg')" }}
+				// style={{ backgroundImage: "url('/footer-graphic.svg')" }}
 			>
+				<Image
+					src="/footer-graphic.svg"
+					fill
+					alt="Footer image"
+					className=" object-fill scale-x-110"
+				/>
+
 				<div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
 					<div className="relative h-20 w-32 sm:h-24 sm:w-36">
 						<Image
@@ -44,7 +51,7 @@ export default function Footer() {
 			</section>
 
 			{/* Lower Footer */}
-			<footer className="relative overflow-hidden bg-black to-[#081030] bg-linear-to-t text-white h-101.75">
+			<footer className="relative overflow-hidden bg-black to-[#081030] bg-linear-to-t text-white lg:h-101.75">
 				<div
 					aria-hidden="true"
 					className="absolute inset-0 bg-center bg-cover bg-no-repeat"
