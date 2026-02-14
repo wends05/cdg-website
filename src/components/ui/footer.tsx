@@ -1,103 +1,48 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+
 export default function Footer() {
-  const footerLinks = [
-    {
-      key: "community",
-      title: "Community",
-      links: [
-        { name: "Home", href: "/" },
-        { name: "Events", href: "/events" },
-      ],
-    },
-    {
-      key: "support",
-      title: "Support",
-      links: [{ name: "Contact Us", href: "/contact" }],
-    },
-  ];
+	return (
+		<footer className="bg-[#1f1f21] px-4 py-6 md:px-8 md:py-8">
+			<div className="mx-auto max-w-7xl">
+				<Card
+					className="border-none bg-[#f4f5f7] py-0"
+					style={{
+						backgroundImage:
+							"radial-gradient(ellipse at 20% 0%, rgba(59,130,246,0.07), transparent 58%), repeating-radial-gradient(circle at 70% 20%, rgba(148,163,184,0.16) 0, rgba(148,163,184,0.16) 1px, transparent 1px, transparent 11px)",
+					}}
+				>
+					<CardContent className="flex flex-col items-center justify-center px-6 py-14 text-center">
+						<Image
+							src="/logo_1.svg"
+							alt="CDG logo"
+							width={48}
+							height={30}
+							className="mb-4 h-8 w-auto"
+						/>
+						<h3 className="text-4xl font-semibold leading-tight text-[#2f71f0] md:text-5xl">
+							Be Part of a Community that
+						</h3>
+						<p className="mt-2 text-3xl leading-tight text-zinc-800 md:text-4xl">
+							Learn, Connect, and Grow
+						</p>
+						<Link
+							href="/apply"
+							className="mt-5 inline-flex h-7 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+						>
+							Join Now {">"}
+						</Link>
+					</CardContent>
 
-  return (
-    <footer className="bg-[#1B38CC] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div>
-            <h3 className="mb-4 text-2xl font-bold tracking-tight">CDG</h3>
-            <p className="mb-6 max-w-md text-lg leading-relaxed text-white/90">
-              Centralian Developer Group - Empowering the next generation of
-              tech innovators at Central Philippine University through
-              collaboration, learning, and excellence.
-            </p>
-
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-white/70">Email:</span>
-                <a
-                  href="mailto:cdg.cpu.ph@gmail.com"
-                  className="text-white/95 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white/70"
-                >
-                  cdg.cpu.ph@gmail.com
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-white/70">Location:</span>
-                <span className="text-white/95">
-                  CPU College of Computer Studies, Iloilo City
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-3xl font-semibold tracking-tight">
-              Get Involved
-            </h3>
-            <p className="mb-6 max-w-xl text-lg leading-relaxed text-white/90">
-              Ready to join our community? Become part of something bigger and
-              help shape the future of technology.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="/contact"
-                className="rounded-full border border-white/70 px-6 py-2.5 text-base font-semibold text-white transition-all hover:border-white hover:bg-white hover:text-[#1B38CC]"
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-white/20 pt-12">
-          <div className="mb-8 grid grid-cols-2 gap-8 md:grid-cols-4">
-            {footerLinks.map((section) => (
-              <div key={section.key}>
-                <h4 className="mb-4 text-lg font-semibold text-white">
-                  {section.title}
-                </h4>
-                <ul className="space-y-2">
-                  {section.links.map((link) => (
-                    <li key={`${section.title}-${link.name}`}>
-                      <a
-                        href={link.href}
-                        className="text-base text-white/80 transition-colors hover:text-white"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col items-center justify-between border-t border-white/20 pt-8 md:flex-row">
-            <p className="mb-4 text-sm text-white/70 md:mb-0">
-              © 2026 Centralian Developer Group. All rights reserved.
-            </p>
-            <div className="flex gap-6" />
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+					<CardFooter className="justify-center border-t border-zinc-300/90 bg-transparent px-4 py-4">
+						<p className="text-center text-xs text-zinc-500 md:text-sm">
+							© 2026 Centralian Developer Group - Central Philippine University.
+							All rights reserved.
+						</p>
+					</CardFooter>
+				</Card>
+			</div>
+		</footer>
+	);
 }

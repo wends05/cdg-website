@@ -1,39 +1,28 @@
-import Link from "next/link";
-import EventsPreview from "@/components/home/events-preview";
+import CommunityStats from "@/components/home/community-stats";
+import DescriptionSection from "@/components/home/description";
+import EventsHighlight from "@/components/home/events-highlight";
 import Hero from "@/components/home/hero";
+import HomeGsap from "@/components/home/home-gsap";
+import LearnConnectGrow from "@/components/home/learn-connect-grow";
+import OfficersSection from "@/components/home/officers";
+import PartnersSection from "@/components/home/partners";
+import TestimonialsSection from "@/components/home/testimonials";
+import VisionMission from "@/components/home/vision-mission";
 import Footer from "@/components/ui/footer";
-import { getEvents } from "@/queries/events";
 
-export default async function Home() {
-	const events = await getEvents();
-
+export default function Home() {
 	return (
 		<div className="font-sans">
+			<HomeGsap />
 			<Hero />
-
-			<section className="py-16 bg-white dark:bg-zinc-800">
-				<div className="mx-auto max-w-7xl px-6">
-					<div className="text-center mb-12">
-						<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-							Join CDG Today
-						</h2>
-						<p className="mt-4 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-							Become part of our growing community of developers, designers, and
-							tech enthusiasts.
-						</p>
-					</div>
-					<div className="text-center">
-						<Link
-							href="/apply"
-							className="inline-block rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg"
-						>
-							Apply for Membership
-						</Link>
-					</div>
-				</div>
-			</section>
-
-			<EventsPreview events={events.slice(0, 3)} />
+			<DescriptionSection />
+			<VisionMission />
+			<LearnConnectGrow />
+			<CommunityStats />
+			<TestimonialsSection />
+			<PartnersSection />
+			<EventsHighlight />
+			<OfficersSection />
 			<Footer />
 		</div>
 	);
