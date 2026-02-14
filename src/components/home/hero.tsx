@@ -3,192 +3,206 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { type CSSProperties, useEffect, useRef } from "react";
+
+const leftColumnOfficers = ["angel", "dave", "keith", "newyeareign"];
+const rightColumnOfficers = ["pia", "ng", "jenny", "axxel"];
+const leftScrollOfficers = [...leftColumnOfficers, ...leftColumnOfficers];
+const rightScrollOfficers = [...rightColumnOfficers, ...rightColumnOfficers];
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+	const sectionRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) {
-      return;
-    }
+	useEffect(() => {
+		const section = sectionRef.current;
+		if (!section) {
+			return;
+		}
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			return;
+		}
 
-    gsap.registerPlugin(ScrollTrigger);
+		gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      const shapes = gsap.utils.toArray<HTMLElement>(".hero-shape");
+		const ctx = gsap.context(() => {
+			const shapes = gsap.utils.toArray<HTMLElement>(".hero-shape");
 
-      shapes.forEach((shape, index) => {
-        const direction = shape.dataset.direction === "right" ? 1 : -1;
+			shapes.forEach((shape, index) => {
+				const direction = shape.dataset.direction === "right" ? 1 : -1;
 
-        gsap.fromTo(
-          shape,
-          {
-            x: 36 * direction,
-            y: 40,
-            rotation: -12 * direction,
-            opacity: 0,
-          },
-          {
-            x: 0,
-            y: 0,
-            rotation: 0,
-            opacity: 1,
-            duration: 1.1,
-            ease: "power3.out",
-            delay: index * 0.08,
-            clearProps: "opacity",
-          },
-        );
-      });
+				gsap.fromTo(
+					shape,
+					{
+						x: 36 * direction,
+						y: 40,
+						rotation: -12 * direction,
+						opacity: 0,
+					},
+					{
+						x: 0,
+						y: 0,
+						rotation: 0,
+						opacity: 1,
+						duration: 1.1,
+						ease: "power3.out",
+						delay: index * 0.08,
+						clearProps: "opacity",
+					},
+				);
+			});
 
-      gsap.to(shapes, {
-        y: -40,
-        rotation: 8,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.6,
-        },
-      });
-    }, section);
+			gsap.to(shapes, {
+				y: -40,
+				rotation: 8,
+				ease: "none",
+				scrollTrigger: {
+					trigger: section,
+					start: "top bottom",
+					end: "bottom top",
+					scrub: 0.6,
+				},
+			});
+		}, section);
 
-    return () => ctx.revert();
-  }, []);
+		return () => ctx.revert();
+	}, []);
 
-  return (
-    <section
-      id="home"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-linear-to-r from-[#3186FF] to-[#1B38CC] px-3 pt-16 text-white md:pt-20"
-    >
-      <div className="relative mx-auto h-full max-w-full overflow-hidden">
-        {/* Geometric accents */}
-        <div
-          className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-white/95 md:left-0 md:top-0 md:h-[176px] md:w-[176px] md:border-[14px]"
-          data-direction="left"
-        ></div>
-        <div
-          className="hero-shape absolute left-[68%] top-[46%] h-6 w-6 rounded-full border-[4px] border-white/95 md:left-[30%] md:top-[10%] md:h-12 md:w-12 md:border-[8px]"
-          data-direction="right"
-        ></div>
-        <div
-          className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-white/95 sm:block md:bottom-4 md:left-4 md:h-20 md:w-20 md:border-[10px]"
-          data-direction="left"
-        ></div>
-        <div
-          className="hero-shape absolute right-24 bottom-0 hidden h-72 w-72 rounded-full border-[12px] border-white/95 md:block"
-          data-direction="right"
-        ></div>
-        <div
-          className="hero-shape absolute right-[35%] top-[16%] hidden h-48 w-48 rotate-45 border-[10px] border-white/95 md:block"
-          data-direction="right"
-        ></div>
-        <div
-          className="hero-shape absolute right-[46%] top-[58%] hidden -translate-y-1/2 md:block"
-          data-direction="left"
-          style={{
-            width: 0,
-            height: 0,
-            borderLeft: "60px solid transparent",
-            borderRight: "60px solid transparent",
-            borderTop: "100px solid rgba(255,255,255,0.95)",
-          }}
-        ></div>
-        <div
-          className="hero-shape absolute bottom-8 left-[30%] hidden h-20 w-20 rotate-45 border-[8px] border-white/95 md:block"
-          data-direction="left"
-        ></div>
+	return (
+		<section
+			id="home"
+			ref={sectionRef}
+			className="relative overflow-hidden bg-linear-to-r from-[#3987f5] to-[#2138c8] px-3 pt-6 text-white md:min-h-[760px] md:pt-8"
+		>
+			<div className="relative mx-auto h-full max-w-[1680px] overflow-hidden">
+				{/* Geometric accents */}
+				<div
+					className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-white/95 md:-left-20 md:top-6 md:h-[260px] md:w-[260px] md:border-[14px]"
+					data-direction="left"
+				></div>
+				<div
+					className="hero-shape absolute left-[68%] top-[46%] h-6 w-6 rounded-full border-[4px] border-white/95 md:left-[26%] md:top-[23%] md:h-12 md:w-12 md:border-[8px]"
+					data-direction="right"
+				></div>
+				<div
+					className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-white/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-[10px]"
+					data-direction="left"
+				></div>
+				<div
+					className="hero-shape absolute -right-12 bottom-0 hidden h-[430px] w-[430px] rounded-full border-[14px] border-white/95 md:block"
+					data-direction="right"
+				></div>
+				<div
+					className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-[10px] border-white/95 md:block"
+					data-direction="right"
+				></div>
+				<div
+					className="hero-shape absolute right-[45%] top-[60%] hidden -translate-y-1/2 md:block"
+					data-direction="left"
+					style={{
+						width: 0,
+						height: 0,
+						borderLeft: "60px solid transparent",
+						borderRight: "60px solid transparent",
+						borderTop: "100px solid rgba(255,255,255,0.95)",
+					}}
+				></div>
+				<div
+					className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-[8px] border-white/95 md:block"
+					data-direction="left"
+				></div>
 
-        {/* Content */}
-        <div className="relative mx-auto max-w-full px-3 py-8 md:px-6 md:py-8">
-          <div className="grid items-center gap-7 md:grid-cols-2 md:items-start">
-            {/* Left side - Content */}
-            <div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 md:items-start md:pt-[100px] md:pl-[140px] md:text-left">
-              {/* CDG Logo + wordmark */}
-              <div className="mb-4 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-                <div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
-                  <Image
-                    src="/logo_1.svg"
-                    alt="Centralian Developer Group logo"
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
-                    className="object-contain object-left"
-                  />
-                </div>
-                <h2 className="text-[1.95rem] font-medium leading-[1.06] sm:text-5xl md:text-[3rem]">
-                  Centralian
-                  <br />
-                  Developer
-                  <br />
-                  Group
-                </h2>
-              </div>
+				{/* Content */}
+				<div className="relative mx-auto max-w-full px-3 py-6 md:px-8 md:py-4">
+					<div className="grid items-center gap-10 md:min-h-[700px] md:grid-cols-2 md:items-start">
+						{/* Left side - Content */}
+						<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 md:items-start md:pt-10 md:pl-[120px] md:text-left lg:pl-[160px]">
+							{/* CDG Logo + wordmark */}
+							<div className="mb-5 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
+								<div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
+									<Image
+										src="/logo_1.svg"
+										alt="Centralian Developer Group logo"
+										fill
+										priority
+										sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
+										className="object-contain object-left"
+									/>
+								</div>
+								<h2 className="text-[1.95rem] font-medium leading-[1.08] sm:text-5xl md:text-[4.1rem]">
+									Centralian
+									<br />
+									Developer
+									<br />
+									Group
+								</h2>
+							</div>
 
-              <p className="mb-5 max-w-[20rem] text-[0.88rem] leading-relaxed text-white/90 sm:max-w-[26rem] sm:text-base">
-                Be a part of CDG to learn, build, and grow with fellow student
-                developers
-              </p>
+							<p className="mb-6 max-w-[20rem] text-[0.9rem] leading-relaxed text-white/95 sm:max-w-[26rem] sm:text-base md:text-lg">
+								Be a part of CDG to learn, build, and grow with fellow student
+								developers
+							</p>
 
-              <button className="mx-auto inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary transition-all hover:bg-white/90 md:mx-0 md:px-5 md:py-2.5">
-                Join Now
-                <span className="text-base leading-none">{">"}</span>
-              </button>
-            </div>
+							<button className="mx-auto inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-base font-semibold text-[#2565e6] transition-all hover:bg-white/90 md:mx-0 md:px-8 md:py-3">
+								Join Now
+								<span className="text-base leading-none">{">"}</span>
+							</button>
+						</div>
 
-            {/* Right side - Photo Collage */}
-            <div className="relative z-10 mx-auto h-full w-full max-w-[20.5rem] min-h-[14rem] overflow-hidden pt-1 sm:max-w-sm sm:min-h-[17rem] md:max-w-none md:min-h-96 md:pl-6 md:pt-2">
-              {/* Edge fade masks */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-14 bg-linear-to-b from-[#2f79f2] to-transparent sm:h-20" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-14 bg-linear-to-t from-[#2559d9] to-transparent sm:h-20" />
+						{/* Right side - Photo Collage */}
+						<div className="relative z-10 mx-auto h-[28rem] w-full max-w-[24rem] overflow-hidden pb-6 pt-3 sm:h-[34rem] sm:max-w-[30rem] md:h-[700px] md:max-w-[36rem] md:pb-0 md:pt-2">
+							<div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-[#2f79f2] to-transparent sm:h-20" />
+							<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-[#2559d9] to-transparent sm:h-20" />
 
-              <div className="grid h-[14.5rem] grid-cols-2 gap-2 sm:h-[18.5rem] sm:gap-3 md:h-[32.5rem]">
-                <div className="overflow-hidden">
-                  <div className="scroll-up flex flex-col gap-2 sm:gap-3">
-                    {[1, 2, 3, 1, 2, 3].map((photo, idx) => (
-                      <div
-                        key={`left-${photo}-${idx}`}
-                        className="aspect-[4/5] overflow-hidden rounded-xl bg-yellow-400 shadow-lg"
-                      >
-                        <div className="w-full h-full bg-yellow-400 flex items-center justify-center">
-                          <span className="text-white text-sm font-medium">
-                            Photo {photo}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+							<div className="grid h-full grid-cols-2 gap-3 sm:gap-4 md:gap-5">
+								<div
+									className="overflow-hidden pt-0 md:pt-5"
+									style={{ "--scroll-gap": "12px" } as CSSProperties}
+								>
+									<div className="scroll-up flex flex-col gap-3 sm:gap-4 md:gap-5">
+										{leftScrollOfficers.map((officer, index) => (
+											<div
+												key={`left-${officer}-${index}`}
+												className="relative overflow-hidden rounded-3xl bg-[#ffe328] shadow-[0_12px_30px_rgba(20,33,110,0.24)]"
+											>
+												<Image
+													src={`/officers/${officer}.svg`}
+													alt={`${officer} officer portrait`}
+													width={280}
+													height={350}
+													className="h-auto w-full object-cover"
+												/>
+											</div>
+										))}
+									</div>
+								</div>
 
-                <div className="overflow-hidden">
-                  <div className="scroll-down flex flex-col gap-2 sm:gap-3">
-                    {[4, 5, 6, 4, 5, 6].map((photo, idx) => (
-                      <div
-                        key={`right-${photo}-${idx}`}
-                        className="aspect-[4/5] overflow-hidden rounded-xl bg-yellow-400 shadow-lg"
-                      >
-                        <div className="w-full h-full bg-yellow-400 flex items-center justify-center">
-                          <span className="text-white text-sm font-medium">
-                            Photo {photo}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+								<div
+									className="overflow-hidden pt-10 md:pt-16"
+									style={{ "--scroll-gap": "12px" } as CSSProperties}
+								>
+									<div className="scroll-down flex flex-col gap-3 sm:gap-4 md:gap-5">
+										{rightScrollOfficers.map((officer, index) => (
+											<div
+												key={`right-${officer}-${index}`}
+												className="relative overflow-hidden rounded-3xl bg-[#ffe328] shadow-[0_12px_30px_rgba(20,33,110,0.24)]"
+											>
+												<Image
+													src={`/officers/${officer}.svg`}
+													alt={`${officer} officer portrait`}
+													width={280}
+													height={350}
+													className="h-auto w-full object-cover"
+												/>
+											</div>
+										))}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 }

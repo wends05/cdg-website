@@ -8,22 +8,20 @@ import OfficersSection from "@/components/home/officers";
 import PartnersSection from "@/components/home/partners";
 import TestimonialsSection from "@/components/home/testimonials";
 import VisionMission from "@/components/home/vision-mission";
-import Footer from "@/components/ui/footer";
 
 export default function Home() {
-	return (
-		<div className="font-sans">
-			<HomeGsap />
-			<Hero />
-			<DescriptionSection />
-			<VisionMission />
-			<LearnConnectGrow />
-			<CommunityStats />
-			<TestimonialsSection />
-			<PartnersSection />
-			<EventsHighlight />
-			<OfficersSection />
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="font-sans">
+      <HomeGsap />
+      <Hero />
+      <DescriptionSection />
+      <VisionMission />
+      <LearnConnectGrow />
+      <CommunityStats />
+      <TestimonialsSection />
+      <PartnersSection />
+      <EventsHighlight />
+      <OfficersSection />
+    </div>
+  );
 }
