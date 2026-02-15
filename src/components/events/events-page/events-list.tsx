@@ -47,7 +47,7 @@ export default function EventsList({ currentPage, pageSize }: EventsListProps) {
 
 	return (
 		<section className="mx-auto max-w-6xl px-6 py-12">
-			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+			<div className="grid gap-6 px-12 grid-cols-1 sm:grid-cols-2 xl:p-0 xl:grid-cols-3">
 				{events.map((event) => (
 					<Link
 						key={event.id ?? event.slug}
