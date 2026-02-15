@@ -1,33 +1,50 @@
-import { EventCard } from "@/components/events/event-card";
-import { getEvents } from "@/queries/events";
+import {
+	dehydrate,
+	HydrationBoundary,
+	QueryClient,
+} from "@tanstack/react-query";
+import EventsList from "@/components/events/events-page/events-list";
+import EventsPageHeader from "@/components/events/events-page/events-page-header";
+import {
+	getEventCountQueryOptions,
+	getPaginatedEventsQueryOptions,
+} from "@/lib/tanstack-query/query-options";
 
-export default async function EventsPage() {
-  const events = await getEvents();
+const PAGE_SIZE = 6;
 
-  return (
-    <main className="relative overflow-hidden bg-linear-to-br from-primary/90 via-secondary to-accent/80 text-foreground">
-      <div className="pointer-events-none absolute inset-0 opacity-40">
-        <div className="absolute inset-y-0 left-0 w-96 bg-white/20 blur-[140px]" />
-        <div className="absolute inset-y-0 right-0 w-72 bg-accent/60 blur-[220px]" />
-      </div>
+interface EventsPageProps {
+	searchParams: Promise<{
+		page?: string;
+	}>;
+}
 
-      <section className="relative px-6 py-20">
-        <div className="mx-auto max-w-6xl space-y-6">
-          <h1 className="text-4xl font-black uppercase tracking-[0.4em] text-white/90">
-            Events
-          </h1>
-        </div>
-      </section>
+export default async function EventsPage({ searchParams }: EventsPageProps) {
+	const { page } = await searchParams;
+	const parsedPage = Number(page ?? "1");
+	const requestedPage = Number.isFinite(parsedPage)
+		? Math.floor(parsedPage)
+		: 1;
+	const queryClient = new QueryClient();
 
-      <section className="relative px-6 pb-24 pt-10">
-        <div className="mx-auto max-w-6xl space-y-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+	const totalCount = await queryClient.ensureQueryData(
+		getEventCountQueryOptions(),
+	);
+	const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+	const currentPage = Math.min(Math.max(1, requestedPage), totalPages);
+
+	await queryClient.ensureQueryData(
+		getPaginatedEventsQueryOptions({
+			page: currentPage,
+			pageSize: PAGE_SIZE,
+		}),
+	);
+
+	await queryClient.ensureQueryData(getEventCountQueryOptions());
+
+	return (
+		<HydrationBoundary state={dehydrate(queryClient)}>
+			<EventsPageHeader currentPage={currentPage} pageSize={PAGE_SIZE} />
+			<EventsList currentPage={currentPage} pageSize={PAGE_SIZE} />
+		</HydrationBoundary>
+	);
 }
