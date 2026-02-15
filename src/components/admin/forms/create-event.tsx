@@ -28,13 +28,7 @@ export default function CreateEventForm() {
 	const imageUpload = useSingleImageUpload();
 	const createEventMutation = useMutation(createEventMutationOptions());
 	const [isSlugAutoSync, setIsSlugAutoSync] = useState(true);
-	const today = new Date();
-	const minDate = new Date(
-		today.getFullYear(),
-		today.getMonth(),
-		today.getDate(),
-	);
-	const maxDate = new Date(today.getFullYear() + 10, 11, 31);
+	const minDate = new Date();
 
 	const defaultValues: CreateEventInput = {
 		date: new Date(),
@@ -148,15 +142,11 @@ export default function CreateEventForm() {
 
 					<form.AppField name="date">
 						{(field) => (
-							<field.DatePickerField
+							<field.SingleDatePickerField
 								label="Event Date"
 								description="Pick the day the event happens."
 								placeholder="Select event date"
-								mode="single"
-								calendarProps={{
-									fromDate: minDate,
-									toDate: maxDate,
-								}}
+								calendarProps={{}}
 							/>
 						)}
 					</form.AppField>
