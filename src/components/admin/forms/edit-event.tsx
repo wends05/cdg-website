@@ -217,14 +217,12 @@ export function EditEventDialog({
 
 				<form.AppField name="date">
 					{(field) => (
-						<field.DatePickerField
+						<field.SingleDatePickerField
 							label="Event Date"
 							description="Pick the day the event happens."
 							placeholder="Select event date"
-							mode="single"
 							calendarProps={{
-								fromDate: minDate,
-								toDate: maxDate,
+								disabled: [{ before: minDate }, { after: maxDate }],
 							}}
 						/>
 					)}
