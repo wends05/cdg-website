@@ -22,10 +22,10 @@ export default function LearnConnectGrow() {
   return (
     <section className="reveal-up px-4 py-12 md:px-8">
       <div className="mx-auto max-w-7xl px-3 md:px-8">
-        <h2 className="reveal-left text-4xl font-semibold text-[#2f71f0] md:text-5xl">
+        <h2 className="reveal-left text-4xl font-semibold text-[#2f71f0] md:text-4xl">
           Join us as We Learn, Connect, &amp; Grow
         </h2>
-        <div className="stagger-parent mt-8 grid gap-8 md:grid-cols-3 md:gap-10">
+        <div className="stagger-parent mt-8 gap-8 md:gap-10 md:flex-row w-full flex flex-col items-center ">
           {items.map((item) => {
             const Icon = item.icon;
 
@@ -35,7 +35,7 @@ export default function LearnConnectGrow() {
                 <h3 className="mt-3 text-2xl font-semibold text-zinc-900">
                   {item.title}
                 </h3>
-                <p className="mt-2 max-w-[28ch] text-base leading-relaxed text-zinc-600">
+                <p className="mt-2 max-w-100 text-base leading-relaxed text-zinc-600">
                   {item.text}
                 </p>
               </article>

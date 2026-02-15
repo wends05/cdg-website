@@ -10,18 +10,18 @@ import TestimonialsSection from "@/components/home/testimonials";
 import VisionMission from "@/components/home/vision-mission";
 
 export default function Home() {
-  return (
-    <div className="font-sans">
-      <HomeGsap />
-      <Hero />
-      <DescriptionSection />
-      <VisionMission />
-      <LearnConnectGrow />
-      <CommunityStats />
-      <TestimonialsSection />
-      <PartnersSection />
-      <EventsHighlight />
-      <OfficersSection />
-    </div>
-  );
+	return (
+		<div className="font-sans">
+			<HomeGsap />
+			<Hero />
+			<DescriptionSection />
+			<VisionMission />
+			<LearnConnectGrow />
+			<CommunityStats />
+			<TestimonialsSection />
+			<PartnersSection />
+			<EventsHighlight />
+			<OfficersSection />
+		</div>
+	);
 }

@@ -30,14 +30,14 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-[18px] border-white/90 md:block"
+				className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-18 border-white/90 md:block"
 			/>
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute bottom-[-12rem] left-[32%] hidden h-[22rem] w-[22rem] rounded-full border-[20px] border-white/90 md:block"
+				className="pointer-events-none absolute -bottom-48 left-[32%] hidden h-88 w-88 rounded-full border-20 border-white/90 md:block"
 			/>
 
-			<div className="relative z-10 mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-16 md:px-8">
+			<div className="relative z-10 mx-auto flex min-h-155 max-w-7xl items-center px-6 py-16 md:px-8">
 				<div className="max-w-xl space-y-6">
 					<h2 className="text-5xl font-bold leading-[1.05] text-white ">
 						See What We&apos;ve

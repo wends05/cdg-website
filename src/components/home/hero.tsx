@@ -102,7 +102,7 @@ export default function Hero() {
 		<section
 			id="home"
 			ref={sectionRef}
-			className="relative overflow-visible bg-linear-to-r from-[#3987f5] to-[#2138c8] px-3 pt-6 text-white md:min-h-190 md:pt-0"
+			className="relative overflow-hidden bg-linear-to-r from-[#3987f5] to-[#2138c8] px-3 pt-6 text-white md:min-h-190 md:pt-0"
 		>
 			<div className="relative mx-auto h-full max-w-420">
 				{/* Geometric accents */}
@@ -139,47 +139,13 @@ export default function Hero() {
 				></div>
 
 				{/* Content */}
-				<div className="relative mx-auto max-w-full px-3 pb-0 pt-6 md:px-8 md:py-0">
+				<div className="relative mx-auto max-w-full pt-6 md:py-0">
 					<div className="grid h-full items-center gap-10 md:min-h-190 md:grid-cols-2 md:items-center">
 						{/* Left side - Content */}
-						<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 md:items-start md:pt-10  md:text-left ">
-							{/* CDG Logo + wordmark */}
-							<div className="hero-copy-item mb-5 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-								<div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
-									{!loadedImages["/logo_1.svg"] && (
-										<Skeleton className="absolute inset-0 rounded-sm bg-white/25" />
-									)}
-									<Image
-										src="/logo_1.svg"
-										alt="Centralian Developer Group logo"
-										fill
-										priority
-										onLoadingComplete={() => markImageLoaded("/logo_1.svg")}
-										sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
-										className={`object-contain object-left transition-opacity duration-300 ${
-											loadedImages["/logo_1.svg"] ? "opacity-100" : "opacity-0"
-										}`}
-									/>
-								</div>
-								<h2 className="md:text-4xl lg:text-5xl font-medium leading-[1.08]">
-									Centralian
-									<br />
-									Developer
-									<br />
-									Group
-								</h2>
-							</div>
-
-							<p className="hero-copy-item mb-6 max-w-[20rem] text-[0.9rem] leading-relaxed text-white/95 sm:max-w-104 sm:text-base md:text-lg">
-								Be a part of CDG to learn, build, and grow with fellow student
-								developers
-							</p>
-
-							<button className="hero-copy-item mx-auto inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-base font-semibold text-[#2565e6] transition-all hover:bg-white/90 md:mx-0 md:px-8 md:py-3">
-								Join Now
-								<span className="text-base leading-none">{">"}</span>
-							</button>
-						</div>
+						<LeftSection
+							loadedImages={loadedImages}
+							markImageLoaded={markImageLoaded}
+						/>
 
 						{/* Right side - Photo Collage */}
 						<OfficerCarousel
@@ -190,6 +156,54 @@ export default function Hero() {
 				</div>
 			</div>
 		</section>
+	);
+}
+
+interface LeftSectionProps {
+	loadedImages: Record<string, boolean>;
+	markImageLoaded: (imagePath: string) => void;
+}
+
+function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
+	return (
+		<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 md:items-start md:text-left md:px-4 lg:px-20 xl:px-44 ">
+			{/* CDG Logo + wordmark */}
+			<div className="hero-copy-item mb-5 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
+				<div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
+					{!loadedImages["/logo_1.svg"] && (
+						<Skeleton className="absolute inset-0 rounded-sm bg-white/25" />
+					)}
+					<Image
+						src="/logo_1.svg"
+						alt="Centralian Developer Group logo"
+						fill
+						priority
+						onLoadingComplete={() => markImageLoaded("/logo_1.svg")}
+						sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
+						className={`object-contain object-left transition-opacity duration-300 ${
+							loadedImages["/logo_1.svg"] ? "opacity-100" : "opacity-0"
+						}`}
+					/>
+				</div>
+				<h2 className="md:text-4xl lg:text-5xl font-medium leading-[1.08]">
+					Centralian
+					<br />
+					Developer
+					<br />
+					Group
+				</h2>
+			</div>
+
+			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-white/95 ">
+				Be a part of CDG to learn, build, and grow with fellow student
+				developers
+			</p>
+
+			<button className="hero-copy-item mx-auto inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-base font-semibold text-[#2565e6] transition-all hover:bg-white/90 md:mx-0 md:px-8 md:py-3">
+				Join Now
+				<span className="text-base leading-none">{">"}</span>
+			</button>
+		</div>
 	);
 }
 
