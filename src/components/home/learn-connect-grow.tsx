@@ -1,50 +1,48 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { FileText, Sprout, UsersRound } from "lucide-react";
 
 const items = [
-	{
-		title: "Learn",
-		text: "Learn through hands-on workshops, events, talks, and practical tech sessions.",
-	},
-	{
-		title: "Connect",
-		text: "Meet peers and mentors, collaborate on projects, and grow your developer network.",
-	},
-	{
-		title: "Grow",
-		text: "Apply new skills in real activities and contribute meaningful solutions to your community.",
-	},
+  {
+    title: "Learn",
+    text: "Learn from a range of technical topics and gain new skills through hands-on workshops, events, talks, competitions, and project-building activities.",
+    icon: FileText,
+  },
+  {
+    title: "Connect",
+    text: "Meet passionate Centralian students interested in developer technologies eager to build practical solutions.",
+    icon: UsersRound,
+  },
+  {
+    title: "Grow",
+    text: "Apply new learnings to build great solutions for local problems. Give back to your community by helping others learn.",
+    icon: Sprout,
+  },
 ];
 
 export default function LearnConnectGrow() {
-	return (
-		<section className="reveal-up bg-[#f2f3f7] px-4 py-12 md:px-8">
-			<div className="mx-auto max-w-7xl">
-				<Card className="border-none bg-transparent py-0 shadow-none ring-0">
-					<CardContent className="px-2 py-0 md:px-4">
-						<h2 className="reveal-left text-5xl font-semibold text-[#2f71f0]">
-							Join us as We Learn, Connect, &amp; Grow
-						</h2>
-						<div className="stagger-parent mt-8 grid gap-6 md:grid-cols-3">
-							{items.map((item, index) => (
-								<article
-									key={item.title}
-									className="stagger-item rounded-lg bg-white/70 p-5 ring-1 ring-zinc-200"
-								>
-									<div className="mb-3 inline-flex h-6 w-6 items-center justify-center rounded bg-[#e8efff] text-xs font-bold text-[#2f71f0]">
-										{index + 1}
-									</div>
-									<h3 className="text-xl font-semibold text-zinc-900">
-										{item.title}
-									</h3>
-									<p className="mt-2 text-sm leading-relaxed text-zinc-600">
-										{item.text}
-									</p>
-								</article>
-							))}
-						</div>
-					</CardContent>
-				</Card>
-			</div>
-		</section>
-	);
+  return (
+    <section className="reveal-up px-4 py-12 md:px-8">
+      <div className="mx-auto max-w-7xl px-3 md:px-8">
+        <h2 className="reveal-left text-4xl font-semibold text-[#2f71f0] md:text-5xl">
+          Join us as We Learn, Connect, &amp; Grow
+        </h2>
+        <div className="stagger-parent mt-8 grid gap-8 md:grid-cols-3 md:gap-10">
+          {items.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article key={item.title} className="stagger-item">
+                <Icon className="h-5 w-5 text-[#2f71f0]" strokeWidth={2.2} />
+                <h3 className="mt-3 text-2xl font-semibold text-zinc-900">
+                  {item.title}
+                </h3>
+                <p className="mt-2 max-w-[28ch] text-base leading-relaxed text-zinc-600">
+                  {item.text}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 }

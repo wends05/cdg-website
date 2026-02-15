@@ -1,31 +1,66 @@
+import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import type { EventRecord } from "@/types/domain";
 
-export default function EventsHighlight() {
-	return (
-		<section className="reveal-up bg-[#dfe1e8] px-4 py-12 md:px-8">
-			<div className="mx-auto max-w-7xl overflow-hidden rounded-xl bg-linear-to-r from-[#2f80ff] to-[#1b38cc] text-white">
-				<div className="grid items-stretch md:grid-cols-[1fr_1.2fr]">
-					<div className="reveal-left relative p-8 md:p-10">
-						<div className="float-shape pointer-events-none absolute -left-6 -top-6 h-16 w-16 rotate-45 border-4 border-white/95" />
-						<div className="float-shape pointer-events-none absolute -right-8 -bottom-8 h-36 w-36 rounded-full border-8 border-white/95" />
-						<h3 className="text-5xl font-semibold">
-							See What We&apos;ve Built Together
-						</h3>
-						<p className="mt-4 max-w-md text-base text-white/90">
-							Discover workshops, events, and collaborative projects that
-							showcase our community&apos;s growth and impact.
-						</p>
-						<Link
-							href="/events"
-							className="mt-6 inline-flex rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#1b38cc] transition hover:bg-white/90"
-						>
-							Explore Events
-						</Link>
-					</div>
+interface EventsPreviewProps {
+  events?: EventRecord[];
+}
 
-					<div className="reveal-right min-h-64 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center" />
-				</div>
-			</div>
-		</section>
-	);
+export default function EventsPreview({ events = [] }: EventsPreviewProps) {
+  return (
+    <section className="reveal-up relative isolate min-h-[620px] overflow-hidden bg-[#2f71f0]">
+      <Image
+        src="/assets/event.svg"
+        alt=""
+        fill
+        priority
+        className="pointer-events-none object-cover object-center"
+      />
+
+      <div aria-hidden="true" className="absolute inset-0 bg-[#2f71f0]/35" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 w-full md:w-[62%]"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(47,113,240,.95) 0%, rgba(47,113,240,.92) 48%, rgba(47,113,240,.62) 70%, rgba(47,113,240,.12) 100%)",
+        }}
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-[18px] border-white/90 md:block"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[-12rem] left-[32%] hidden h-[22rem] w-[22rem] rounded-full border-[20px] border-white/90 md:block"
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-16 md:px-8">
+        <div className="max-w-xl space-y-6">
+          <h2 className="text-5xl font-bold leading-[1.05] text-white md:text-7xl">
+            See What We&apos;ve
+            <br />
+            Built Together
+          </h2>
+          <p className="max-w-md text-2xl leading-relaxed text-white/90 md:text-[2rem]">
+            Discover the projects, events, and experiences created through
+            teamwork, passion, and dedication &mdash; all driven by students,
+            for students.
+          </p>
+          <Link
+            href="/events"
+            aria-label={
+              events.length > 0 ? `View ${events.length} events` : "View events"
+            }
+            className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-lg font-semibold text-[#2f71f0] transition-all hover:bg-white/90"
+          >
+            View Events
+            <ChevronRight className="h-5 w-5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
 }

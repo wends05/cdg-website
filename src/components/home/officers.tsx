@@ -1,88 +1,198 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  Carousel,
+  type CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 const officers = [
   {
-    name: "Full Name",
-    role: "Role, Position, Affiliation",
-    image: "https://picsum.photos/260/330?random=91",
+    name: "Andre",
+    role: "CDG Officer",
+    image: "/officers/andre.svg",
   },
   {
-    name: "Full Name",
-    role: "Role, Position, Affiliation",
-    image: "https://picsum.photos/260/330?random=92",
+    name: "Angel",
+    role: "CDG Officer",
+    image: "/officers/angel.svg",
   },
   {
-    name: "Full Name",
-    role: "Role, Position, Affiliation",
-    image: "https://picsum.photos/260/330?random=93",
+    name: "Axxel",
+    role: "CDG Officer",
+    image: "/officers/axxel.svg",
   },
   {
-    name: "Full Name",
-    role: "Role, Position, Affiliation",
-    image: "https://picsum.photos/260/330?random=94",
+    name: "Babylyn",
+    role: "CDG Officer",
+    image: "/officers/babylyn.svg",
   },
   {
-    name: "Full Name",
-    role: "Role, Position, Affiliation",
-    image: "https://picsum.photos/260/330?random=95",
+    name: "Claire",
+    role: "CDG Officer",
+    image: "/officers/claire.svg",
   },
   {
-    name: "Full Name",
-    role: "Role, Position, Affiliation",
-    image: "https://picsum.photos/260/330?random=95",
+    name: "Clarence",
+    role: "CDG Officer",
+    image: "/officers/clarence.svg",
+  },
+  {
+    name: "Dave",
+    role: "CDG Officer",
+    image: "/officers/dave.svg",
+  },
+  {
+    name: "Elisha",
+    role: "CDG Officer",
+    image: "/officers/elisha.svg",
+  },
+  {
+    name: "Franchescka",
+    role: "CDG Officer",
+    image: "/officers/franchescka.svg",
+  },
+  {
+    name: "Gwyneth",
+    role: "CDG Officer",
+    image: "/officers/gwyneth.svg",
+  },
+  {
+    name: "Jenny",
+    role: "CDG Officer",
+    image: "/officers/jenny.svg",
+  },
+  {
+    name: "Keith",
+    role: "CDG Officer",
+    image: "/officers/keith.svg",
+  },
+  {
+    name: "Llarie",
+    role: "CDG Officer",
+    image: "/officers/llarie.svg",
+  },
+  {
+    name: "Myk",
+    role: "CDG Officer",
+    image: "/officers/myk.svg",
+  },
+  {
+    name: "Newyeareign",
+    role: "CDG Officer",
+    image: "/officers/newyeareign.svg",
+  },
+  {
+    name: "NG",
+    role: "CDG Officer",
+    image: "/officers/ng.svg",
+  },
+  {
+    name: "Pia",
+    role: "CDG Officer",
+    image: "/officers/pia.svg",
+  },
+  {
+    name: "Raine",
+    role: "CDG Officer",
+    image: "/officers/raine.svg",
+  },
+  {
+    name: "Thel",
+    role: "CDG Officer",
+    image: "/officers/thel.svg",
   },
 ];
 
 export default function OfficersSection() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [slidesInView, setSlidesInView] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const updateInView = () => {
+      setSlidesInView(api.slidesInView());
+    };
+
+    updateInView();
+    api.on("slidesInView", updateInView);
+    api.on("select", updateInView);
+    api.on("reInit", updateInView);
+
+    return () => {
+      api.off("slidesInView", updateInView);
+      api.off("select", updateInView);
+      api.off("reInit", updateInView);
+    };
+  }, [api]);
+
   return (
-    <section className="reveal-up bg-[#dfe1e8] px-4 py-12 md:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-xl bg-white">
-        <div className="relative px-6 pb-8 pt-10 md:px-8">
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-40"
-            style={{
-              background:
-                "radial-gradient(ellipse at 90% 0%, rgba(248,253,32,.75), transparent 45%), radial-gradient(ellipse at 12% 120%, rgba(27,56,204,.6), transparent 40%)",
-            }}
-          />
+    <section className="reveal-up  px-4 py-14 md:px-8 md:py-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="px-2 md:px-4">
+          <h2 className="reveal-left text-4xl font-semibold text-[#2f71f0] md:text-6xl">
+            Meet the CDG Officers
+          </h2>
+          <p className="reveal-left mt-2 max-w-4xl text-lg text-zinc-800">
+            Get to know the dedicated student leaders who guide our
+            organization, support our members, and bring our vision to life.
+          </p>
+          <Link
+            href="/about"
+            className="reveal-left mt-4 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+          >
+            See More {">"}
+          </Link>
+        </div>
 
-          <div className="relative z-10">
-            <h2 className="reveal-left text-5xl font-semibold text-[#2f71f0]">
-              Meet the CDG Officers
-            </h2>
-            <p className="reveal-left mt-2 text-sm text-zinc-600">
-              Get to know the dedicated student leaders who plan our workshops,
-              support our members, and keep our values at the center of every
-              activity.
-            </p>
-            <Link
-              href="/about"
-              className="reveal-left mt-4 inline-flex rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
-            >
-              See More {">"}
-            </Link>
-
-            <div className="stagger-parent mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {officers.map((officer, idx) => (
-                <article
-                  key={`${officer.name}-${idx}`}
-                  className="stagger-item group relative overflow-hidden rounded-xl"
-                >
-                  <img
+        <Carousel
+          setApi={setApi}
+          opts={{
+            align: "start",
+            containScroll: "trimSnaps",
+            loop: true,
+          }}
+          className="mt-14"
+        >
+          <CarouselContent>
+            {officers.map((officer, idx) => (
+              <CarouselItem
+                key={`${officer.name}-${idx}`}
+                className={cn(
+                  "basis-full transition-all duration-500 sm:basis-1/2 md:basis-1/3 lg:basis-1/6",
+                  slidesInView.length === 0 || slidesInView.includes(idx)
+                    ? "scale-100 opacity-100"
+                    : "scale-[0.98] opacity-40",
+                )}
+              >
+                <article className="group relative overflow-hidden rounded-3xl">
+                  <Image
                     src={officer.image}
                     alt={officer.name}
+                    width={260}
+                    height={330}
                     className="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
-                    loading="lazy"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 via-black/35 to-transparent p-3 text-white">
-                    <p className="text-sm font-semibold">{officer.name}</p>
-                    <p className="text-xs text-white/85">{officer.role}</p>
-                  </div>
                 </article>
-              ))}
-            </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <CarouselPrevious className="static size-10 translate-y-0 border-0 bg-white text-[#2f71f0] shadow-none hover:bg-[#eef3ff] disabled:bg-white disabled:text-[#89aef6]" />
+            <CarouselNext className="static size-10 translate-y-0 border-0 bg-[#2f71f0] text-white shadow-none hover:bg-[#285fcb] disabled:bg-[#89aef6]" />
           </div>
-        </div>
+        </Carousel>
       </div>
     </section>
   );
