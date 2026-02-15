@@ -1,9 +1,13 @@
 import {
 	collection,
 	doc,
+	getCountFromServer,
 	getDoc,
 	getDocs,
+	limit,
+	orderBy,
 	query,
+	startAfter,
 	where,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -82,4 +86,78 @@ export async function getParticipantsByEventSlug(eventSlug: string) {
 	}
 
 	return getParticipantsByEventId(event.id);
+}
+
+// GET EVENT COUNT
+export async function getEventCount() {
+	const snapshot = await getCountFromServer(collection(db, "events"));
+	return snapshot.data().count;
+}
+
+interface GetEventsPaginatedParams {
+	page: number;
+	pageSize: number;
+}
+
+// GET EVENTS (paginated, newest first)
+export async function getEventsPaginated({
+	page,
+	pageSize,
+}: GetEventsPaginatedParams): Promise<EventRecord[]> {
+	const safePage = Math.max(1, Math.floor(page));
+	const safePageSize = Math.max(1, Math.floor(pageSize));
+	const eventsCollection = collection(db, "events");
+
+	// Page 1: just fetch first chunk
+	if (safePage === 1) {
+		const firstPageQuery = query(
+			eventsCollection,
+			orderBy("date", "desc"),
+			limit(safePageSize),
+		);
+		const firstPageSnapshot = await getDocs(firstPageQuery);
+		return firstPageSnapshot.docs
+			.map((doc) => {
+				const parsed = EventRecordReadSchema.safeParse({
+					id: doc.id,
+					...doc.data(),
+				});
+				return parsed.success ? parsed.data : null;
+			})
+			.filter((e): e is EventRecord => e !== null);
+	}
+
+	// Numbered paging with Firestore requires a cursor.
+	// Build cursor by fetching docs up to the previous page boundary.
+	const cursorOffset = (safePage - 1) * safePageSize;
+	const cursorQuery = query(
+		eventsCollection,
+		orderBy("date", "desc"),
+		limit(cursorOffset),
+	);
+	const cursorSnapshot = await getDocs(cursorQuery);
+
+	if (cursorSnapshot.docs.length < cursorOffset) {
+		return [];
+	}
+
+	const cursorDoc = cursorSnapshot.docs[cursorSnapshot.docs.length - 1];
+
+	const pageQuery = query(
+		eventsCollection,
+		orderBy("date", "desc"),
+		startAfter(cursorDoc),
+		limit(safePageSize),
+	);
+	const pageSnapshot = await getDocs(pageQuery);
+
+	return pageSnapshot.docs
+		.map((doc) => {
+			const parsed = EventRecordReadSchema.safeParse({
+				id: doc.id,
+				...doc.data(),
+			});
+			return parsed.success ? parsed.data : null;
+		})
+		.filter((e): e is EventRecord => e !== null);
 }
