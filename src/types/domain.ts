@@ -1,0 +1,40 @@
+import { z } from "zod";
+import { FirestoreTimestamp } from "@/lib/helpers/firestore-timestamp";
+export const EventRecordSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(1),
+  slug: z.string().min(1),
+  details: z.string().min(1),
+  imageUrl: z.string().min(1),
+  date: FirestoreTimestamp,
+  imageKey: z.string().min(1),
+});
+
+export const EventRecordReadSchema = EventRecordSchema.extend({
+  imageKey: z.string().optional().default(""),
+});
+
+export const ParticipantRecordSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(1),
+  email: z.email(),
+});
+
+export const EventParticipantSchema = z.object({
+  id: z.string().optional(),
+  eventId: z.string().min(1),
+  eventSlug: z.string().min(1),
+  participantId: z.string().min(1),
+});
+
+export const EventParticipantWithProfileSchema = EventParticipantSchema.extend({
+  name: z.string().min(1),
+  email: z.email(),
+});
+
+export type EventParticipant = z.infer<typeof EventParticipantSchema>;
+export type EventParticipantWithProfile = z.infer<
+  typeof EventParticipantWithProfileSchema
+>;
+export type EventRecord = z.infer<typeof EventRecordSchema>;
+export type ParticipantRecord = z.infer<typeof ParticipantRecordSchema>;
