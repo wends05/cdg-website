@@ -39,11 +39,11 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
 		}),
 	);
 
-	await queryClient.ensureQueryData(getEventCountQueryOptions())
+	await queryClient.ensureQueryData(getEventCountQueryOptions());
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<EventsPageHeader currentPage={currentPage} pageSize={PAGE_SIZE}/>
+			<EventsPageHeader currentPage={currentPage} pageSize={PAGE_SIZE} />
 			<EventsList currentPage={currentPage} pageSize={PAGE_SIZE} />
 		</HydrationBoundary>
 	);
