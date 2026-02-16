@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
   Carousel,
-  type CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -112,29 +110,6 @@ const officers = [
 ];
 
 export default function OfficersSection() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [slidesInView, setSlidesInView] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    const updateInView = () => {
-      setSlidesInView(api.slidesInView());
-    };
-
-    updateInView();
-    api.on("slidesInView", updateInView);
-    api.on("select", updateInView);
-    api.on("reInit", updateInView);
-
-    return () => {
-      api.off("slidesInView", updateInView);
-      api.off("select", updateInView);
-      api.off("reInit", updateInView);
-    };
-  }, [api]);
 
   return (
     <section className="reveal-up  px-4 py-14 md:px-8 md:py-16">
@@ -156,11 +131,8 @@ export default function OfficersSection() {
         </div>
 
         <Carousel
-          setApi={setApi}
           opts={{
-            align: "start",
-            containScroll: "trimSnaps",
-            loop: true,
+						align: "start",
           }}
           className="mt-14"
         >
@@ -169,10 +141,7 @@ export default function OfficersSection() {
               <CarouselItem
                 key={`${officer.name}-${idx}`}
                 className={cn(
-                  "basis-full transition-all duration-500 sm:basis-1/2 md:basis-1/3 lg:basis-1/6",
-                  slidesInView.length === 0 || slidesInView.includes(idx)
-                    ? "scale-100 opacity-100"
-                    : "scale-[0.98] opacity-40",
+                  "basis-full transition-[transform, opacity] duration-300 sm:basis-1/2 md:basis-1/3 lg:basis-1/6",
                 )}
               >
                 <article className="group relative overflow-hidden rounded-3xl">
