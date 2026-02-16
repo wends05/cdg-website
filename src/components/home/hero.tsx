@@ -14,6 +14,10 @@ const rightScrollOfficers = [...rightColumnOfficers, ...rightColumnOfficers];
 export default function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const expectedImagesCount =
+    leftColumnOfficers.length + rightColumnOfficers.length + 1;
+  const allHeroImagesLoaded =
+    Object.keys(loadedImages).length >= expectedImagesCount;
 
   const markImageLoaded = (src: string) => {
     setLoadedImages((prev) => {
@@ -155,6 +159,7 @@ export default function Hero() {
                     fill
                     priority
                     onLoadingComplete={() => markImageLoaded("/logo_1.svg")}
+                    onError={() => markImageLoaded("/logo_1.svg")}
                     sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
                     className={`object-contain object-left transition-opacity duration-300 ${
                       loadedImages["/logo_1.svg"] ? "opacity-100" : "opacity-0"
@@ -191,7 +196,14 @@ export default function Hero() {
                   className="overflow-hidden pt-0 md:pt-5"
                   style={{ "--scroll-gap": "12px" } as CSSProperties}
                 >
-                  <div className="scroll-up flex flex-col gap-3 sm:gap-4 md:gap-5">
+                  <div
+                    className="scroll-up flex flex-col gap-3 sm:gap-4 md:gap-5"
+                    style={{
+                      animationPlayState: allHeroImagesLoaded
+                        ? "running"
+                        : "paused",
+                    }}
+                  >
                     {leftScrollOfficers.map((officer, index) =>
                       (() => {
                         const imageSrc = `/officers/${officer}.svg`;
@@ -213,6 +225,7 @@ export default function Hero() {
                               onLoadingComplete={() =>
                                 markImageLoaded(imageSrc)
                               }
+                              onError={() => markImageLoaded(imageSrc)}
                               className={`h-auto w-full object-cover transition-opacity duration-300 ${
                                 isLoaded ? "opacity-100" : "opacity-0"
                               }`}
@@ -228,7 +241,14 @@ export default function Hero() {
                   className="overflow-hidden pt-10 md:pt-16"
                   style={{ "--scroll-gap": "12px" } as CSSProperties}
                 >
-                  <div className="scroll-down flex flex-col gap-3 sm:gap-4 md:gap-5">
+                  <div
+                    className="scroll-down flex flex-col gap-3 sm:gap-4 md:gap-5"
+                    style={{
+                      animationPlayState: allHeroImagesLoaded
+                        ? "running"
+                        : "paused",
+                    }}
+                  >
                     {rightScrollOfficers.map((officer, index) =>
                       (() => {
                         const imageSrc = `/officers/${officer}.svg`;
@@ -250,6 +270,7 @@ export default function Hero() {
                               onLoadingComplete={() =>
                                 markImageLoaded(imageSrc)
                               }
+                              onError={() => markImageLoaded(imageSrc)}
                               className={`h-auto w-full object-cover transition-opacity duration-300 ${
                                 isLoaded ? "opacity-100" : "opacity-0"
                               }`}
