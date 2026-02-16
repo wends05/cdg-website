@@ -3,7 +3,9 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileText, Sprout, UsersRound } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
+import learnGrowConnectShapes from "@/../public/assets/learn_grow_connect.svg"
 
 const items = [
 	{
@@ -126,29 +128,10 @@ export default function LearnConnectGrow() {
 			ref={sectionRef}
 			className="reveal-up relative overflow-hidden bg-linear-to-r from-[#3c8af8] to-[#2339cb] px-4 py-14 text-white md:px-8 md:py-20"
 		>
-			<div
-				aria-hidden="true"
-				className="lcg-shape pointer-events-none absolute -left-28 -top-32 z-0 h-56 w-56 rounded-full border-[14px] border-white/95 md:-left-24 md:-top-20 md:h-72 md:w-72 md:border-[18px]"
-			/>
-			<div
-				aria-hidden="true"
-				className="lcg-shape pointer-events-none absolute left-1/2 -top-20 z-0 h-24 w-24 -translate-x-1/2 rounded-full border-[10px] border-white/95 md:-top-24 md:h-48 md:w-48 md:border-[16px]"
-			/>
-			<div
-				aria-hidden="true"
-				className="lcg-shape pointer-events-none absolute -right-8 top-5 z-0 h-28 w-28 rotate-45 border-[10px] border-white/95 md:-right-20 md:-top-5 md:h-56 md:w-56 md:border-[16px]"
-			/>
-			<div
-				aria-hidden="true"
-				className="lcg-shape pointer-events-none absolute -left-14 bottom-0 z-0 h-28 w-28 translate-y-1/2 rotate-[16deg] border-[10px] border-white/95 md:-left-14 md:bottom-0 md:h-52 md:w-52 md:border-[14px]"
-			/>
-			<div
-				aria-hidden="true"
-				className="lcg-shape pointer-events-none absolute -right-8 bottom-0 z-0 h-24 w-24 translate-y-1/2 rounded-full border-[10px] border-white/95 md:-right-16 md:h-60 md:w-60 md:border-[16px]"
-			/>
+			<Image src={learnGrowConnectShapes} fill alt="Shapes" className="scale-110 -translate-y-10 lg:translate-y-0" />
 
 			<div className="relative z-10 mx-auto max-w-7xl px-3 md:px-8">
-				<h2 className="lcg-title text-4xl font-semibold leading-tight text-white [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:text-5xl lg:text-6xl">
+				<h2 className="lcg-title text-4xl font-semibold leading-tight text-white [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md lg:max-w-full">
 					Join us as We Learn, Connect, &amp; Grow
 				</h2>
 
@@ -165,10 +148,10 @@ export default function LearnConnectGrow() {
 									className="h-8 w-8 text-white md:h-9 md:w-9"
 									strokeWidth={2}
 								/>
-								<h3 className="mt-5 text-2xl font-semibold text-white md:text-4xl lg:text-[2.8rem]">
+								<h3 className="mt-5 text-2xl font-semibold text-white">
 									{item.title}
 								</h3>
-								<p className="mt-3 text-base leading-relaxed text-white/95 md:text-xl lg:text-2xl">
+								<p className="mt-3 leading-relaxed text-white/95">
 									{item.text}
 								</p>
 							</article>

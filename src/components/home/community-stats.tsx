@@ -3,7 +3,7 @@ import solutionsBG from "@/../public/assets/solutions_bg.svg";
 
 export default function CommunityStats() {
   return (
-		<section className="reveal-up relative overflow-hidden px-4 py-14 md:px-8 text-[#3186FF]">
+		<section className="reveal-up relative overflow-hidden px-4 py-28 md:px-8 text-[#3186FF]">
 			<Image src={solutionsBG} alt="Community Stats" fill />
 
       <div className="relative mx-auto max-w-7xl text-center">
