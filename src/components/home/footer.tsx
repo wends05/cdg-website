@@ -15,7 +15,6 @@ export default function Footer() {
 			{/* Upper Footer */}
 			<section
 				className="relative isolate flex min-h-130 items-center justify-center overflow-hidden bg-background px-6 py-20 text-foreground md:min-h-155"
-				// style={{ backgroundImage: "url('/footer-graphic.svg')" }}
 			>
 				<Image
 					src="/footer-graphic.svg"
@@ -44,7 +43,7 @@ export default function Footer() {
 
 					<Button
 						nativeButton={false}
-						render={<Link href="/apply">Join Now &gt;</Link>}
+						render={<Link href="https://forms.gle/i8cn5thQXQF9CzMZ7">Join Now &gt;</Link>}
 						className="mt-7 h-10 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
 					/>
 				</div>
