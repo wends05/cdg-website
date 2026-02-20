@@ -126,17 +126,17 @@ export default function LearnConnectGrow() {
 	return (
 		<section
 			ref={sectionRef}
-			className="reveal-up relative overflow-hidden bg-primary px-4 py-14 text-primary-foreground md:px-8 md:py-20"
+			className="reveal-up relative overflow-hidden bg-primary px-4 py-14 text-primary-foreground md:px-8 md:py-20 bg-linear-to-r from-[#3186ff] to-[#1b38cc] "
 		>
 			<Image
 				src={learnGrowConnectShapes}
 				fill
 				alt="Shapes"
-				className="scale-110 -translate-y-10 lg:translate-y-0"
+				className="scale-115 -translate-y-10 lg:translate-y-0"
 			/>
 
-			<div className="relative z-10 mx-auto max-w-7xl px-3 md:px-8">
-				<h2 className="lcg-title font-display text-4xl font-medium leading-tight text-primary-foreground [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md lg:max-w-full md:text-[64px]">
+			<div className="relative z-10 mx-auto px-8 md:px-12 xl:px-20">
+				<h2 className="lcg-title font-display text-4xl font-medium leading-tight text-primary-foreground [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md lg:max-w-200 xl:max-w-max md:text-[64px]">
 					Join us as We Learn, Connect, &amp; Grow
 				</h2>
 

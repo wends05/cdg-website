@@ -148,7 +148,7 @@ export default function OfficersSection() {
 							<CarouselItem
 								key={`${officer.name}-${idx}`}
 								className={cn(
-									"pl-4 md:pl-6 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-68.5",
+									"pl-4 md:pl-6 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6",
 								)}
 							>
 								<article className="group relative overflow-hidden rounded-4xl h-100 w-full max-w-68.5 mx-auto">
@@ -174,7 +174,7 @@ export default function OfficersSection() {
 					</CarouselContent>
 
 					<div className="mt-12 flex items-center justify-center gap-6">
-						<CarouselPrevious className="static size-10 translate-y-0 border-0 bg-card text-primary shadow-none hover:bg-muted disabled:bg-card disabled:text-primary/50" />
+						<CarouselPrevious className="static size-10 translate-y-0 border-0 bg-primary text-primary-foreground shadow-none hover:bg-primary/90 disabled:bg-primary/50" />
 						<CarouselNext className="static size-10 translate-y-0 border-0 bg-primary text-primary-foreground shadow-none hover:bg-primary/90 disabled:bg-primary/50" />
 					</div>
 				</Carousel>

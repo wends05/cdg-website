@@ -44,7 +44,7 @@ export default function Footer() {
 					<Button
 						nativeButton={false}
 						render={<Link href="https://forms.gle/i8cn5thQXQF9CzMZ7">Join Now &gt;</Link>}
-						className="mt-7 h-10 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+						className="mt-7 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/90 h-12.5"
 					/>
 				</div>
 			</section>

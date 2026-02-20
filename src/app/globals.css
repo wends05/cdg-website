@@ -127,7 +127,11 @@
 	body {
 		@apply bg-background text-foreground;
 		font-family:
-			"Inter", var(--font-sans), system-ui, -apple-system, sans-serif;
+			"Inter",
+			var(--font-sans),
+			system-ui,
+			-apple-system,
+			sans-serif;
 	}
 
 	button {
@@ -150,6 +154,10 @@
 		font-family: var(--font-display);
 		font-size: 3rem;
 		font-weight: 500;
+	}
+
+	p {
+		@apply font-sans;
 	}
 }
 

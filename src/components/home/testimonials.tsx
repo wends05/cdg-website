@@ -1,5 +1,3 @@
-import { Quote } from "lucide-react";
-
 interface Testimonial {
 	quote: string;
 	name: string;
@@ -45,7 +43,7 @@ export default function TestimonialsSection() {
 			</div>
 
 			<div className="relative mx-auto max-w-8xl px-4 md:px-8">
-				<div className="grid gap-8 md:grid-cols-3">
+				<div className="grid gap-8 xl:grid-cols-3">
 					{testimonials.map((item, i) => (
 						<TestimonialCard key={i} item={item} index={i} />
 					))}
@@ -69,16 +67,12 @@ function TestimonialCard({
 
 	return (
 		<div
-			className="flex flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10) lg:size-112.5"
+			className="flex flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10) lg:size-100 xl:size-112.5"
 			style={{ backgroundImage: gradientStyle }}
 		>
 			<div>
-				<Quote
-					className="mb-6 rotate-180 fill-primary text-primary"
-					size={48}
-					strokeWidth={0}
-				/>
-				<p className="mb-8 text-[0.95rem] leading-relaxed text-muted-foreground">
+				<QuoteIcon />
+				<p className="mb-8 lg:text-xl leading-relaxed text-muted-foreground">
 					{item.quote}
 				</p>
 			</div>
@@ -90,8 +84,10 @@ function TestimonialCard({
 				</div>
 
 				<div>
-					<h4 className="text-sm font-bold text-foreground">{item.name}</h4>
-					<p className="text-xs font-medium text-muted-foreground">
+					<h4 className="lg:text-[22px] font-bold text-foreground">
+						{item.name}
+					</h4>
+					<p className="lg:text-xl font-medium text-muted-foreground">
 						{item.role}
 					</p>
 				</div>
@@ -135,6 +131,25 @@ function RightQuoteSVG() {
 				d="M568 3.0001L568 225.806L434.762 412L359.112 412L437.326 238.375L439.233 234.143L318.553 234.143L318.553 3.00006L568 3.0001ZM252.447 3.00004L252.447 225.806L119.209 412L43.5595 412L121.773 238.375L123.681 234.143L2.99996 234.143L3 3L252.447 3.00004Z"
 				stroke="#C7D7FF"
 				strokeWidth="6"
+			/>
+		</svg>
+	);
+}
+
+function QuoteIcon() {
+	return (
+		<svg
+			width="72"
+			height="72"
+			viewBox="0 0 72 72"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			className="mb-6 h-12 w-12"
+			aria-hidden="true"
+		>
+			<path
+				d="M7 15H32.9474V37.95L19.2655 57H10.9532L19.0915 39H7V15ZM39.0526 15H65V37.95L51.3181 57H43.0058L51.1441 39H39.0526V15Z"
+				fill="#1350E2"
 			/>
 		</svg>
 	);

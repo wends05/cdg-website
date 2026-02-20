@@ -6,7 +6,7 @@ import targetIconBg from "@/../public/assets/target_bg.svg";
 
 export default function VisionMission() {
 	return (
-		<section className="reveal-up relative overflow-hidden px-4 py-20 md:px-8">
+		<section className="reveal-up relative overflow-hidden px-4 py-20 md:px-8 lg:h-106.25">
 			{/* Background watermark - Lightbulb left */}
 			<div
 				aria-hidden="true"
@@ -17,7 +17,7 @@ export default function VisionMission() {
 					alt="Lightbulb Icon"
 					width={444}
 					height={425}
-					className="h-106.25 w-111"
+					className="h-106.25 w-150"
 				/>
 			</div>
 
@@ -31,7 +31,7 @@ export default function VisionMission() {
 					alt="Target Icon"
 					width={425}
 					height={425}
-					className="h-106.25 w-106.25 srtoke-[#A8C9FF]"
+					className="h-106.25 w-150 stroke-[#A8C9FF]"
 				/>
 			</div>
 
@@ -58,7 +58,7 @@ export default function VisionMission() {
 							<h3 className="font-display text-3xl font-medium text-primary md:text-5xl">
 								Vision
 							</h3>
-							<p className="text-base leading-relaxed text-muted-foreground md:text-xl">
+							<p className="text-base leading-relaxed text-muted-foreground md:text-xl px-12">
 								The Centralian Developer Group (CDG) envisions itself as a
 								dynamic community of developers, holistically formed as men and
 								women for and with others, driven by a passion for solving
@@ -95,7 +95,7 @@ export default function VisionMission() {
 							<h3 className="font-display text-3xl font-medium text-primary md:text-5xl">
 								Mission
 							</h3>
-							<p className="text-base leading-relaxed text-muted-foreground md:text-xl">
+							<p className="text-base leading-relaxed text-muted-foreground md:text-xl px-12">
 								The mission of the Centralian Developer Group (CDG) is to
 								empower students through accessible education in technology and
 								programming, inspire innovation and a problem-solving mindset,

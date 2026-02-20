@@ -10,7 +10,7 @@ export default function DescriptionSectionV2() {
 					<CardContent className="grid items-center gap-12 px-2 py-0 lg:grid-cols-[1fr_1.5fr] md:px-4">
 						<div className="reveal-left flex flex-col items-start gap-5">
 							<div className="flex flex-col">
-								<h2 className="font-display text-5xl font-medium md:text-6xl lg:text-[64px] leading-tight">
+								<h2 className="text-5xl font-medium md:text-6xl lg:text-[64px] leading-tight">
 									<span className="bg-clip-text text-transparent bg-linear-to-r from-[#533da2] to-[#9daf15]">
 										Together we,
 									</span>
@@ -34,7 +34,7 @@ export default function DescriptionSectionV2() {
 						</div>
 
 						<div className="reveal-right relative w-full">
-							<div className="relative aspect-video w-full  bg-card outline outline-foreground">
+							<div className="relative aspect-video w-full bg-card outline outline-foreground">
 								{/* Inner outline as per Figma */}
 								<div className="absolute inset-0 m-px outline outline-foreground" />
 

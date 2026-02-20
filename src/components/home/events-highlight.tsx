@@ -9,7 +9,7 @@ interface EventsPreviewProps {
 
 export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 	return (
-		<section className="reveal-up relative isolate min-h-155 overflow-hidden bg-[#2f71f0]">
+		<section className="reveal-up relative isolate min-h-203.25 w-full overflow-hidden bg-[#2f71f0] flex items-center">
 			<Image
 				src="/assets/event.svg"
 				alt=""
@@ -37,8 +37,8 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 				className="pointer-events-none absolute -bottom-48 left-[32%] hidden h-88 w-88 rounded-full border-20 border-primary-foreground/90 md:block"
 			/>
 
-			<div className="relative z-10 mx-auto flex min-h-155 max-w-7xl items-center px-6 py-16 md:px-8">
-				<div className="max-w-xl space-y-6">
+			<div className="relative z-10 mx-auto w-full flex h-full max-w-7xl flex-col px-6 py-16 md:px-8">
+				<div className="space-y-6 flex items-start flex-col ">
 					<h2 className="font-display text-5xl font-medium leading-[1.05] text-primary-foreground md:text-[64px]">
 						See What We&apos;ve
 						<br />
@@ -54,7 +54,7 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 						aria-label={
 							events.length > 0 ? `View ${events.length} events` : "View events"
 						}
-						className="inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3 text-lg font-semibold text-primary transition-all hover:bg-primary-foreground/90"
+						className="inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3 text-lg font-semibold text-primary transition-all hover:bg-primary-foreground/90 h-12.5"
 					>
 						View Events
 						<ChevronRight className="h-5 w-5" />
