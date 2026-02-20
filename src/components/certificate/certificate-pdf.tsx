@@ -1,87 +1,88 @@
 "use client";
 
-import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
+import { Document, Image, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { EventRecord, ParticipantRecord } from "@/types/domain";
-import { formatDate, generateCertificateId } from "@/utils/certificate";
+import { formatDate } from "@/utils/certificate";
+import logo from "@/../public/logo_2.png";
 
 const styles = StyleSheet.create({
 	page: {
-		padding: 40,
+		padding: 48,
 		backgroundColor: "#FFFFFF",
 		fontFamily: "Helvetica",
 	},
 	header: {
-		marginBottom: 30,
-		paddingBottom: 20,
+		marginBottom: 28,
+		paddingBottom: 18,
 		borderBottomWidth: 2,
-		borderBottomColor: "#0052FF",
+		borderBottomColor: "#2563EB",
 	},
 	logo: {
-		fontSize: 24,
-		fontWeight: "bold",
-		color: "#0052FF",
 		marginBottom: 10,
+		height: 110,
+		width: 110,
 	},
 	certificateLabel: {
 		fontSize: 10,
-		color: "#666666",
+		color: "#4B5563",
 		fontWeight: "bold",
 		letterSpacing: 2,
+		textTransform: "uppercase",
 		marginBottom: 15,
 	},
 	title: {
-		fontSize: 28,
+		fontSize: 32,
 		fontWeight: "bold",
-		color: "#000000",
-		marginBottom: 20,
+		color: "#111827",
+		marginBottom: 28,
 		lineHeight: 1.3,
 	},
 	recipientName: {
 		fontSize: 20,
 		fontWeight: "bold",
-		color: "#0052FF",
-		marginTop: 20,
-		marginBottom: 5,
+		color: "#2563EB",
+		marginTop: 4,
+		marginBottom: 6,
 	},
 	details: {
 		fontSize: 11,
-		color: "#333333",
-		marginBottom: 3,
+		color: "#1F2937",
+		marginBottom: 4,
 	},
 	detailLabel: {
 		fontWeight: "bold",
 	},
 	certificateId: {
-		fontSize: 9,
-		color: "#999999",
-		marginTop: 20,
-		paddingTop: 15,
+		fontSize: 10,
+		color: "#4B5563",
+		marginTop: 18,
+		paddingTop: 14,
 		borderTopWidth: 1,
-		borderTopColor: "#EEEEEE",
+		borderTopColor: "#E5E7EB",
 	},
 	footerText: {
-		fontSize: 9,
-		color: "#666666",
+		fontSize: 10,
+		color: "#4B5563",
 		marginTop: 10,
-		lineHeight: 1.5,
+		lineHeight: 1.45,
 	},
 });
 
 export function CertificatePDF({
 	event,
 	participant,
+ 	certificateId,
 }: {
 	event: EventRecord;
 	participant: ParticipantRecord;
+ 	certificateId: string;
 }) {
-	const certId = generateCertificateId();
-
 	return (
 		<Document>
 			<Page size="A4" style={styles.page} orientation="landscape">
 				{/* Header */}
 				<View style={styles.header}>
-					<Text style={styles.logo}>CDG</Text>
+					<Image src={logo.src} style={styles.logo} />
 					<Text style={styles.certificateLabel}>CERTIFICATE OF COMPLETION</Text>
 				</View>
 
@@ -101,7 +102,7 @@ export function CertificatePDF({
 
 				{/* Footer Info */}
 				<View style={styles.certificateId}>
-					<Text style={styles.detailLabel}>{certId}</Text>
+					<Text style={styles.detailLabel}>Certificate ID: {certificateId}</Text>
 					<Text style={styles.footerText}>
 						This certificate verifies that {participant.name} successfully
 						completed {event.name}. The certificate indicates the entire course
