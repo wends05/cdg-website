@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileText, Sprout, UsersRound } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import learnGrowConnectShapes from "@/../public/assets/learn_grow_connect.svg"
+import learnGrowConnectShapes from "@/../public/assets/learn_grow_connect.svg";
 
 const items = [
 	{
@@ -126,12 +126,17 @@ export default function LearnConnectGrow() {
 	return (
 		<section
 			ref={sectionRef}
-			className="reveal-up relative overflow-hidden bg-linear-to-r from-[#3c8af8] to-[#2339cb] px-4 py-14 text-white md:px-8 md:py-20"
+			className="reveal-up relative overflow-hidden bg-primary px-4 py-14 text-primary-foreground md:px-8 md:py-20"
 		>
-			<Image src={learnGrowConnectShapes} fill alt="Shapes" className="scale-110 -translate-y-10 lg:translate-y-0" />
+			<Image
+				src={learnGrowConnectShapes}
+				fill
+				alt="Shapes"
+				className="scale-110 -translate-y-10 lg:translate-y-0"
+			/>
 
 			<div className="relative z-10 mx-auto max-w-7xl px-3 md:px-8">
-				<h2 className="lcg-title text-4xl font-semibold leading-tight text-white [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md lg:max-w-full">
+				<h2 className="lcg-title font-display text-4xl font-medium leading-tight text-primary-foreground [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md lg:max-w-full md:text-[64px]">
 					Join us as We Learn, Connect, &amp; Grow
 				</h2>
 
@@ -145,13 +150,13 @@ export default function LearnConnectGrow() {
 								className="lcg-card stagger-item max-w-[34ch]"
 							>
 								<Icon
-									className="h-8 w-8 text-white md:h-9 md:w-9"
+									className="h-8 w-8 text-primary-foreground md:h-9 md:w-9"
 									strokeWidth={2}
 								/>
-								<h3 className="mt-5 text-2xl font-semibold text-white">
+								<h3 className="font-display mt-5 text-2xl font-medium text-primary-foreground">
 									{item.title}
 								</h3>
-								<p className="mt-3 leading-relaxed text-white/95">
+								<p className="mt-3 leading-relaxed text-primary-foreground/95">
 									{item.text}
 								</p>
 							</article>

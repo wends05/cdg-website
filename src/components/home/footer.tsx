@@ -14,7 +14,7 @@ export default function Footer() {
 		<div>
 			{/* Upper Footer */}
 			<section
-				className="relative isolate flex min-h-130 items-center justify-center overflow-hidden bg-white px-6 py-20 text-[#0D1749] md:min-h-155"
+				className="relative isolate flex min-h-130 items-center justify-center overflow-hidden bg-background px-6 py-20 text-foreground md:min-h-155"
 				// style={{ backgroundImage: "url('/footer-graphic.svg')" }}
 			>
 				<Image
@@ -35,17 +35,17 @@ export default function Footer() {
 						/>
 					</div>
 
-					<h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#3B82F6] sm:text-4xl md:text-5xl">
+					<h2 className="font-display mt-4 text-3xl font-medium tracking-tight text-primary sm:text-4xl md:text-[64px]">
 						Be Part of a community that
 					</h2>
-					<p className="mt-2 text-xl font-medium text-[#111C55] sm:text-2xl">
+					<p className="mt-2 text-xl font-medium text-foreground sm:text-2xl">
 						Learn, Connect, and Grow
 					</p>
 
 					<Button
 						nativeButton={false}
 						render={<Link href="/apply">Join Now &gt;</Link>}
-						className="mt-7 h-10 rounded-full bg-[#1B38CC] px-6 text-sm font-semibold text-white hover:bg-[#1732b4]"
+						className="mt-7 h-10 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
 					/>
 				</div>
 			</section>
@@ -69,14 +69,14 @@ export default function Footer() {
 										className="object-contain"
 									/>
 								</div>
-								<p className="max-w-55 text-2xl leading-tight font-medium">
+								<p className="max-w-55 text-3xl leading-tight font-medium font-sans">
 									Centralian Developer Group
 								</p>
 							</div>
 						</div>
 
 						<div>
-							<h2 className="text-sm font-semibold tracking-wide text-white/90 uppercase">
+							<h2 className="text-xl font-semibold tracking-wide text-secondary-foreground/90 uppercase">
 								Quick Links
 							</h2>
 							<ul className="mt-4 space-y-2.5">
@@ -84,7 +84,7 @@ export default function Footer() {
 									<li key={link.name}>
 										<Link
 											href={link.href}
-											className="text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#081030]"
+											className="text-lg text-secondary-foreground/75 transition-colors hover:text-secondary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-foreground/80 focus-visible:ring-offset-2 focus-visible:ring-offset-secondary"
 										>
 											{link.name}
 										</Link>
@@ -94,35 +94,39 @@ export default function Footer() {
 						</div>
 
 						<div>
-							<h2 className="text-sm font-semibold tracking-wide text-white/90 uppercase">
+							<h2 className="text-xl font-semibold tracking-wide text-secondary-foreground/90 uppercase">
 								Contact Us
 							</h2>
-							<div className="mt-4 space-y-2.5 text-sm text-white/75">
+							<div className="mt-4 space-y-2.5 text-lg text-secondary-foreground/75">
 								<p>
-									<span className="text-white/90">Email:</span>{" "}
+									<span className="text-secondary-foreground/90">Email:</span>{" "}
 									<a
 										href="mailto:cdg.cpu.ph@gmail.com"
-										className="underline decoration-white/25 underline-offset-4 transition-colors hover:text-white hover:decoration-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#081030]"
+										className="underline decoration-secondary-foreground/25 underline-offset-4 transition-colors hover:text-secondary-foreground hover:decoration-secondary-foreground/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-foreground/80 focus-visible:ring-offset-2 focus-visible:ring-offset-secondary"
 									>
 										cdg.cpu.ph@gmail.com
 									</a>
 								</p>
 								<p>
-									<span className="text-white/90">Messenger:</span> Centralian
-									Developer Group - CPU
+									<span className="text-secondary-foreground/90">
+										Messenger:
+									</span>
+									Centralian Developer Group - CPU
 								</p>
 								<p>
-									<span className="text-white/90">Phone:</span> +63 912-345-6789
+									<span className="text-secondary-foreground/90">Phone:</span>{" "}
+									+63 912-345-6789
 								</p>
 								<p>
-									<span className="text-white/90">Tel No:</span> 123-4567
+									<span className="text-secondary-foreground/90">Tel No:</span>{" "}
+									123-4567
 								</p>
 							</div>
 						</div>
 					</div>
 
 					<div className="flex flex-col gap-4 sm:flex-row pt-12 justify-center">
-						<p className="text-xs text-white/65 sm:text-sm">
+						<p className="text-xs text-secondary-foreground/65 sm:text-sm">
 							© 2026 Centralian Developer Group. All rights reserved.
 						</p>
 					</div>

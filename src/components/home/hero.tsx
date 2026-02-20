@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "../ui/button";
 
 const leftColumnOfficers = ["angel", "dave", "keith", "newyeareign"];
 const rightColumnOfficers = ["pia", "ng", "jenny", "axxel"];
@@ -102,24 +103,24 @@ export default function Hero() {
 		<section
 			id="home"
 			ref={sectionRef}
-			className="relative overflow-hidden bg-linear-to-r from-[#3987f5] to-[#2138c8] px-3 pt-6 text-white md:min-h-190 md:pt-0"
+			className="relative overflow-hidden bg-linear-to-r from-[#3186FF] to-[#1B38CC]  px-3 pt-6 text-primary-foreground md:min-h-190 md:pt-0"
 		>
 			<div className="relative mx-auto h-full max-w-420">
 				{/* Geometric accents */}
 				<div
-					className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-white/95 md:-left-20 md:top-6 md:h-65 md:w-65 md:border-14"
+					className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-primary-foreground/95 md:-left-20 md:top-6 md:h-65 md:w-65 md:border-14"
 					data-direction="left"
 				></div>
 				<div
-					className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-white/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-10"
+					className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-primary-foreground/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-10"
 					data-direction="left"
 				></div>
 				<div
-					className="hero-shape absolute -right-12 bottom-0 hidden h-107.5 w-107.5 rounded-full border-14 border-white/95 md:block"
+					className="hero-shape absolute -right-12 bottom-0 hidden h-107.5 w-107.5 rounded-full border-14 border-primary-foreground/95 md:block"
 					data-direction="right"
 				></div>
 				<div
-					className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-10 border-white/95 md:block"
+					className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-10 border-primary-foreground/95 md:block"
 					data-direction="right"
 				></div>
 				<div
@@ -130,11 +131,11 @@ export default function Hero() {
 						height: 0,
 						borderLeft: "60px solid transparent",
 						borderRight: "60px solid transparent",
-						borderTop: "100px solid rgba(255,255,255,0.95)",
+						borderTop: "100px solid hsl(var(--primary-foreground) / 0.95)",
 					}}
 				></div>
 				<div
-					className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-8 border-white/95 md:block"
+					className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-8 border-primary-foreground/95 md:block"
 					data-direction="left"
 				></div>
 
@@ -171,7 +172,7 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 			<div className="hero-copy-item mb-5 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
 				<div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
 					{!loadedImages["/logo_1.svg"] && (
-						<Skeleton className="absolute inset-0 rounded-sm bg-white/25" />
+						<Skeleton className="absolute inset-0 rounded-sm bg-primary-foreground/25" />
 					)}
 					<Image
 						src="/logo_1.svg"
@@ -185,7 +186,7 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 						}`}
 					/>
 				</div>
-				<h2 className="md:text-4xl lg:text-5xl font-medium leading-[1.08]">
+				<h2 className="font-display md:text-4xl lg:text-5xl font-medium leading-[1.08]">
 					Centralian
 					<br />
 					Developer
@@ -194,15 +195,15 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 				</h2>
 			</div>
 
-			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-white/95 ">
+			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-primary-foreground/95 ">
 				Be a part of CDG to learn, build, and grow with fellow student
 				developers
 			</p>
 
-			<button className="hero-copy-item mx-auto inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-base font-semibold text-[#2565e6] transition-all hover:bg-white/90 md:mx-0 md:px-8 md:py-3">
+			<Button className="h-12.5 hero-copy-item mx-auto inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-2.5 text-base font-semibold text-primary transition-all hover:bg-primary-foreground/90 md:mx-0 md:px-8 md:py-3">
 				Join Now
 				<span className="text-base leading-none">{">"}</span>
-			</button>
+			</Button>
 		</div>
 	);
 }
@@ -229,7 +230,7 @@ function OfficerImageItem({
 	return (
 		<div className="relative overflow-hidden rounded-3xl shadow-[0_12px_30px_rgba(20,33,110,0.24)]">
 			{!isLoaded && (
-				<Skeleton className="absolute inset-0 z-10 rounded-3xl bg-white/35" />
+				<Skeleton className="absolute inset-0 z-10 rounded-3xl bg-primary-foreground/35" />
 			)}
 			<Image
 				preload
@@ -252,8 +253,8 @@ function OfficerCarousel({
 }: OfficerCarouselProps) {
 	return (
 		<div className="relative z-10 mx-auto h-112 w-full max-w-[24rem] overflow-hidden sm:h-136 sm:max-w-120 md:h-190 md:max-w-xl">
-			<div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-[#2559d9] to-transparent sm:h-20" />
-			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-[#2559d9] to-transparent sm:h-20" />
+			<div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-primary to-transparent sm:h-20" />
+			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-primary to-transparent sm:h-20" />
 
 			<div className="grid h-full grid-cols-2 gap-3 sm:gap-4 md:gap-5">
 				<div
