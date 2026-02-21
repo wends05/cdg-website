@@ -170,7 +170,7 @@ export function CertificatePDF({
               </Text>
             </View>
             <Text style={styles.certificateLabel}>
-              CERTIFICATE OF COMPLETION
+              CERTIFICATE OF ATTENDANCE
             </Text>
           </View>
 

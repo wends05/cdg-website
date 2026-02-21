@@ -27,7 +27,7 @@ export function CertificateViewer({
     <div className="min-h-screen bg-white py-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         <h2 className="text-2xl font-bold text-blue-600 text-center">
-          Certificate of Completion
+          Certificate of Attendance
         </h2>
         {/* Certificate preview mirrors PDF layout exactly */}
         <div className="relative overflow-hidden bg-white border border-gray-200 shadow-lg px-12 py-10 w-full max-w-[1200px] mx-auto">
@@ -53,7 +53,7 @@ export function CertificateViewer({
             </div>
           </div>
           <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-600 mb-6">
-            Certificate of Completion
+            Certificate of Attendance
           </p>
           <hr className="border-t-2 border-blue-600 mb-8" />
 
