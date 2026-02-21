@@ -18,27 +18,74 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     fontFamily: 'Helvetica',
   },
+  canvas: {
+    position: 'relative',
+    width: '100%',
+  },
   header: {
-    marginBottom: 28,
-    paddingBottom: 18,
-    borderBottomWidth: 2,
-    borderBottomColor: '#2563EB',
+    marginBottom: 16,
+    paddingBottom: 0,
+  },
+  shapeCircleLarge: {
+    position: 'absolute',
+    top: 12,
+    left: -110,
+    height: 100,
+    width: 100,
+    borderRadius: 70,
+    borderWidth: 4,
+    borderColor: '#d9e5fb',
+    opacity: 0.42,
+  },
+  shapeDiamond: {
+    position: 'absolute',
+    top: 15,
+    right: 36,
+    height: 92,
+    width: 92,
+    borderWidth: 4,
+    borderColor: '#d9e5fb',
+    transform: 'rotate(45deg)',
+    opacity: 0.46,
+  },
+  shapeCircleBottom: {
+    position: 'absolute',
+    bottom: -55,
+    left: 280,
+    height: 80,
+    width: 80,
+    borderRadius: 52,
+    borderWidth: 4,
+    borderColor: '#d9e5fb',
+    opacity: 0.45,
+  },
+  shapeSquareBottom: {
+    position: 'absolute',
+    bottom: -30,
+    right: 160,
+    height: 65,
+    width: 65,
+    borderWidth: 4,
+    borderColor: '#d9e5fb',
+    transform: 'rotate(12deg)',
+    opacity: 0.45,
   },
   logoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    marginBottom: 10,
+    gap: 10,
+    marginBottom: 14,
   },
   logo: {
-    height: 80,
-    width: 80,
+    height: 96,
+    width: 96,
     objectFit: 'contain',
   },
   logoText: {
-    fontSize: 14,
-    color: '#6B7280',
+    fontSize: 16,
+    color: '#4B5563',
     fontWeight: 600,
+    lineHeight: 1.1,
   },
   certificateLabel: {
     fontSize: 10,
@@ -84,6 +131,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     lineHeight: 1.45,
   },
+  rule: {
+    height: 2,
+    backgroundColor: '#2f74e0',
+    marginTop: 12,
+    marginBottom: 28,
+    width: '100%',
+  },
+  sectionGap: {
+    marginBottom: 28,
+  },
 })
 
 export function CertificatePDF({
@@ -98,39 +155,52 @@ export function CertificatePDF({
   return (
     <Document>
       <Page size="A4" style={styles.page} orientation="landscape">
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.logoRow}>
-            <Image src={logo.src} style={styles.logo} />
-            <Text style={styles.logoText}>Centralian Developer Group</Text>
+        <View style={styles.canvas}>
+          <View style={styles.shapeCircleLarge} />
+          <View style={styles.shapeDiamond} />
+          <View style={styles.shapeCircleBottom} />
+          <View style={styles.shapeSquareBottom} />
+
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={styles.logoRow}>
+              <Image src={logo.src} style={styles.logo} />
+              <Text style={styles.logoText}>
+                Centralian{'\n'}Developer{'\n'}Group
+              </Text>
+            </View>
+            <Text style={styles.certificateLabel}>
+              CERTIFICATE OF COMPLETION
+            </Text>
           </View>
-          <Text style={styles.certificateLabel}>CERTIFICATE OF ATTENDANCE</Text>
-        </View>
 
-        {/* Certificate Title */}
-        <Text style={styles.title}>{event.name}</Text>
+          <View style={styles.rule} />
 
-        {/* Recipient Info */}
-        <Text style={styles.recipientName}>{participant.name}</Text>
-        <Text style={styles.details}>
-          <Text style={styles.detailLabel}>Date: </Text>
-          {formatDate(event.date)}
-        </Text>
-        <Text style={styles.details}>
-          <Text style={styles.detailLabel}>Email: </Text>
-          {participant.email}
-        </Text>
+          {/* Certificate Title */}
+          <Text style={[styles.title, styles.sectionGap]}>{event.name}</Text>
 
-        {/* Footer Info */}
-        <View style={styles.certificateId}>
-          <Text style={styles.detailLabel}>
-            Certificate ID: {certificateId}
+          {/* Recipient Info */}
+          <Text style={styles.recipientName}>{participant.name}</Text>
+          <Text style={styles.details}>
+            <Text style={styles.detailLabel}>Date: </Text>
+            {formatDate(event.date)}
           </Text>
-          <Text style={styles.footerText}>
-            This certificate verifies that {participant.name} has successfully
-            attended {event.name}. For more information about this course,
-            please visit our website: https://cdg-website-mu.vercel.app/
+          <Text style={[styles.details, styles.sectionGap]}>
+            <Text style={styles.detailLabel}>Email: </Text>
+            {participant.email}
           </Text>
+
+          {/* Footer Info */}
+          <View style={styles.certificateId}>
+            <Text style={styles.detailLabel}>
+              Certificate ID: {certificateId}
+            </Text>
+            <Text style={styles.footerText}>
+              This certificate verifies that {participant.name} has successfully
+              attended {event.name}. For more information about this course,
+              please visit our website: https://cdg-website-mu.vercel.app/
+            </Text>
+          </View>
         </View>
       </Page>
     </Document>

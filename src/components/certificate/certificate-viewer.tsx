@@ -27,25 +27,33 @@ export function CertificateViewer({
     <div className="min-h-screen bg-white py-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         <h2 className="text-2xl font-bold text-blue-600 text-center">
-          Certificate of Attendance
+          Certificate of Completion
         </h2>
         {/* Certificate preview mirrors PDF layout exactly */}
-        <div className="bg-white border border-gray-200 shadow-lg px-12 py-10">
-          <div className="mb-6 flex items-center gap-4">
+        <div className="relative overflow-hidden bg-white border border-gray-200 shadow-lg px-12 py-10 w-full max-w-[1200px] mx-auto">
+          {/* Subtle brand shapes */}
+          <div className="pointer-events-none absolute -left-10 top-10 h-24 w-24 rounded-full border-[6px] border-[#2f74e0]/20" />
+          <div className="pointer-events-none absolute right-6 top-8 h-20 w-20 rotate-45 border-[5px] border-[#2f74e0]/15" />
+          <div className="pointer-events-none absolute -bottom-6 left-1/3 h-20 w-20 rounded-full border-[6px] border-[#2f74e0]/12" />
+          <div className="pointer-events-none absolute right-1/4 bottom-8 h-16 w-16 rotate-12 border-[5px] border-[#2f74e0]/12" />
+
+          <div className="relative mb-6 flex items-center gap-4">
             <Image
               src="/logo_3.png"
               alt="Centralian Developer Group"
-              width={144}
-              height={144}
-              className="h-24 w-24 object-contain drop-shadow-md"
+              width={96}
+              height={96}
+              className="h-24 w-24 max-h-24 max-w-24 object-contain drop-shadow-md"
               priority
             />
-            <p className="text-lg font-semibold text-gray-500">
-              Centralian Developer Group
-            </p>
+            <div className="leading-tight text-lg font-semibold text-gray-600">
+              <span className="block">Centralian</span>
+              <span className="block">Developer</span>
+              <span className="block">Group</span>
+            </div>
           </div>
           <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-600 mb-6">
-            Certificate of Attendance
+            Certificate of Completion
           </p>
           <hr className="border-t-2 border-blue-600 mb-8" />
 
