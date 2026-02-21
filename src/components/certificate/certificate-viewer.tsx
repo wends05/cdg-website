@@ -27,7 +27,7 @@ export function CertificateViewer({
     <div className="min-h-screen bg-white py-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         <h2 className="text-2xl font-bold text-blue-600 text-center">
-          Certificate of Completion
+          Certificate of Attendance
         </h2>
         {/* Certificate preview mirrors PDF layout exactly */}
         <div className="bg-white border border-gray-200 shadow-lg px-12 py-10">
@@ -45,7 +45,7 @@ export function CertificateViewer({
             </p>
           </div>
           <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-600 mb-6">
-            Certificate of Completion
+            Certificate of Attendance
           </p>
           <hr className="border-t-2 border-blue-600 mb-8" />
 
@@ -72,10 +72,9 @@ export function CertificateViewer({
             Certificate ID: {certificateId}
           </p>
           <p className="text-xs text-gray-600 leading-relaxed max-w-4xl">
-            This certificate verifies that {participant.name} successfully
-            completed {event.name}. The certificate indicates the entire course
-            was completed as validated by the participant. For more information
-            about this course, please visit our website.
+            This certificate verifies that {participant.name} has successfully
+            attended {event.name}. For more information about this course,
+            please visit our website: https://cdg-website-mu.vercel.app/
           </p>
         </div>
 

@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logo: {
-    height: 110,
-    width: 110,
+    height: 80,
+    width: 80,
     objectFit: 'contain',
   },
   logoText: {
@@ -104,7 +104,7 @@ export function CertificatePDF({
             <Image src={logo.src} style={styles.logo} />
             <Text style={styles.logoText}>Centralian Developer Group</Text>
           </View>
-          <Text style={styles.certificateLabel}>CERTIFICATE OF COMPLETION</Text>
+          <Text style={styles.certificateLabel}>CERTIFICATE OF ATTENDANCE</Text>
         </View>
 
         {/* Certificate Title */}
@@ -127,10 +127,9 @@ export function CertificatePDF({
             Certificate ID: {certificateId}
           </Text>
           <Text style={styles.footerText}>
-            This certificate verifies that {participant.name} successfully
-            completed {event.name}. The certificate indicates the entire course
-            was completed as validated by the participant. For more information
-            about this course, please visit our website.
+            This certificate verifies that {participant.name} has successfully
+            attended {event.name}. For more information about this course,
+            please visit our website: https://cdg-website-mu.vercel.app/
           </Text>
         </View>
       </Page>
