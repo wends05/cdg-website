@@ -135,10 +135,10 @@ export default function LearnConnectGrow() {
 				<CircleShape className="lcg-shape absolute -left-16 -top-16 w-40  md:-left-12 md:-top-12 md:w-56 md:text-white" />
 
 				{/* Bottom Left Triangle */}
-				<TriangleShape className="lcg-shape absolute -left-20 bottom-20 w-48  md:-bottom-10 md:w-52 md:text-white" />
+				<TriangleShape className="lcg-shape absolute -left-25 bottom-0 w-48  md:-bottom-10 md:w-52 md:text-white" />
 
 				{/* Top Right Circle (Mobile) / Middle Right Circle (Desktop) */}
-				<CircleShape className="lcg-shape absolute -right-16 top-32 w-40  md:-top-10 md:right-[25%] md:w-48 md:text-white" />
+				<CircleShape className="lcg-shape absolute -right-24 top-0 w-40  md:-top-10 md:right-[25%] md:w-48 md:text-white" />
 
 				{/* Bottom Right Square (Mobile) / Top Far Right Square (Desktop) */}
 				<SquareShape className="lcg-shape absolute -bottom-16 -right-16 w-48  md:-right-10 md:-top-10 md:w-64 md:text-white" />

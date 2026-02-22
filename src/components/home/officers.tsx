@@ -17,14 +17,14 @@ const officers = [
 		image: "/officers/jenny.svg",
 	},
 	{
-		name: "Clarence",
-		role: "External Associate for Partnerships",
-		image: "/officers/clarence.svg",
-	},
-	{
 		name: "Dave",
 		role: "Vice President for Internal Affairs",
 		image: "/officers/dave.svg",
+	},
+	{
+		name: "Clarence",
+		role: "External Associate for Partnerships",
+		image: "/officers/clarence.svg",
 	},
 	{
 		name: "Myk",
