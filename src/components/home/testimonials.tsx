@@ -9,23 +9,21 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
 	{
-		quote:
-			`Don't wait until you're ready––start even if you're unsure. The whole point of joining is to learn and gain experience, and there will always be someone to guide you along the way.
+		quote: `Don't wait until you're ready––start even if you're unsure. The whole point of joining is to learn and gain experience, and there will always be someone to guide you along the way.
 			
 			You'll figure things out as you go, and those experiences will shape you the most.
 			`,
 		name: "Chloe Belle Estilo",
 		role: "CDG Alumni",
-		image: null,
+		// image: null,
 	},
 	{
-		quote:
-			`Join and enjoy. The purpose of this group is to make your university life a much more fun and exciting experience. Especially when you like learning tech.
+		quote: `Join and enjoy. The purpose of this group is to make your university life a much more fun and exciting experience. Especially when you like learning tech.
 			
 			There's a lot of stuff out there that you can do with the help of technology and you can do that with the help of CDG.`,
 		name: "Jed Matthew Mamosto",
 		role: "CDG Member",
-		image: null,
+		// image: null,
 	},
 ];
 
@@ -45,11 +43,9 @@ export default function TestimonialsSection() {
 			<div className="relative mx-auto w-full px-2 max-w-7xl xl:px-8">
 				<div className="relative w-full">
 					{/* Scrollable Container */}
-					<div className="flex w-full gap-4 overflow-x-auto pb-8 lg:justify-center pt-4 snap-mandatory px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+					<div className="flex w-full gap-6 overflow-x-auto pb-8 lg:justify-center pt-4 snap-mandatory px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 						{testimonials.map((item, i) => (
-							<div key={i} className="shrink-0 snap-start w-[85%] sm:w-112.5">
-								<TestimonialCard item={item} index={i} />
-							</div>
+							<TestimonialCard key={i} item={item} index={i} />
 						))}
 					</div>
 				</div>
@@ -73,7 +69,7 @@ function TestimonialCard({
 
 	return (
 		<div
-			className="flex h-full flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10)] min-h-112.5"
+			className="shrink-0 snap-start flex h-full flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10)] min-h-112.5 w-[90vw] sm:w-100 md:w-112.5"
 			style={{ backgroundImage: gradientStyle }}
 		>
 			<div>
@@ -85,9 +81,9 @@ function TestimonialCard({
 
 			<div className="flex items-center gap-4">
 				{/* Profile Image / Placeholder */}
-				<div className="h-12 w-12 shrink-0 overflow-hidden rounded-full bg-primary">
-					{/* If image exists in future, render Next/Image here */}
-				</div>
+				{/* <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full bg-primary">
+				
+				</div> */}
 
 				<div>
 					<h4 className="text-[22px] font-bold text-foreground">{item.name}</h4>
