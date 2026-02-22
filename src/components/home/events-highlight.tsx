@@ -50,8 +50,8 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 			</div>
 
 			<div className="relative z-10 mx-auto w-full flex h-full lg:max-w-8xl flex-col px-12 lg:px-32 py-16">
-				<div className="space-y-6 flex items-start flex-col  w-[80%]">
-					<h2 className="font-display text-3xl lg:text-6xl font-medium leading-[1.05] text-primary-foreground md:text-[64px]">
+				<div className="space-y-6 flex items-start flex-col w-[80%]">
+					<h2 className="font-display text-4xl md:text-5xl xl:text-6xl font-medium leading-[1.05] text-primary-foreground">
 						See What We&apos;ve
 						<br />
 						Built Together
