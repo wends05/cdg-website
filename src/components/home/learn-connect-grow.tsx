@@ -4,6 +4,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileText, Sprout, UsersRound } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { CircleShape } from "@/components/shapes/circle-shape";
+import { SquareShape } from "@/components/shapes/square-shape";
+import { TriangleShape } from "@/components/shapes/triangle-shape";
 
 const items = [
 	{
@@ -176,57 +179,3 @@ export default function LearnConnectGrow() {
 		</section>
 	);
 }
-
-const CircleShape = ({ className }: { className?: string }) => (
-	<svg
-		viewBox="0 0 219 219"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-		className={className}
-		aria-hidden="true"
-	>
-		<circle
-			cx="109.5"
-			cy="109.5"
-			r="99.5"
-			stroke="currentColor"
-			strokeWidth="20"
-		/>
-	</svg>
-);
-
-const SquareShape = ({ className }: { className?: string }) => (
-	<svg
-		viewBox="0 0 240 240"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-		className={className}
-		aria-hidden="true"
-	>
-		<rect
-			x="120"
-			y="20"
-			width="141.127"
-			height="141.127"
-			transform="rotate(45 120 20)"
-			stroke="currentColor"
-			strokeWidth="20"
-		/>
-	</svg>
-);
-
-const TriangleShape = ({ className }: { className?: string }) => (
-	<svg
-		viewBox="0 0 210 210"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-		className={className}
-		aria-hidden="true"
-	>
-		<path
-			d="M187.926 53.75L51.7498 189.926L1.905 3.905L187.926 53.75Z"
-			stroke="currentColor"
-			strokeWidth="20"
-		/>
-	</svg>
-);

@@ -79,34 +79,34 @@ function VideoCarousel() {
 				</div>
 
 				{/* Navigation Buttons */}
-				<button
+				<Button
 					type="button"
 					onClick={prevVideo}
-					className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground outline outline-muted-foreground backdrop-blur-sm transition-transform hover:scale-105"
+					className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all hover:bg-white/40 hover:scale-110"
 					aria-label="Previous video"
 				>
-					<ChevronLeft className="h-6 w-6" />
-				</button>
-				<button
+					<ChevronLeft className="h-8 w-8" />
+				</Button>
+				<Button
 					type="button"
 					onClick={nextVideo}
-					className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground outline outline-muted-foreground backdrop-blur-sm transition-transform hover:scale-105"
+					className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all hover:bg-white/40 hover:scale-110"
 					aria-label="Next video"
 				>
-					<ChevronRight className="h-6 w-6" />
-				</button>
+					<ChevronRight className="h-8 w-8" />
+				</Button>
 
 				{/* Carousel Indicators */}
-				<div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/50 px-3 py-1.5 backdrop-blur-sm">
+				<div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/20 px-4 py-2 backdrop-blur-md">
 					{VIDEOS.map((_, idx) => (
-						<button
+						<Button
 							key={idx}
 							type="button"
 							onClick={() => setCurrentIndex(idx)}
-							className={`rounded-full transition-all ${
+							className={`rounded-full transition-all duration-300 ${
 								idx === currentIndex
-									? "h-3.5 w-3.5 bg-primary"
-									: "h-2.5 w-2.5 bg-muted hover:bg-muted-foreground"
+									? "h-3 w-8 bg-white"
+									: "h-3 w-3 bg-white/50 hover:bg-white/80"
 							}`}
 							aria-label={`Go to video ${idx + 1}`}
 						/>

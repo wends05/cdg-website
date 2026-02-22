@@ -15,6 +15,10 @@ const rightColumnOfficers = ["pia", "anfernee", "jenny", "axxel"];
 const leftScrollOfficers = [...leftColumnOfficers, ...leftColumnOfficers];
 const rightScrollOfficers = [...rightColumnOfficers, ...rightColumnOfficers];
 
+import { CircleShape } from "@/components/shapes/circle-shape";
+import { SquareShape } from "@/components/shapes/square-shape";
+import { TriangleShape } from "@/components/shapes/triangle-shape";
+
 export default function Hero() {
 	const sectionRef = useRef<HTMLElement | null>(null);
 	const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
@@ -121,12 +125,12 @@ export default function Hero() {
 					/>
 				</div>
 				{/* Desktop Background */}
-				<div className="relative inset-x-0 top-0 hidden md:block">
+				<div className="absolute inset-0 top-0 hidden md:block">
 					<Image
 						src="/hero-bg.svg"
 						alt=""
 						fill
-						className="object-cover object-left opacity-30"
+						className="object-cover object-bottom opacity-30"
 						priority
 					/>
 				</div>
@@ -135,96 +139,26 @@ export default function Hero() {
 			<div className="relative mx-auto h-full max-w-420">
 				{/* Mobile Geometric accents */}
 				<div className="lg:hidden absolute inset-0 pointer-events-none">
-					<svg
-						className="hero-shape absolute -left-13 top-76.25 text-primary-foreground opacity-95"
-						width="117"
-						height="117"
-						viewBox="-55 305 117 117"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					<CircleShape
+						className="hero-shape absolute -left-13 top-76.25 text-primary-foreground opacity-95 w-29.25 h-29.25"
 						data-direction="left"
-					>
-						<title>Left Circle</title>
-						<circle
-							cx="3.50006"
-							cy="363.5"
-							r="53.5"
-							stroke="currentColor"
-							strokeWidth="10"
-						/>
-					</svg>
-					<svg
-						className="hero-shape absolute right-53 -bottom-16 text-primary-foreground opacity-95"
-						width="148"
-						height="148"
-						viewBox="212 651 148 148"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					/>
+					<CircleShape
+						className="hero-shape absolute right-3 -bottom-16 text-primary-foreground opacity-95 w-37 h-37"
 						data-direction="right"
-					>
-						<title>Bottom Right Circle</title>
-						<circle
-							cx="286"
-							cy="725"
-							r="69"
-							stroke="currentColor"
-							strokeWidth="10"
-						/>
-					</svg>
-					<svg
-						className="hero-shape absolute left-9 top-181.25 text-primary-foreground opacity-95"
-						width="98"
-						height="98"
-						viewBox="36 725 98 98"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					/>
+					<CircleShape
+						className="hero-shape absolute left-9 top-181.25 text-primary-foreground opacity-95 w-24.5 h-24.5"
 						data-direction="left"
-					>
-						<title>Bottom Left Circle</title>
-						<circle
-							cx="85"
-							cy="774"
-							r="44"
-							stroke="currentColor"
-							strokeWidth="10"
-						/>
-					</svg>
-					<svg
-						className="hero-shape absolute -left-10 -top-8.75 text-primary-foreground opacity-95"
-						width="274"
-						height="274"
-						viewBox="-41 -35 274 274"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					/>
+					<SquareShape
+						className="hero-shape absolute -left-10 -top-8.75 text-primary-foreground opacity-95 w-68.5 h-68.5"
 						data-direction="right"
-					>
-						<title>Top Right Diamond</title>
-						<rect
-							x="96.116"
-							y="-28.5147"
-							width="184.74"
-							height="184.74"
-							transform="rotate(45 96.116 -28.5147)"
-							stroke="currentColor"
-							strokeWidth="12"
-						/>
-					</svg>
-					<svg
-						className="hero-shape absolute right-12 top-48.5 text-primary-foreground opacity-95"
-						width="104"
-						height="91"
-						viewBox="266 194 104 91"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+					/>
+					<TriangleShape
+						className="hero-shape absolute right-12 top-48.5 text-primary-foreground opacity-95 w-26 h-22.75"
 						data-direction="left"
-					>
-						<title>Triangle Geometric Shape</title>
-						<path
-							d="M364.517 199.164L318.013 279.711L271.509 199.164L364.517 199.164Z"
-							stroke="currentColor"
-							strokeWidth="10"
-						/>
-					</svg>
+					/>
 				</div>
 
 				{/* Desktop Geometric accents */}

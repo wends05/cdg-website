@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
 			
 			There's a lot of stuff out there that you can do with the help of technology and you can do that with the help of CDG.`,
 		name: "Jed Matthew Mamosto",
-		role: "CDG Member",
+		role: "GDSC Lead 2024 - 2025",
 		// image: null,
 	},
 ];
