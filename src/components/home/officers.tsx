@@ -10,66 +10,66 @@ import {
 } from "@/components/ui/carousel";
 
 const officers = [
-	{ name: "Andre", role: "President", image: "/officers/andre.svg" },
+	{ name: "Andre", role: "President", image: "/officers/andre.jpg" },
 	{
 		name: "Jenny",
 		role: "Vice President for External Affairs",
-		image: "/officers/jenny.svg",
+		image: "/officers/jenny.jpg",
 	},
 	{
 		name: "Dave",
 		role: "Vice President for Internal Affairs",
-		image: "/officers/dave.svg",
+		image: "/officers/dave.jpg",
 	},
 
 	{
 		name: "Myk",
 		role: "Vice President for Technology",
-		image: "/officers/myk.svg",
+		image: "/officers/myk.jpg",
 	},
 	{
 		name: "Angela",
 		role: "External Associate for Outreaches",
-		image: "/officers/angela.svg",
+		image: "/officers/angela.jpg",
 	},
 	{
 		name: "Clarence",
 		role: "External Associate for Partnerships",
-		image: "/officers/clarence.svg",
+		image: "/officers/clarence.jpg",
 	},
 	{
 		name: "Babylyn",
 		role: "Internal Associate for Liaison",
-		image: "/officers/babylyn.svg",
+		image: "/officers/babylyn.jpg",
 	},
 	{
 		name: "Keith",
 		role: "Internal Associate for Membership",
-		image: "/officers/keith.svg",
+		image: "/officers/keith.jpg",
 	},
-	{ name: "Gwenyth", role: "Secretary", image: "/officers/gwenyth.svg" },
+	{ name: "Gwenyth", role: "Secretary", image: "/officers/gwenyth.jpg" },
 	{
 		name: "Claire",
 		role: "Assistant Secretary",
-		image: "/officers/claire.svg",
+		image: "/officers/claire.jpg",
 	},
-	{ name: "Raine", role: "Finance Head", image: "/officers/raine.svg" },
+	{ name: "Raine", role: "Finance Head", image: "/officers/raine.jpg" },
 	{
 		name: "Franchescka",
 		role: "Finance Associate",
-		image: "/officers/franchescka.svg",
+		image: "/officers/franchescka.jpg",
 	},
-	{ name: "Thel", role: "Audit Head", image: "/officers/thel.svg" },
-	{ name: "Elisha", role: "Marketing Head", image: "/officers/elisha.svg" },
-	{ name: "Axxel", role: "Marketing Associate", image: "/officers/axxel.svg" },
-	{ name: "Llarie", role: "Operations Head", image: "/officers/llarie.svg" },
+	{ name: "Thel", role: "Audit Head", image: "/officers/thel.jpg" },
+	{ name: "Elisha", role: "Marketing Head", image: "/officers/elisha.jpg" },
+	{ name: "Axxel", role: "Marketing Associate", image: "/officers/axxel.jpg" },
+	{ name: "Llarie", role: "Operations Head", image: "/officers/llarie.jpg" },
 	{
 		name: "Newyeareign",
 		role: "Operations Associate",
-		image: "/officers/newyeareign.svg",
+		image: "/officers/newyeareign.jpg",
 	},
-	{ name: "Anfernee", role: "Adviser", image: "/officers/anfernee.svg" },
-	{ name: "Pia", role: "Adviser", image: "/officers/pia.svg" },
+	{ name: "Anfernee", role: "Adviser", image: "/officers/anfernee.jpg" },
+	{ name: "Pia", role: "Adviser", image: "/officers/pia.jpg" },
 ];
 
 export default function OfficersSection() {

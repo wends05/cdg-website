@@ -293,7 +293,7 @@ function OfficerImageItem({
 	loadedImages,
 	markImageLoaded,
 }: OfficerImageItemProps) {
-	const imageSrc = `/officers/${officer}.svg`;
+	const imageSrc = `/officers/${officer}.jpg`;
 	const isLoaded = loadedImages[imageSrc];
 
 	return (
