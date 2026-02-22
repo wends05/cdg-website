@@ -82,7 +82,7 @@ function VideoCarousel() {
 				<Button
 					type="button"
 					onClick={prevVideo}
-					className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all hover:bg-white/40 hover:scale-110"
+					className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all hover:bg-white/40 hover:scale-110 opacity-0 hover:opacity-100"
 					aria-label="Previous video"
 				>
 					<ChevronLeft className="h-8 w-8" />
@@ -90,7 +90,7 @@ function VideoCarousel() {
 				<Button
 					type="button"
 					onClick={nextVideo}
-					className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all hover:bg-white/40 hover:scale-110"
+					className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 opacity-0 hover:opacity-100 text-white backdrop-blur-md transition-all  hover:bg-white/40 hover:scale-110"
 					aria-label="Next video"
 				>
 					<ChevronRight className="h-8 w-8" />
@@ -106,7 +106,7 @@ function VideoCarousel() {
 							className={`rounded-full transition-all duration-300 ${
 								idx === currentIndex
 									? "h-3 w-8 bg-white"
-									: "h-3 w-3 bg-white/50 hover:bg-white/80"
+									: "h-2 w-2 bg-white/50 hover:bg-white/80"
 							}`}
 							aria-label={`Go to video ${idx + 1}`}
 						/>
