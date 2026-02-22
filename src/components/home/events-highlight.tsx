@@ -9,7 +9,7 @@ interface EventsPreviewProps {
 
 export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 	return (
-		<section className="reveal-up relative isolate min-h-155 overflow-hidden bg-[#2f71f0]">
+		<section className="reveal-up relative isolate min-h-203.25 w-full overflow-hidden bg-[#2f71f0] flex items-center">
 			<Image
 				src="/assets/event.svg"
 				alt=""
@@ -18,33 +18,33 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 				className="pointer-events-none object-cover object-center"
 			/>
 
-			<div aria-hidden="true" className="absolute inset-0 bg-[#2f71f0]/35" />
+			<div aria-hidden="true" className="absolute inset-0 bg-primary/35" />
 			<div
 				aria-hidden="true"
 				className="absolute inset-y-0 left-0 w-full md:w-[62%]"
 				style={{
 					background:
-						"linear-gradient(90deg, rgba(47,113,240,.95) 0%, rgba(47,113,240,.92) 48%, rgba(47,113,240,.62) 70%, rgba(47,113,240,.12) 100%)",
+						"linear-gradient(90deg, #3186FF 40%, rgba(27, 56, 204, 0) 100%)",
 				}}
 			/>
 
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-18 border-white/90 md:block"
+				className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-18 border-primary-foreground/90 lg:block"
 			/>
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -bottom-48 left-[32%] hidden h-88 w-88 rounded-full border-20 border-white/90 md:block"
+				className="pointer-events-none absolute -bottom-48 left-[32%] hidden h-88 w-88 rounded-full border-20 border-primary-foreground/90 lg:block"
 			/>
 
-			<div className="relative z-10 mx-auto flex min-h-155 max-w-7xl items-center px-6 py-16 md:px-8">
-				<div className="max-w-xl space-y-6">
-					<h2 className="text-5xl font-bold leading-[1.05] text-white ">
+			<div className="relative z-10 mx-auto w-full flex h-full lg:max-w-8xl flex-col px-12 lg:px-32 py-16">
+				<div className="space-y-6 flex items-start flex-col  w-[80%]">
+					<h2 className="font-display text-4xl lg:text-6xl font-medium leading-[1.05] text-primary-foreground md:text-[64px]">
 						See What We&apos;ve
 						<br />
 						Built Together
 					</h2>
-					<p className="max-w-md leading-relaxed text-white/90">
+					<p className="max-w-md leading-relaxed text-primary-foreground/90 text-xl">
 						Discover the projects, events, and experiences created through
 						teamwork, passion, and dedication &mdash; all driven by students,
 						for students.
@@ -54,7 +54,7 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 						aria-label={
 							events.length > 0 ? `View ${events.length} events` : "View events"
 						}
-						className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-lg font-semibold text-[#2f71f0] transition-all hover:bg-white/90"
+						className="inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3 text-lg font-semibold text-primary transition-all hover:bg-primary-foreground/90 h-12.5"
 					>
 						View Events
 						<ChevronRight className="h-5 w-5" />
