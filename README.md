@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CDG Website
 
-## Getting Started
+This is the official CDG website project.
 
-First, run the development server:
+It includes:
+- Public pages (Home, Events, Contact, About, Teams)
+- Event pages with full details
+- Admin area for managing events and participants
+- Certificate generation for event participants
+
+## Live Website
+
+Production URL:
+`https://cdg-website-mu.vercel.app/`
+
+## For Non-Tech Team Members
+
+You can think of this project as:
+- The website people can visit
+- A private admin side for organizers
+- A connection to online services (Firebase, UploadThing, login secrets)
+
+You do not need to understand the code to follow the basic safety rules below.
+
+## Very Important: Keep `.env` Private
+
+The `.env` file contains secret keys and passwords used by the website.
+
+Rules:
+- Never post `.env` in chat, email, screenshots, or social media
+- Never commit `.env` to GitHub
+- Never send tokens or secrets to anyone outside the team
+- If a secret is leaked, rotate/change it immediately
+
+## Quick Start (Simple)
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create a `.env` file in the project root and ask the project owner for the correct values.
+
+3. Run locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`http://localhost:3007`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## `.env` Template (Do Not Share Values)
 
-## Learn More
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=""
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=""
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=""
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=""
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=""
+NEXT_PUBLIC_FIREBASE_APP_ID=""
 
-To learn more about Next.js, take a look at the following resources:
+UPLOADTHING_TOKEN=""
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ACCESS_CODE=""
+NEXTAUTH_SECRET=""
+NEXTAUTH_URL="http://localhost:3007"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Common Commands
 
-## Deploy on Vercel
+```bash
+npm run dev    # Run local development server
+npm run build  # Build production version
+npm run start  # Start production server
+npm run lint   # Check code quality
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Main Website Links
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/` Home
+- `/events` Events list
+- `/events/[slug]` Event details
+- `/contact` Contact
+- `/about` About
+- `/teams` Teams
+
+Admin:
+- `/events/admin/login`
+- `/events/admin`
+
+## If Local and Vercel Look Different
+
+Check these first:
+- You pushed your latest code
+- Vercel deployed the correct branch
+- Vercel has the correct environment variables
+- You did a hard refresh in browser (`Ctrl + Shift + R`)
+
+## Help / Ownership
+
+If you need `.env` values or deployment access, contact the project maintainer/admin only.
