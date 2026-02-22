@@ -222,7 +222,7 @@ export default function Hero() {
             />
 
             {/* Right side - Photo Collage */}
-            <OfficerCarousel
+            <ActivityCarousel
               loadedImages={loadedImages}
               markImageLoaded={markImageLoaded}
             />
@@ -293,22 +293,22 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
   );
 }
 
-interface OfficerCarouselProps {
+interface ActivityCarouselProps {
   loadedImages: Record<string, boolean>;
   markImageLoaded: (src: string) => void;
 }
 
-interface OfficerImageItemProps {
+interface ActivityImageItemProps {
   imageFile: string;
   loadedImages: Record<string, boolean>;
   markImageLoaded: (src: string) => void;
 }
 
-function OfficerImageItem({
+function ActivityImageItem({
   imageFile,
   loadedImages,
   markImageLoaded,
-}: OfficerImageItemProps) {
+}: ActivityImageItemProps) {
   const imageSrc = `/activities/${imageFile}`;
   const isLoaded = loadedImages[imageSrc];
 
@@ -317,26 +317,25 @@ function OfficerImageItem({
       {!isLoaded && (
         <Skeleton className="absolute inset-0 z-10 rounded-3xl bg-primary-foreground/35" />
       )}
-      <Image
-        preload
-        src={imageSrc}
-        alt="CDG activity photo"
-        fill
-        sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 340px"
-        quality={95}
-        onLoadingComplete={() => markImageLoaded(imageSrc)}
-        className={`object-cover transition-opacity duration-300 ${
-          isLoaded ? "opacity-100" : "opacity-0"
+			<Image
+				src={imageSrc}
+				alt=""
+				aria-hidden="true"
+				fill
+				sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 340px"
+				onLoadingComplete={() => markImageLoaded(imageSrc)}
+				className={`object-cover transition-opacity duration-300 ${
+					isLoaded ? "opacity-100" : "opacity-0"
         }`}
       />
     </div>
   );
 }
 
-function OfficerCarousel({
+function ActivityCarousel({
   loadedImages,
   markImageLoaded,
-}: OfficerCarouselProps) {
+}: ActivityCarouselProps) {
   return (
     <div className="relative z-10 mx-auto h-112 w-full max-w-[24rem] overflow-hidden sm:h-136 sm:max-w-120 md:h-190 md:max-w-xl lg:block hidden">
       {/* <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-[#3186FF] to-transparent sm:h-20" />
@@ -349,7 +348,7 @@ function OfficerCarousel({
         >
           <div className="scroll-up flex flex-col gap-3 sm:gap-4 md:gap-5">
             {leftScrollActivities.map((imageFile, index) => (
-              <OfficerImageItem
+              <ActivityImageItem
                 key={`left-${imageFile}-${index}`}
                 imageFile={imageFile}
                 loadedImages={loadedImages}
@@ -365,7 +364,7 @@ function OfficerCarousel({
         >
           <div className="scroll-down flex flex-col gap-3 sm:gap-4 md:gap-5">
             {rightScrollActivities.map((imageFile, index) => (
-              <OfficerImageItem
+              <ActivityImageItem
                 key={`right-${imageFile}-${index}`}
                 imageFile={imageFile}
                 loadedImages={loadedImages}
