@@ -35,7 +35,7 @@ export default function Footer() {
           <p className="mt-2 text-xl font-display font-medium text-primary sm:text-2xl">
             Be Part of a community that
           </p>
-          <h2 className="font-display mt-4 text-3xl  tracking-tight  sm:text-4xl md:text-[64px]">
+          <h2 className="font-display mt-4 text-3xl font-medium tracking-tight  sm:text-4xl md:text-[64px]">
             Connect, Learn, and Grow
           </h2>
 
