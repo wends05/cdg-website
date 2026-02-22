@@ -273,7 +273,7 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 
       <p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-primary-foreground/95 text-start ">
         Be a part of CDG to learn, build, and grow with fellow student
-        developers
+        developers.
       </p>
 
       <Button
