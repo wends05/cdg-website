@@ -220,21 +220,21 @@
 
 	.tiptap h1 {
 		font-family: var(--font-display);
-		@apply mt-4 mb-2;
+		@apply mt-4 mb-2 leading-tight;
 		font-size: 4rem;
 		font-weight: 600;
 	}
 
 	.tiptap h2 {
 		font-family: var(--font-display);
-		@apply mt-4 mb-2;
+		@apply mt-4 mb-2 leading-tight;
 		font-size: 3.125rem;
 		font-weight: 600;
 	}
 
 	.tiptap h3 {
 		font-family: var(--font-display);
-		@apply mt-3 mb-2;
+		@apply mt-3 mb-2 leading-tight;
 		font-size: 3rem;
 		font-weight: 500;
 	}
