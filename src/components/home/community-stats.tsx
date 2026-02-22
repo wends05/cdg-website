@@ -12,10 +12,10 @@ export default function CommunityStats() {
 				</h2>
 				<p className="mt-2">CDG has grown over the years</p>
 				<p
-					data-counter="140"
+					data-counter="215"
 					className="mt-5 text-7xl font-semibold leading-none"
 				>
-					140+
+					215+
 				</p>
 				<p className="mt-1 text-xl">Members</p>
 			</div>

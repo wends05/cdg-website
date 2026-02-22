@@ -30,10 +30,10 @@ export default function DescriptionSection() {
 								solutions to address local challenges through technology and
 								development.
 							</p>
-							<Button className="px-6 h-12.5 rounded-full text-xl font-normal text-primary-foreground hover:bg-primary/90">
+							{/*<Button className="px-6 h-12.5 rounded-full text-xl font-normal text-primary-foreground hover:bg-primary/90">
 								See More
 								<ChevronRight className="ml-2 h-5 w-5" />
-							</Button>
+							</Button>*/}
 						</div>
 
 						<VideoCarousel />
