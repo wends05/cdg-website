@@ -127,11 +127,7 @@
 	body {
 		@apply bg-background text-foreground;
 		font-family:
-			"Inter",
-			var(--font-sans),
-			system-ui,
-			-apple-system,
-			sans-serif;
+			"Inter", var(--font-sans), system-ui, -apple-system, sans-serif;
 	}
 
 	button {
@@ -189,6 +185,15 @@
 		}
 	}
 
+	@keyframes scrollLeft {
+		0% {
+			transform: translate3d(0, 0, 0);
+		}
+		100% {
+			transform: translate3d(calc(-50% - var(--scroll-gap)), 0, 0);
+		}
+	}
+
 	.scroll-up {
 		animation: scrollUp 24s linear infinite;
 		will-change: transform;
@@ -197,6 +202,12 @@
 
 	.scroll-down {
 		animation: scrollDown 24s linear infinite;
+		will-change: transform;
+		backface-visibility: hidden;
+	}
+
+	.scroll-left {
+		animation: scrollLeft 24s linear infinite;
 		will-change: transform;
 		backface-visibility: hidden;
 	}

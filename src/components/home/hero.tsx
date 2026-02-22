@@ -2,13 +2,16 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 
-const leftColumnOfficers = ["angel", "dave", "keith", "newyeareign"];
-const rightColumnOfficers = ["pia", "ng", "jenny", "axxel"];
+const leftColumnOfficers = ["angela", "dave", "keith", "newyeareign"];
+const rightColumnOfficers = ["pia", "anfernee", "jenny", "axxel"];
 const leftScrollOfficers = [...leftColumnOfficers, ...leftColumnOfficers];
 const rightScrollOfficers = [...rightColumnOfficers, ...rightColumnOfficers];
 
@@ -105,24 +108,148 @@ export default function Hero() {
 			ref={sectionRef}
 			className="relative overflow-hidden bg-linear-to-r from-[#3186FF] to-[#1B38CC]  px-3 pt-6 text-primary-foreground md:min-h-190 md:pt-0"
 		>
+			{/* Background Lines */}
+			<div className="pointer-events-none absolute inset-0 z-0 select-none">
+				{/* Mobile Background */}
+				<div className="absolute inset-0 block top-0 md:hidden">
+					<Image
+						src="/hero-mobile-bg.svg"
+						alt=""
+						fill
+						className="object-cover object-bottom opacity-40"
+						priority
+					/>
+				</div>
+				{/* Desktop Background */}
+				<div className="relative inset-x-0 top-0 hidden md:block">
+					<Image
+						src="/hero-bg.svg"
+						alt=""
+						fill
+						className="object-cover object-left opacity-30"
+						priority
+					/>
+				</div>
+			</div>
+
 			<div className="relative mx-auto h-full max-w-420">
-				{/* Geometric accents */}
-				<div
-					className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-primary-foreground/95 md:-left-20 md:top-6 md:h-65 md:w-65 md:border-14"
-					data-direction="left"
-				></div>
-				<div
-					className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-primary-foreground/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-10"
-					data-direction="left"
-				></div>
-				<div
-					className="hero-shape absolute -right-12 bottom-0 hidden h-107.5 w-107.5 rounded-full border-14 border-primary-foreground/95 md:block"
-					data-direction="right"
-				></div>
-				<div
-					className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-10 border-primary-foreground/95 md:block"
-					data-direction="right"
-				></div>
+				{/* Mobile Geometric accents */}
+				<div className="lg:hidden absolute inset-0 pointer-events-none">
+					<svg
+						className="hero-shape absolute -left-13 top-76.25 text-primary-foreground opacity-95"
+						width="117"
+						height="117"
+						viewBox="-55 305 117 117"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						data-direction="left"
+					>
+						<title>Left Circle</title>
+						<circle
+							cx="3.50006"
+							cy="363.5"
+							r="53.5"
+							stroke="currentColor"
+							strokeWidth="10"
+						/>
+					</svg>
+					<svg
+						className="hero-shape absolute right-53 -bottom-16 text-primary-foreground opacity-95"
+						width="148"
+						height="148"
+						viewBox="212 651 148 148"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						data-direction="right"
+					>
+						<title>Bottom Right Circle</title>
+						<circle
+							cx="286"
+							cy="725"
+							r="69"
+							stroke="currentColor"
+							strokeWidth="10"
+						/>
+					</svg>
+					<svg
+						className="hero-shape absolute left-9 top-181.25 text-primary-foreground opacity-95"
+						width="98"
+						height="98"
+						viewBox="36 725 98 98"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						data-direction="left"
+					>
+						<title>Bottom Left Circle</title>
+						<circle
+							cx="85"
+							cy="774"
+							r="44"
+							stroke="currentColor"
+							strokeWidth="10"
+						/>
+					</svg>
+					<svg
+						className="hero-shape absolute -left-10 -top-8.75 text-primary-foreground opacity-95"
+						width="274"
+						height="274"
+						viewBox="-41 -35 274 274"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						data-direction="right"
+					>
+						<title>Top Right Diamond</title>
+						<rect
+							x="96.116"
+							y="-28.5147"
+							width="184.74"
+							height="184.74"
+							transform="rotate(45 96.116 -28.5147)"
+							stroke="currentColor"
+							strokeWidth="12"
+						/>
+					</svg>
+					<svg
+						className="hero-shape absolute right-12 top-48.5 text-primary-foreground opacity-95"
+						width="104"
+						height="91"
+						viewBox="266 194 104 91"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						data-direction="left"
+					>
+						<title>Triangle Geometric Shape</title>
+						<path
+							d="M364.517 199.164L318.013 279.711L271.509 199.164L364.517 199.164Z"
+							stroke="currentColor"
+							strokeWidth="10"
+						/>
+					</svg>
+				</div>
+
+				{/* Desktop Geometric accents */}
+				<div className="lg:block hidden">
+					<div
+						className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-primary-foreground/95 md:-left-20 md:top-6 md:h-65 md:w-65 md:border-14"
+						data-direction="left"
+					></div>
+					<div
+						className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-primary-foreground/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-10"
+						data-direction="left"
+					></div>
+					<div
+						className="hero-shape absolute -right-12 bottom-0 hidden h-107.5 w-107.5 rounded-full border-14 border-primary-foreground/95 md:block"
+						data-direction="right"
+					></div>
+					<div
+						className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-10 border-primary-foreground/95 md:block"
+						data-direction="right"
+					></div>
+					<div
+						className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-8 border-primary-foreground/95 md:block"
+						data-direction="left"
+					></div>
+				</div>
 				<div
 					className="hero-shape absolute right-[45%] top-[60%] hidden -translate-y-1/2 md:block"
 					data-direction="left"
@@ -134,14 +261,10 @@ export default function Hero() {
 						borderTop: "100px solid hsl(var(--primary-foreground) / 0.95)",
 					}}
 				></div>
-				<div
-					className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-8 border-primary-foreground/95 md:block"
-					data-direction="left"
-				></div>
 
 				{/* Content */}
 				<div className="relative mx-auto max-w-full pt-6 md:py-0">
-					<div className="grid h-full items-center gap-10 md:min-h-190 md:grid-cols-2 md:items-center">
+					<div className="grid h-full items-center gap-10 min-h-190 lg:grid-cols-2 lg:items-center">
 						{/* Left side - Content */}
 						<LeftSection
 							loadedImages={loadedImages}
@@ -167,10 +290,10 @@ interface LeftSectionProps {
 
 function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 	return (
-		<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 md:items-start md:text-left md:px-4 lg:px-20 xl:px-44 ">
+		<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 lg:items-start md:text-left lg:px-12 xl:px-20">
 			{/* CDG Logo + wordmark */}
-			<div className="hero-copy-item mb-5 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-				<div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
+			<div className="hero-copy-item mb-5 inline-flex items-center gap-3 flex-row sm:gap-5">
+				<div className="relative w-30 h-20 lg:w-52 lg:h-40">
 					{!loadedImages["/logo_1.svg"] && (
 						<Skeleton className="absolute inset-0 rounded-sm bg-primary-foreground/25" />
 					)}
@@ -180,30 +303,42 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 						fill
 						priority
 						onLoadingComplete={() => markImageLoaded("/logo_1.svg")}
-						sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
-						className={`object-contain object-left transition-opacity duration-300 ${
-							loadedImages["/logo_1.svg"] ? "opacity-100" : "opacity-0"
-						}`}
+						className={cn(
+							"object-contain object-left transition-opacity duration-300",
+							{
+								"opacity-100": loadedImages["/logo_1.svg"],
+								"opacity-0": !loadedImages["/logo_1.svg"],
+							},
+						)}
 					/>
 				</div>
-				<h2 className="font-display md:text-4xl lg:text-5xl font-medium leading-[1.08]">
+				<h3 className="font-display text-4xl font-medium leading-[1.08]">
 					Centralian
 					<br />
 					Developer
 					<br />
 					Group
-				</h2>
+				</h3>
 			</div>
 
-			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-primary-foreground/95 ">
+			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-primary-foreground/95 text-start ">
 				Be a part of CDG to learn, build, and grow with fellow student
 				developers
 			</p>
 
-			<Button className="h-12.5 hero-copy-item mx-auto inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-2.5 text-base font-semibold text-primary transition-all hover:bg-primary-foreground/90 md:mx-0 md:px-8 md:py-3">
-				Join Now
-				<span className="text-base leading-none">{">"}</span>
-			</Button>
+			<Button
+				className="px-6 h-12.5 rounded-full text-xl font-normal text-primary"
+				nativeButton={false}
+				variant={"outline"}
+				render={
+					<Link href="https://forms.gle/i8cn5thQXQF9CzMZ7">
+						Join Now
+						<span>
+							<ChevronRight />
+						</span>
+					</Link>
+				}
+			/>
 		</div>
 	);
 }
@@ -252,9 +387,9 @@ function OfficerCarousel({
 	markImageLoaded,
 }: OfficerCarouselProps) {
 	return (
-		<div className="relative z-10 mx-auto h-112 w-full max-w-[24rem] overflow-hidden sm:h-136 sm:max-w-120 md:h-190 md:max-w-xl">
-			<div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-primary to-transparent sm:h-20" />
-			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-primary to-transparent sm:h-20" />
+		<div className="relative z-10 mx-auto h-112 w-full max-w-[24rem] overflow-hidden sm:h-136 sm:max-w-120 md:h-190 md:max-w-xl lg:block hidden">
+			{/* <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-[#3186FF] to-transparent sm:h-20" />
+			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-[#1B38CC] to-transparent sm:h-20" /> */}
 
 			<div className="grid h-full grid-cols-2 gap-3 sm:gap-4 md:gap-5">
 				<div

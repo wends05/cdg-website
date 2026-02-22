@@ -30,21 +30,21 @@ export default function EventsPreview({ events = [] }: EventsPreviewProps) {
 
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-18 border-primary-foreground/90 md:block"
+				className="pointer-events-none absolute -left-24 -top-20 hidden h-56 w-56 rotate-45 border-18 border-primary-foreground/90 lg:block"
 			/>
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -bottom-48 left-[32%] hidden h-88 w-88 rounded-full border-20 border-primary-foreground/90 md:block"
+				className="pointer-events-none absolute -bottom-48 left-[32%] hidden h-88 w-88 rounded-full border-20 border-primary-foreground/90 lg:block"
 			/>
 
-			<div className="relative z-10 mx-auto w-full flex h-full max-w-7xl flex-col px-6 py-16 md:px-8">
-				<div className="space-y-6 flex items-start flex-col ">
-					<h2 className="font-display text-5xl font-medium leading-[1.05] text-primary-foreground md:text-[64px]">
+			<div className="relative z-10 mx-auto w-full flex h-full lg:max-w-8xl flex-col px-12 lg:px-32 py-16">
+				<div className="space-y-6 flex items-start flex-col  w-[80%]">
+					<h2 className="font-display text-4xl lg:text-6xl font-medium leading-[1.05] text-primary-foreground md:text-[64px]">
 						See What We&apos;ve
 						<br />
 						Built Together
 					</h2>
-					<p className="max-w-md leading-relaxed text-primary-foreground/90">
+					<p className="max-w-md leading-relaxed text-primary-foreground/90 text-xl">
 						Discover the projects, events, and experiences created through
 						teamwork, passion, and dedication &mdash; all driven by students,
 						for students.

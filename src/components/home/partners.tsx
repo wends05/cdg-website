@@ -11,28 +11,36 @@ const partners = [
 	{ src: "partners/devcon_visayas.svg", alt: "DEVCON Visayas Programs" },
 ];
 
+const scrollPartners = [...partners, ...partners];
+
 export default function PartnersSection() {
 	return (
-		<section className="reveal-up px-4 py-16 md:px-8 md:py-20">
+		<section className="reveal-up px-4 py-16 md:px-8 md:py-20 overflow-hidden">
 			<div className="mx-auto max-w-350 text-center">
 				<h2 className="reveal-left font-display text-4xl font-medium text-primary md:text-[64px]">
 					Our Partners
 				</h2>
-				<div className="stagger-parent mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-8 md:mt-14 md:gap-x-12 lg:gap-x-16">
-					{partners.map((partner) => (
-						<div
-							key={partner.src}
-							className="stagger-item flex h-20 items-center justify-center md:h-24"
-						>
-							<Image
-								src={partner.src}
-								alt={partner.alt}
-								width={220}
-								height={110}
-								className="h-full w-auto object-contain"
-							/>
-						</div>
-					))}
+				<div className="mt-10 md:mt-14 relative w-full overflow-hidden">
+					{/* Side Gradients for smooth fade-in/out */}
+					<div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-background to-transparent md:w-24" />
+					<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-background to-transparent md:w-24" />
+
+					<div className="scroll-left flex w-max items-center gap-12">
+						{scrollPartners.map((partner, index) => (
+							<div
+								key={`${partner.src}-${index}`}
+								className="flex h-20 shrink-0 items-center justify-center md:h-24"
+							>
+								<Image
+									src={partner.src}
+									alt={partner.alt}
+									width={220}
+									height={110}
+									className="h-full w-auto object-contain"
+								/>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>

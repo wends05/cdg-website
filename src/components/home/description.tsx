@@ -1,8 +1,11 @@
-import { ChevronRight, Play } from "lucide-react";
+"use client";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function DescriptionSectionV2() {
+export default function DescriptionSection() {
 	return (
 		<section className="reveal-up bg-background px-4 py-16 md:px-8 lg:py-24">
 			<div className="mx-auto max-w-7xl">
@@ -33,33 +36,83 @@ export default function DescriptionSectionV2() {
 							</Button>
 						</div>
 
-						<div className="reveal-right relative w-full">
-							<div className="relative aspect-video w-full bg-card outline outline-foreground">
-								{/* Inner outline as per Figma */}
-								<div className="absolute inset-0 m-px outline outline-foreground" />
-
-								{/* Play Button */}
-								<button
-									type="button"
-									className="absolute left-1/2 top-1/2 flex h-20 w-20 md:h-24 md:w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-card outline outline-muted-foreground transition-transform hover:scale-105"
-									aria-label="Play intro video"
-								>
-									<Play className="ml-1 h-8 w-8 md:h-10 md:w-10 text-muted-foreground fill-muted-foreground" />
-								</button>
-
-								{/* Carousel Indicators */}
-								<div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1.5">
-									<div className="h-3.5 w-3.5 rounded-full bg-primary" />
-									<div className="h-2.5 w-2.5 rounded-full bg-muted" />
-									<div className="h-2.5 w-2.5 rounded-full bg-muted" />
-									<div className="h-2.5 w-2.5 rounded-full bg-muted" />
-									<div className="h-2.5 w-2.5 rounded-full bg-muted" />
-								</div>
-							</div>
-						</div>
+						<VideoCarousel />
 					</CardContent>
 				</Card>
 			</div>
 		</section>
+	);
+}
+
+const VIDEOS = [
+	"https://www.facebook.com/reel/849249970882632",
+	"https://www.facebook.com/reel/1193962822679603",
+	"https://www.facebook.com/reel/1365579612032403",
+];
+
+function VideoCarousel() {
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const nextVideo = () => setCurrentIndex((prev) => (prev + 1) % VIDEOS.length);
+	const prevVideo = () =>
+		setCurrentIndex((prev) => (prev - 1 + VIDEOS.length) % VIDEOS.length);
+
+	const currentVideoUrl = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
+		VIDEOS[currentIndex],
+	)}&show_text=false&width=auto`;
+
+	return (
+		<div className="reveal-right relative w-full">
+			<div className="relative aspect-video w-full bg-card outline outline-foreground">
+				{/* Inner outline as per Figma */}
+				<div className="absolute inset-0 m-px outline outline-foreground overflow-hidden bg-black">
+					<iframe
+						key={currentIndex}
+						src={currentVideoUrl}
+						className="absolute inset-0 h-full w-full border-none overflow-hidden"
+						scrolling="no"
+						frameBorder="0"
+						allowFullScreen={true}
+						allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+						title={`Facebook Video ${currentIndex + 1}`}
+					/>
+				</div>
+
+				{/* Navigation Buttons */}
+				<button
+					type="button"
+					onClick={prevVideo}
+					className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground outline outline-muted-foreground backdrop-blur-sm transition-transform hover:scale-105"
+					aria-label="Previous video"
+				>
+					<ChevronLeft className="h-6 w-6" />
+				</button>
+				<button
+					type="button"
+					onClick={nextVideo}
+					className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground outline outline-muted-foreground backdrop-blur-sm transition-transform hover:scale-105"
+					aria-label="Next video"
+				>
+					<ChevronRight className="h-6 w-6" />
+				</button>
+
+				{/* Carousel Indicators */}
+				<div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/50 px-3 py-1.5 backdrop-blur-sm">
+					{VIDEOS.map((_, idx) => (
+						<button
+							key={idx}
+							type="button"
+							onClick={() => setCurrentIndex(idx)}
+							className={`rounded-full transition-all ${
+								idx === currentIndex
+									? "h-3.5 w-3.5 bg-primary"
+									: "h-2.5 w-2.5 bg-muted hover:bg-muted-foreground"
+							}`}
+							aria-label={`Go to video ${idx + 1}`}
+						/>
+					))}
+				</div>
+			</div>
+		</div>
 	);
 }

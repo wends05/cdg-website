@@ -6,7 +6,7 @@ import targetIconBg from "@/../public/assets/target_bg.svg";
 
 export default function VisionMission() {
 	return (
-		<section className="reveal-up relative overflow-hidden px-4 py-20 md:px-8 lg:h-106.25">
+		<section className="reveal-up relative overflow-hidden px-4 py-20 md:px-8 h-full">
 			{/* Background watermark - Lightbulb left */}
 			<div
 				aria-hidden="true"
@@ -21,7 +21,7 @@ export default function VisionMission() {
 				/>
 			</div>
 
-			{/* Background watermark - Arrow right */}
+			{/* Background watermark - Target right */}
 			<div
 				aria-hidden="true"
 				className="pointer-events-none absolute top-1/2 hidden -translate-y-1/2 select-none lg:block lg:-right-42.75"
@@ -35,10 +35,10 @@ export default function VisionMission() {
 				/>
 			</div>
 
-			<div className="relative z-10 mx-auto max-w-7xl">
+			<div className="relative z-10 mx-auto max-w-7xl h-full">
 				<div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-6">
 					{/* Vision Section */}
-					<article className="flex flex-1 flex-col gap-6 md:flex-row md:items-center md:gap-5">
+					<article className="flex flex-1 flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-5 h-full">
 						{/* Icon */}
 						<div className="shrink-0 flex justify-center md:block">
 							<div className="relative inline-flex h-16 w-16 items-center justify-center rounded-full text-primary md:h-37.5 md:w-37.5 overflow-hidden">
@@ -52,13 +52,12 @@ export default function VisionMission() {
 								</div>
 							</div>
 						</div>
-
 						{/* Content */}
 						<div className="text-center md:text-left flex flex-col gap-5">
 							<h3 className="font-display text-3xl font-medium text-primary md:text-5xl">
 								Vision
 							</h3>
-							<p className="text-base leading-relaxed text-muted-foreground md:text-xl px-12">
+							<p className="leading-relaxed text-muted-foreground md:text-xl">
 								The Centralian Developer Group (CDG) envisions itself as a
 								dynamic community of developers, holistically formed as men and
 								women for and with others, driven by a passion for solving
@@ -75,7 +74,7 @@ export default function VisionMission() {
 					<div className="h-px w-full bg-border lg:hidden"></div>
 
 					{/* Mission Section */}
-					<article className="flex flex-1 flex-col gap-6 md:flex-row md:items-center md:gap-5">
+					<article className="flex flex-1 flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-5 h-full">
 						{/* Icon */}
 						<div className="shrink-0 flex justify-center md:block">
 							<div className="relative inline-flex h-16 w-16 items-center justify-center rounded-full text-primary md:h-37.5 md:w-37.5 overflow-hidden">
@@ -89,13 +88,12 @@ export default function VisionMission() {
 								</div>
 							</div>
 						</div>
-
 						{/* Content */}
 						<div className="text-center md:text-left flex flex-col gap-5">
 							<h3 className="font-display text-3xl font-medium text-primary md:text-5xl">
 								Mission
 							</h3>
-							<p className="text-base leading-relaxed text-muted-foreground md:text-xl px-12">
+							<p className="leading-relaxed text-muted-foreground md:text-xl">
 								The mission of the Centralian Developer Group (CDG) is to
 								empower students through accessible education in technology and
 								programming, inspire innovation and a problem-solving mindset,

@@ -1,3 +1,5 @@
+"use client";
+
 interface Testimonial {
 	quote: string;
 	name: string;
@@ -8,23 +10,21 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
 	{
 		quote:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud itation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		name: "Full Name",
+			`Don't wait until you're ready––start even if you're unsure. The whole point of joining is to learn and gain experience, and there will always be someone to guide you along the way.
+			
+			You'll figure things out as you go, and those experiences will shape you the most.
+			`,
+		name: "Chloe Belle Estilo",
 		role: "CDG Alumni",
 		image: null,
 	},
 	{
 		quote:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud itation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		name: "Full Name",
+			`Join and enjoy. The purpose of this group is to make your university life a much more fun and exciting experience. Especially when you like learning tech.
+			
+			There's a lot of stuff out there that you can do with the help of technology and you can do that with the help of CDG.`,
+		name: "Jed Matthew Mamosto",
 		role: "CDG Member",
-		image: null,
-	},
-	{
-		quote:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud itation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		name: "Full Name",
-		role: "CDG Faculty",
 		image: null,
 	},
 ];
@@ -34,19 +34,24 @@ export default function TestimonialsSection() {
 		<section className="relative w-full overflow-hidden bg-background min-h-screen flex items-center py-20 md:py-32">
 			{/* Background Decorations */}
 			<div className="pointer-events-none absolute left-0 top-0 h-full w-full overflow-hidden">
-				<div className="absolute -left-16 top-10 md:left-10 md:top-20">
+				<div className="absolute -left-16 top-10 md:left-57 md:top-20">
 					<LeftQuoteSVG />
 				</div>
-				<div className="absolute -right-16 bottom-10 md:bottom-20 md:right-10">
+				<div className="absolute -right-16 bottom-10 md:bottom-20 md:right-57">
 					<RightQuoteSVG />
 				</div>
 			</div>
 
-			<div className="relative mx-auto max-w-8xl px-4 md:px-8">
-				<div className="grid gap-8 xl:grid-cols-3">
-					{testimonials.map((item, i) => (
-						<TestimonialCard key={i} item={item} index={i} />
-					))}
+			<div className="relative mx-auto w-full px-2 max-w-7xl xl:px-8">
+				<div className="relative w-full">
+					{/* Scrollable Container */}
+					<div className="flex w-full gap-4 overflow-x-auto pb-8 lg:justify-center pt-4 snap-mandatory px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+						{testimonials.map((item, i) => (
+							<div key={i} className="shrink-0 snap-start w-[85%] sm:w-112.5">
+								<TestimonialCard item={item} index={i} />
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -60,14 +65,15 @@ function TestimonialCard({
 	item: Testimonial;
 	index: number;
 }) {
+	// Alternate gradients based on index (even vs odd)
 	const gradientStyle =
-		index === 1
+		index % 2 !== 0
 			? "radial-gradient(circle at 0% 0%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 100% 0%, rgba(250,204,21,0.2) 0%, transparent 50%)"
 			: "radial-gradient(circle at 0% 0%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(250,204,21,0.2) 0%, transparent 50%)";
 
 	return (
 		<div
-			className="flex flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10) lg:size-100 xl:size-112.5"
+			className="flex h-full flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10)] min-h-112.5"
 			style={{ backgroundImage: gradientStyle }}
 		>
 			<div>
@@ -84,10 +90,8 @@ function TestimonialCard({
 				</div>
 
 				<div>
-					<h4 className="lg:text-[22px] font-bold text-foreground">
-						{item.name}
-					</h4>
-					<p className="lg:text-xl font-medium text-muted-foreground">
+					<h4 className="text-[22px] font-bold text-foreground">{item.name}</h4>
+					<p className="text-xl font-medium text-muted-foreground">
 						{item.role}
 					</p>
 				</div>
