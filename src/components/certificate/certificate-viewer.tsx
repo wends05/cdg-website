@@ -1,182 +1,153 @@
-"use client";
+'use client'
 
-import { Download } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Button } from "@/components/ui/button";
-import type { EventRecord, ParticipantRecord } from "@/types/domain";
-import { formatDate, generateCertificateId } from "@/utils/certificate";
-import { CertificatePDF } from "./certificate-pdf";
+import Image from 'next/image'
+import Link from 'next/link'
+import { Download } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { Button } from '@/components/ui/button'
+import type { EventRecord, ParticipantRecord } from '@/types/domain'
+import { formatDate } from '@/utils/certificate'
+import { CertificatePDF } from './certificate-pdf'
 
 const PDFDownloadLink = dynamic(
-	() => import("@react-pdf/renderer").then((mod) => mod.PDFDownloadLink),
-	{ ssr: false },
-);
+  () => import('@react-pdf/renderer').then((mod) => mod.PDFDownloadLink),
+  { ssr: false },
+)
 
 export function CertificateViewer({
-	event,
-	participant,
+  event,
+  participant,
+  certificateId,
 }: {
-	event: EventRecord;
-	participant: ParticipantRecord;
+  event: EventRecord
+  participant: ParticipantRecord
+  certificateId: string
 }) {
-	const certId = generateCertificateId();
+  return (
+    <div className="min-h-screen bg-white py-8 px-4">
+      <div className="max-w-5xl mx-auto space-y-8">
+        <h2 className="text-2xl font-bold text-blue-600 text-center">
+          Certificate of Attendance
+        </h2>
+        {/* Certificate preview mirrors PDF layout exactly */}
+        <div className="relative overflow-hidden bg-white border border-gray-200 shadow-lg px-12 py-10 w-full max-w-[1200px] mx-auto">
+          {/* Subtle brand shapes */}
+          <div className="pointer-events-none absolute -left-10 top-10 h-24 w-24 rounded-full border-[6px] border-[#2f74e0]/20" />
+          <div className="pointer-events-none absolute right-6 top-8 h-20 w-20 rotate-45 border-[5px] border-[#2f74e0]/15" />
+          <div className="pointer-events-none absolute -bottom-6 left-1/3 h-20 w-20 rounded-full border-[6px] border-[#2f74e0]/12" />
+          <div className="pointer-events-none absolute right-1/4 bottom-8 h-16 w-16 rotate-12 border-[5px] border-[#2f74e0]/12" />
 
-	return (
-		<div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 py-8 px-4">
-			{/* Decorative elements */}
-			<div className="absolute top-10 left-10 w-20 h-20 rounded-full border-2 border-blue-500 opacity-20" />
-			<div className="absolute bottom-20 right-10 w-32 h-32 border-2 border-yellow-400 opacity-10 transform rotate-45" />
-			<div className="absolute top-1/2 right-20 w-16 h-16 border-4 border-blue-500 opacity-10" />
+          <div className="relative mb-6 flex items-center gap-4">
+            <Image
+              src="/logo_3.png"
+              alt="Centralian Developer Group"
+              width={96}
+              height={96}
+              className="h-24 w-24 max-h-24 max-w-24 object-contain drop-shadow-md"
+              priority
+            />
+            <div className="leading-tight text-lg font-semibold text-gray-600">
+              <span className="block">Centralian</span>
+              <span className="block">Developer</span>
+              <span className="block">Group</span>
+            </div>
+          </div>
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-600 mb-6">
+            Certificate of Attendance
+          </p>
+          <hr className="border-t-2 border-blue-600 mb-8" />
 
-			<div className="max-w-6xl mx-auto">
-				{/* Header */}
-				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Certificate</h1>
-					<p className="text-gray-600">of Completion</p>
-				</div>
+          <h1 className="text-4xl font-black text-gray-900 mb-10 uppercase leading-tight">
+            {event.name}
+          </h1>
 
-				<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-					{/* Certificate Display */}
-					<div className="lg:col-span-2">
-						<div className="bg-white rounded-lg shadow-xl overflow-hidden">
-							<div className="p-12 bg-white border-4 border-gray-100">
-								{/* Certificate Header */}
-								<div className="text-center mb-12 pb-8 border-b-2 border-blue-500">
-									<p className="text-sm font-bold text-gray-500 tracking-widest mb-4">
-										CERTIFICATE OF COMPLETION
-									</p>
-									<div className="flex justify-center mb-6">
-										<div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
-											<span className="text-white font-bold text-lg">CDG</span>
-										</div>
-									</div>
-								</div>
+          <div className="space-y-1 mb-12">
+            <p className="text-xl font-bold text-blue-600">
+              {participant.name}
+            </p>
+            <p className="text-sm text-gray-800">
+              <span className="font-semibold">Date:</span>{' '}
+              {formatDate(event.date)}
+            </p>
+            <p className="text-sm text-gray-800">
+              <span className="font-semibold">Email:</span> {participant.email}
+            </p>
+          </div>
 
-								{/* Event Name */}
-								<div className="text-center mb-12">
-									<h2 className="text-3xl font-bold text-gray-900 leading-tight">
-										{event.name}
-									</h2>
-								</div>
+          <hr className="border-t border-gray-200 mb-6" />
 
-								{/* Recipient Info */}
-								<div className="text-center mb-12">
-									<p className="text-sm text-gray-600 mb-2">
-										This certificate is presented to
-									</p>
-									<h3 className="text-2xl font-bold text-blue-600 mb-1">
-										{participant.name}
-									</h3>
-									<p className="text-sm text-gray-600">{participant.email}</p>
-								</div>
+          <p className="text-xs font-semibold text-gray-700 mb-4">
+            Certificate ID: {certificateId}
+          </p>
+          <p className="text-xs text-gray-600 leading-relaxed max-w-4xl">
+            This certificate verifies that {participant.name} has successfully
+            attended {event.name}. For more information about this course,
+            please visit our website: https://cdg-website-mu.vercel.app/
+          </p>
+        </div>
 
-								{/* Certificate Details */}
-								<div className="grid grid-cols-2 gap-8 mb-12 pb-8 border-t border-gray-200">
-									<div className="text-center">
-										<p className="text-xs text-gray-600 font-semibold mb-1">
-											DATE
-										</p>
-										<p className="text-sm font-semibold text-gray-900">
-											{formatDate(event.date)}
-										</p>
-									</div>
-									<div className="text-center">
-										<p className="text-xs text-gray-600 font-semibold mb-1">
-											CERTIFICATE ID
-										</p>
-										<p className="text-sm font-semibold text-gray-900 font-mono">
-											{certId.substring(0, 12)}...
-										</p>
-									</div>
-								</div>
+        {/* About the event + download */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div className="md:col-span-2">
+            <div className="bg-white border border-gray-200 shadow-sm p-5 min-h-[220px] max-h-[260px] flex flex-col">
+              <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">
+                About the Event
+              </p>
+              <div className="flex flex-col gap-1 text-gray-800 text-sm leading-relaxed">
+                <p>
+                  <span className="font-semibold">Name:</span> {event.name}
+                </p>
+                <p>
+                  <span className="font-semibold">Date:</span>{' '}
+                  {formatDate(event.date)}
+                </p>
+                <Link
+                  href={`/events/${event.slug}`}
+                  className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+                >
+                  See full event details
+                </Link>
+              </div>
+            </div>
+          </div>
 
-								{/* Footer Message */}
-								<div className="text-center">
-									<p className="text-xs text-gray-600 leading-relaxed">
-										This certificate verifies that{" "}
-										<span className="font-semibold">{participant.name}</span>{" "}
-										has successfully completed{" "}
-										<span className="font-semibold">{event.name}</span>. The
-										certificate indicates the entire event was completed as
-										validated by the participant.
-									</p>
-								</div>
-
-								{/* Decorative accent */}
-								<div className="flex justify-center gap-2 mt-8">
-									<div className="w-8 h-1 bg-yellow-400" />
-									<div className="w-1 h-1 bg-blue-500 rounded-full" />
-									<div className="w-8 h-1 bg-blue-500" />
-								</div>
-							</div>
-						</div>
-					</div>
-
-					{/* Sidebar Info */}
-					<div className="space-y-6">
-						{/* Recipient Card */}
-						<div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
-							<p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">
-								Certificate Recipient
-							</p>
-							<div className="flex items-start gap-4">
-								<div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
-									<span className="text-white font-bold text-sm">
-										{participant.name.charAt(0)}
-									</span>
-								</div>
-								<div>
-									<h4 className="font-semibold text-gray-900">
-										{participant.name}
-									</h4>
-									<p className="text-sm text-gray-600 break-all">
-										{participant.email}
-									</p>
-								</div>
-							</div>
-						</div>
-
-						{/* About the Event */}
-						<div className="bg-white rounded-lg shadow-md p-6">
-							<p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">
-								About the Event
-							</p>
-							<p className="text-sm text-gray-700 leading-relaxed mb-4">
-								{event.details}
-							</p>
-							<div className="text-xs text-gray-600 space-y-2">
-								<p>
-									<span className="font-semibold">Event Date:</span>{" "}
-									{formatDate(event.date)}
-								</p>
-							</div>
-						</div>
-
-						{/* Download Button */}
-						<div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-lg shadow-md p-6 border border-blue-200">
-							<PDFDownloadLink
-								document={
-									<CertificatePDF event={event} participant={participant} />
-								}
-								fileName={`${event.slug}-${participant.email}-certificate.pdf`}
-							>
-								{({ loading }) => (
-									<Button
-										disabled={loading}
-										className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
-									>
-										<Download className="w-4 h-4" />
-										{loading ? "Generating PDF..." : "Download Certificate"}
-									</Button>
-								)}
-							</PDFDownloadLink>
-							<p className="text-xs text-gray-600 text-center mt-3">
-								Save your certificate as PDF for your records
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+          <div className="space-y-4 self-stretch flex flex-col h-full">
+            <div className="bg-white border border-gray-200 shadow-sm p-4 space-y-2">
+              <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Certificate Recipient
+              </p>
+              <p className="text-sm font-semibold text-gray-900">
+                {participant.name}
+              </p>
+              <p className="text-xs text-gray-700 break-all">
+                {participant.email}
+              </p>
+            </div>
+            <div className="bg-white border border-gray-200 shadow-sm p-4 flex-1 flex items-center">
+              <PDFDownloadLink
+                document={
+                  <CertificatePDF
+                    event={event}
+                    participant={participant}
+                    certificateId={certificateId}
+                  />
+                }
+                fileName={`${event.slug}-${participant.email}-certificate.pdf`}
+              >
+                {({ loading }) => (
+                  <Button
+                    disabled={loading}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-sm flex items-center justify-center gap-2 transition-colors"
+                  >
+                    <Download className="w-4 h-4" />
+                    {loading ? 'Generating PDF...' : 'Download Certificate'}
+                  </Button>
+                )}
+              </PDFDownloadLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }

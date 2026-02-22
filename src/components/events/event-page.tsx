@@ -1,3 +1,5 @@
+"use client";
+
 import { RiArrowLeftSLine } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";

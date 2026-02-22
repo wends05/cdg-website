@@ -1,4 +1,5 @@
 import type { EventRecord, ParticipantRecord } from "@/types/domain";
+import { generateCertificateId } from "@/utils/certificate";
 import { CertificateViewer } from "./certificate-viewer";
 
 interface CertificatePageProps {
@@ -7,5 +8,13 @@ interface CertificatePageProps {
 }
 
 export function CertificatePage({ event, participant }: CertificatePageProps) {
-	return <CertificateViewer event={event} participant={participant} />;
+	const certId = `CERT-${event.id}-${participant.id}`;
+
+	return (
+		<CertificateViewer
+			event={event}
+			participant={participant}
+			certificateId={certId}
+		/>
+	);
 }
