@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query";
 import EventsList from "@/components/events/events-page/events-list";
 import EventsPageHeader from "@/components/events/events-page/events-page-header";
+import FeaturedEvents from "@/components/events/events-page/featured-events";
 import {
 	getEventCountQueryOptions,
 	getPaginatedEventsQueryOptions,
@@ -39,11 +40,19 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
 		}),
 	);
 
+	await queryClient.ensureQueryData(
+		getPaginatedEventsQueryOptions({
+			page: 1,
+			pageSize: 3,
+		}),
+	);
+
 	await queryClient.ensureQueryData(getEventCountQueryOptions());
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
 			<EventsPageHeader currentPage={currentPage} pageSize={PAGE_SIZE} />
+			<FeaturedEvents />
 			<EventsList currentPage={currentPage} pageSize={PAGE_SIZE} />
 		</HydrationBoundary>
 	);

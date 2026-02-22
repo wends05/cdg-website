@@ -3,9 +3,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileText, Sprout, UsersRound } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
-import learnGrowConnectShapes from "@/../public/assets/learn_grow_connect.svg"
+import { CircleShape } from "@/components/shapes/circle-shape";
+import { SquareShape } from "@/components/shapes/square-shape";
+import { TriangleShape } from "@/components/shapes/triangle-shape";
 
 const items = [
 	{
@@ -126,32 +127,48 @@ export default function LearnConnectGrow() {
 	return (
 		<section
 			ref={sectionRef}
-			className="reveal-up relative overflow-hidden bg-linear-to-r from-[#3c8af8] to-[#2339cb] px-4 py-14 text-white md:px-8 md:py-20"
+			className="reveal-up relative overflow-hidden bg-primary px-4 py-14 text-primary-foreground md:px-8 md:py-20 bg-linear-to-r from-[#3186ff] to-[#1b38cc] "
 		>
-			<Image src={learnGrowConnectShapes} fill alt="Shapes" className="scale-110 -translate-y-10 lg:translate-y-0" />
+			{/* Shapes */}
+			<div className="pointer-events-none absolute inset-0 overflow-hidden">
+				{/* Top Left Circle */}
+				<CircleShape className="lcg-shape absolute -left-16 -top-16 w-40  md:-left-12 md:-top-12 md:w-56 md:text-white" />
 
-			<div className="relative z-10 mx-auto max-w-7xl px-3 md:px-8">
-				<h2 className="lcg-title text-4xl font-semibold leading-tight text-white [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md lg:max-w-full">
-					Join us as We Learn, Connect, &amp; Grow
+				{/* Bottom Left Triangle */}
+				<TriangleShape className="lcg-shape absolute -left-20 bottom-20 w-48  md:-bottom-10 md:w-52 md:text-white" />
+
+				{/* Top Right Circle (Mobile) / Middle Right Circle (Desktop) */}
+				<CircleShape className="lcg-shape absolute -right-16 top-32 w-40  md:-top-10 md:right-[25%] md:w-48 md:text-white" />
+
+				{/* Bottom Right Square (Mobile) / Top Far Right Square (Desktop) */}
+				<SquareShape className="lcg-shape absolute -bottom-16 -right-16 w-48  md:-right-10 md:-top-10 md:w-64 md:text-white" />
+
+				{/* Bottom Right Circle (Desktop only) */}
+				<CircleShape className="lcg-shape absolute hidden md:block md:-bottom-10 md:right-10 md:w-48 md:text-white" />
+			</div>
+
+			<div className="relative z-10 mx-auto px-8 md:px-20 lg:px-40 xl:px-58 xl:py-0 py-20">
+				<h2 className="lcg-title font-display text-[30px] font-medium leading-10 text-center text-primary-foreground [text-shadow:0_3px_16px_rgba(10,24,97,0.45)] md:max-w-md md:text-left lg:max-w-[70%] md:text-[64px] md:leading-tight">
+					Join us as we Learn, Connect, &amp; Grow
 				</h2>
 
-				<div className="stagger-parent mt-10 grid gap-8 md:mt-14 md:grid-cols-3 md:gap-12">
+				<div className="stagger-parent mt-10 flex flex-col items-center gap-10 md:items-start md:flex-row justify-between w-full">
 					{items.map((item) => {
 						const Icon = item.icon;
 
 						return (
 							<article
 								key={item.title}
-								className="lcg-card stagger-item max-w-[34ch]"
+								className="lcg-card stagger-item flex max-w-[34ch] flex-col items-center text-center md:items-start md:text-left"
 							>
 								<Icon
-									className="h-8 w-8 text-white md:h-9 md:w-9"
+									className="h-8 w-8 text-primary-foreground md:h-9 md:w-9"
 									strokeWidth={2}
 								/>
-								<h3 className="mt-5 text-2xl font-semibold text-white">
+								<h3 className="font-display mt-5 text-[24px] font-medium text-primary-foreground md:text-2xl">
 									{item.title}
 								</h3>
-								<p className="mt-3 leading-relaxed text-white/95">
+								<p className="mt-3 leading-relaxed text-primary-foreground/95 text-base">
 									{item.text}
 								</p>
 							</article>

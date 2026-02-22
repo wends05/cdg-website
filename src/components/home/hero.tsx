@@ -2,14 +2,22 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
-const leftColumnOfficers = ["angel", "dave", "keith", "newyeareign"];
-const rightColumnOfficers = ["pia", "ng", "jenny", "axxel"];
+const leftColumnOfficers = ["angela", "dave", "keith", "newyeareign"];
+const rightColumnOfficers = ["pia", "anfernee", "jenny", "axxel"];
 const leftScrollOfficers = [...leftColumnOfficers, ...leftColumnOfficers];
 const rightScrollOfficers = [...rightColumnOfficers, ...rightColumnOfficers];
+
+import { CircleShape } from "@/components/shapes/circle-shape";
+import { SquareShape } from "@/components/shapes/square-shape";
+import { TriangleShape } from "@/components/shapes/triangle-shape";
 
 export default function Hero() {
 	const sectionRef = useRef<HTMLElement | null>(null);
@@ -102,26 +110,80 @@ export default function Hero() {
 		<section
 			id="home"
 			ref={sectionRef}
-			className="relative overflow-hidden bg-linear-to-r from-[#3987f5] to-[#2138c8] px-3 pt-6 text-white md:min-h-190 md:pt-0"
+			className="relative overflow-hidden bg-linear-to-r from-[#3186FF] to-[#1B38CC]  px-3 pt-6 text-primary-foreground md:min-h-190 md:pt-0"
 		>
+			{/* Background Lines */}
+			<div className="pointer-events-none absolute inset-0 z-0 select-none">
+				{/* Mobile Background */}
+				<div className="absolute inset-0 block top-0 md:hidden">
+					<Image
+						src="/hero-mobile-bg.svg"
+						alt=""
+						fill
+						className="object-cover object-bottom opacity-40"
+						priority
+					/>
+				</div>
+				{/* Desktop Background */}
+				<div className="absolute inset-0 top-0 hidden md:block">
+					<Image
+						src="/hero-bg.svg"
+						alt=""
+						fill
+						className="object-cover object-bottom opacity-30"
+						priority
+					/>
+				</div>
+			</div>
+
 			<div className="relative mx-auto h-full max-w-420">
-				{/* Geometric accents */}
-				<div
-					className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-white/95 md:-left-20 md:top-6 md:h-65 md:w-65 md:border-14"
-					data-direction="left"
-				></div>
-				<div
-					className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-white/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-10"
-					data-direction="left"
-				></div>
-				<div
-					className="hero-shape absolute -right-12 bottom-0 hidden h-107.5 w-107.5 rounded-full border-14 border-white/95 md:block"
-					data-direction="right"
-				></div>
-				<div
-					className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-10 border-white/95 md:block"
-					data-direction="right"
-				></div>
+				{/* Mobile Geometric accents */}
+				<div className="lg:hidden absolute inset-0 pointer-events-none">
+					<CircleShape
+						className="hero-shape absolute -left-13 top-76.25 text-primary-foreground opacity-95 w-29.25 h-29.25"
+						data-direction="left"
+					/>
+					<CircleShape
+						className="hero-shape absolute right-3 -bottom-16 text-primary-foreground opacity-95 w-37 h-37"
+						data-direction="right"
+					/>
+					<CircleShape
+						className="hero-shape absolute left-9 top-181.25 text-primary-foreground opacity-95 w-24.5 h-24.5"
+						data-direction="left"
+					/>
+					<SquareShape
+						className="hero-shape absolute -left-10 -top-8.75 text-primary-foreground opacity-95 w-68.5 h-68.5"
+						data-direction="right"
+					/>
+					<TriangleShape
+						className="hero-shape absolute right-12 top-48.5 text-primary-foreground opacity-95 w-26 h-22.75"
+						data-direction="left"
+					/>
+				</div>
+
+				{/* Desktop Geometric accents */}
+				<div className="lg:block hidden">
+					<div
+						className="hero-shape absolute -left-16 top-44 h-24 w-24 rounded-full border-[7px] border-primary-foreground/95 md:-left-20 md:top-6 md:h-65 md:w-65 md:border-14"
+						data-direction="left"
+					></div>
+					<div
+						className="hero-shape absolute bottom-12 left-2 hidden h-10 w-10 rounded-full border-[5px] border-primary-foreground/95 sm:block md:bottom-8 md:left-8 md:h-24 md:w-24 md:border-10"
+						data-direction="left"
+					></div>
+					<div
+						className="hero-shape absolute -right-12 bottom-0 hidden h-107.5 w-107.5 rounded-full border-14 border-primary-foreground/95 md:block"
+						data-direction="right"
+					></div>
+					<div
+						className="hero-shape absolute right-[34%] top-[15%] hidden h-44 w-44 rotate-45 border-10 border-primary-foreground/95 md:block"
+						data-direction="right"
+					></div>
+					<div
+						className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-8 border-primary-foreground/95 md:block"
+						data-direction="left"
+					></div>
+				</div>
 				<div
 					className="hero-shape absolute right-[45%] top-[60%] hidden -translate-y-1/2 md:block"
 					data-direction="left"
@@ -130,17 +192,13 @@ export default function Hero() {
 						height: 0,
 						borderLeft: "60px solid transparent",
 						borderRight: "60px solid transparent",
-						borderTop: "100px solid rgba(255,255,255,0.95)",
+						borderTop: "100px solid hsl(var(--primary-foreground) / 0.95)",
 					}}
-				></div>
-				<div
-					className="hero-shape absolute bottom-8 left-[30%] hidden h-24 w-24 rotate-45 border-8 border-white/95 md:block"
-					data-direction="left"
 				></div>
 
 				{/* Content */}
 				<div className="relative mx-auto max-w-full pt-6 md:py-0">
-					<div className="grid h-full items-center gap-10 md:min-h-190 md:grid-cols-2 md:items-center">
+					<div className="grid h-full items-center gap-10 min-h-190 lg:grid-cols-2 lg:items-center">
 						{/* Left side - Content */}
 						<LeftSection
 							loadedImages={loadedImages}
@@ -166,12 +224,12 @@ interface LeftSectionProps {
 
 function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 	return (
-		<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 md:items-start md:text-left md:px-4 lg:px-20 xl:px-44 ">
+		<div className="z-10 flex flex-col items-center pt-4 text-center sm:pt-12 lg:items-start md:text-left lg:px-12 xl:px-20">
 			{/* CDG Logo + wordmark */}
-			<div className="hero-copy-item mb-5 inline-flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-				<div className="relative h-10 w-16 sm:h-20 sm:w-32 md:h-24 md:w-36">
+			<div className="hero-copy-item mb-5 inline-flex items-center gap-3 flex-row sm:gap-5">
+				<div className="relative w-30 h-20 lg:w-52 lg:h-40">
 					{!loadedImages["/logo_1.svg"] && (
-						<Skeleton className="absolute inset-0 rounded-sm bg-white/25" />
+						<Skeleton className="absolute inset-0 rounded-sm bg-primary-foreground/25" />
 					)}
 					<Image
 						src="/logo_1.svg"
@@ -179,30 +237,42 @@ function LeftSection({ loadedImages, markImageLoaded }: LeftSectionProps) {
 						fill
 						priority
 						onLoadingComplete={() => markImageLoaded("/logo_1.svg")}
-						sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, 144px"
-						className={`object-contain object-left transition-opacity duration-300 ${
-							loadedImages["/logo_1.svg"] ? "opacity-100" : "opacity-0"
-						}`}
+						className={cn(
+							"object-contain object-left transition-opacity duration-300",
+							{
+								"opacity-100": loadedImages["/logo_1.svg"],
+								"opacity-0": !loadedImages["/logo_1.svg"],
+							},
+						)}
 					/>
 				</div>
-				<h2 className="md:text-4xl lg:text-5xl font-medium leading-[1.08]">
+				<h3 className="font-display text-4xl font-medium leading-[1.08]">
 					Centralian
 					<br />
 					Developer
 					<br />
 					Group
-				</h2>
+				</h3>
 			</div>
 
-			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-white/95 ">
+			<p className="hero-copy-item mb-6 max-w-70 lg:max-w-90 leading-relaxed text-primary-foreground/95 text-start ">
 				Be a part of CDG to learn, build, and grow with fellow student
 				developers
 			</p>
 
-			<button className="hero-copy-item mx-auto inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-base font-semibold text-[#2565e6] transition-all hover:bg-white/90 md:mx-0 md:px-8 md:py-3">
-				Join Now
-				<span className="text-base leading-none">{">"}</span>
-			</button>
+			<Button
+				className="px-6 h-12.5 rounded-full text-xl font-normal text-primary"
+				nativeButton={false}
+				variant={"outline"}
+				render={
+					<Link href="https://forms.gle/i8cn5thQXQF9CzMZ7">
+						Join Now
+						<span>
+							<ChevronRight />
+						</span>
+					</Link>
+				}
+			/>
 		</div>
 	);
 }
@@ -229,7 +299,7 @@ function OfficerImageItem({
 	return (
 		<div className="relative overflow-hidden rounded-3xl shadow-[0_12px_30px_rgba(20,33,110,0.24)]">
 			{!isLoaded && (
-				<Skeleton className="absolute inset-0 z-10 rounded-3xl bg-white/35" />
+				<Skeleton className="absolute inset-0 z-10 rounded-3xl bg-primary-foreground/35" />
 			)}
 			<Image
 				preload
@@ -251,9 +321,9 @@ function OfficerCarousel({
 	markImageLoaded,
 }: OfficerCarouselProps) {
 	return (
-		<div className="relative z-10 mx-auto h-112 w-full max-w-[24rem] overflow-hidden sm:h-136 sm:max-w-120 md:h-190 md:max-w-xl">
-			<div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-[#2559d9] to-transparent sm:h-20" />
-			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-[#2559d9] to-transparent sm:h-20" />
+		<div className="relative z-10 mx-auto h-112 w-full max-w-[24rem] overflow-hidden sm:h-136 sm:max-w-120 md:h-190 md:max-w-xl lg:block hidden">
+			{/* <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-linear-to-b from-[#3186FF] to-transparent sm:h-20" />
+			<div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t from-[#1B38CC] to-transparent sm:h-20" /> */}
 
 			<div className="grid h-full grid-cols-2 gap-3 sm:gap-4 md:gap-5">
 				<div

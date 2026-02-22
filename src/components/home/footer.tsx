@@ -1,22 +1,19 @@
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const quickLinks = [
 	{ name: "Home", href: "/" },
-	{ name: "About", href: "/about" },
-	{ name: "Teams", href: "/teams" },
 	{ name: "Events", href: "/events" },
+	{ name: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
 	return (
 		<div>
 			{/* Upper Footer */}
-			<section
-				className="relative isolate flex min-h-130 items-center justify-center overflow-hidden bg-white px-6 py-20 text-[#0D1749] md:min-h-155"
-				// style={{ backgroundImage: "url('/footer-graphic.svg')" }}
-			>
+			<section className="relative isolate flex min-h-130 items-center justify-center overflow-hidden bg-background px-6 py-20 text-foreground md:min-h-155">
 				<Image
 					src="/footer-graphic.svg"
 					fill
@@ -35,56 +32,66 @@ export default function Footer() {
 						/>
 					</div>
 
-					<h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#3B82F6] sm:text-4xl md:text-5xl">
+					<h2 className="font-display mt-4 text-3xl font-medium tracking-tight text-primary sm:text-4xl md:text-[64px]">
 						Be Part of a community that
 					</h2>
-					<p className="mt-2 text-xl font-medium text-[#111C55] sm:text-2xl">
+					<p className="mt-2 text-xl font-medium text-foreground sm:text-2xl">
 						Learn, Connect, and Grow
 					</p>
 
 					<Button
 						nativeButton={false}
-						render={<Link href="/apply">Join Now &gt;</Link>}
-						className="mt-7 h-10 rounded-full bg-[#1B38CC] px-6 text-sm font-semibold text-white hover:bg-[#1732b4]"
+						render={
+							<Link href="https://forms.gle/i8cn5thQXQF9CzMZ7">
+								Join Now
+								<span>
+									<ChevronRight />
+								</span>
+							</Link>
+						}
+						className="mt-7 rounded-full bg-blue-500 px-6 text-xl font-semibold text-primary-foreground hover:bg-primary/90 h-12.5"
 					/>
 				</div>
 			</section>
 
 			{/* Lower Footer */}
-			<footer className="relative overflow-hidden bg-black to-[#081030] bg-linear-to-t text-white lg:h-101.75">
+			<footer className="relative overflow-hidden bg-black to-[#081030] bg-linear-to-t text-white">
 				<div
 					aria-hidden="true"
 					className="absolute inset-0 bg-center bg-cover bg-no-repeat"
 				/>
-				<div className="relative mx-auto flex h-full w-full max-w-7xl flex-col px-6 py-14 sm:px-10 md:py-16 lg:justify-end lg:py-20">
-					<div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
-						<div className="space-y-4">
-							<div className="flex items-center gap-4">
-								<div className="relative h-16 w-20 shrink-0 sm:h-20 sm:w-24">
+				<div className="relative mx-auto flex h-full w-full max-w-7xl flex-col px-6 py-14 sm:px-10 md:py-16 lg:justify-end lg:mt-20">
+					<div className="grid gap-16 md:gap-12 md:grid-cols-[1.4fr_1fr_1fr] mt-12 md:mt-0 text-center md:text-left">
+						<div className="space-y-4 flex flex-col items-center md:items-start">
+							<div className="flex items-center justify-center md:justify-start gap-4 md:gap-6">
+								<div className="relative w-30.5 h-17.75 lg:h-27.25 lg:w-46.5 shrink-0">
 									<Image
 										src="/logo_1.svg"
 										alt="Centralian Developer Group logo"
 										fill
-										sizes="(max-width: 640px) 80px, 96px"
-										className="object-contain"
+										className="object-contain object-center md:object-left"
 									/>
 								</div>
-								<p className="max-w-55 text-2xl leading-tight font-medium">
-									Centralian Developer Group
+								<p className="text-[20px] lg:text-[30px] leading-tight font-medium font-sans text-left">
+									Centralian
+									<br />
+									Developer
+									<br />
+									Group
 								</p>
 							</div>
 						</div>
 
-						<div>
-							<h2 className="text-sm font-semibold tracking-wide text-white/90 uppercase">
+						<div className="flex flex-col items-center md:items-start">
+							<h2 className="text-[20px] font-semibold text-white">
 								Quick Links
 							</h2>
-							<ul className="mt-4 space-y-2.5">
+							<ul className="mt-4 flex flex-col gap-2.5 items-center md:items-start">
 								{quickLinks.map((link) => (
 									<li key={link.name}>
 										<Link
 											href={link.href}
-											className="text-sm text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#081030]"
+											className="text-[16px] md:text-xl text-white hover:text-white/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#081030]"
 										>
 											{link.name}
 										</Link>
@@ -93,36 +100,38 @@ export default function Footer() {
 							</ul>
 						</div>
 
-						<div>
-							<h2 className="text-sm font-semibold tracking-wide text-white/90 uppercase">
+						<div className="flex flex-col items-center md:items-start">
+							<h2 className="text-[20px] font-semibold text-white">
 								Contact Us
 							</h2>
-							<div className="mt-4 space-y-2.5 text-sm text-white/75">
-								<p>
-									<span className="text-white/90">Email:</span>{" "}
+							<div className="mt-4 flex flex-col gap-5 md:gap-2.5 text-[16px] md:text-[18px] text-white items-center md:items-start">
+								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
+									<p>Email:</p>
 									<a
-										href="mailto:cdg.cpu.ph@gmail.com"
-										className="underline decoration-white/25 underline-offset-4 transition-colors hover:text-white hover:decoration-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#081030]"
+										href="mailto:gdsc.cpu.ph@gmail.com"
+										className="hover:text-white/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#081030]"
 									>
-										cdg.cpu.ph@gmail.com
+										gdsc.cpu.ph@gmail.com
 									</a>
-								</p>
-								<p>
-									<span className="text-white/90">Messenger:</span> Centralian
-									Developer Group - CPU
-								</p>
-								<p>
-									<span className="text-white/90">Phone:</span> +63 912-345-6789
-								</p>
-								<p>
-									<span className="text-white/90">Tel No:</span> 123-4567
-								</p>
+								</div>
+								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
+									<p>Messenger:</p>
+									<p>Centralian Developer Group - CPU</p>
+								</div>
+								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
+									<p>Phone:</p>
+									<p>+63 912-345-6789</p>
+								</div>
+								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
+									<p>Tel No.:</p>
+									<p>123-4567</p>
+								</div>
 							</div>
 						</div>
 					</div>
 
-					<div className="flex flex-col gap-4 sm:flex-row pt-12 justify-center">
-						<p className="text-xs text-white/65 sm:text-sm">
+					<div className="flex flex-col gap-4 sm:flex-row pt-16 justify-center">
+						<p className="text-[12px] md:text-[16px] text-white text-center">
 							© 2026 Centralian Developer Group. All rights reserved.
 						</p>
 					</div>
