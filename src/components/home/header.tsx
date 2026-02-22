@@ -1,9 +1,17 @@
 "use client";
 
+import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import {
+	Sheet,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet";
 
 const navigation = [
 	{ label: "Home", href: "/" },
@@ -45,15 +53,43 @@ export default function Header() {
 						</div>
 					</Link>
 
-					<button
-						onClick={() => setIsMenuOpen((v) => !v)}
-						className="flex flex-col gap-1 md:hidden"
-						aria-label="Toggle navigation menu"
-					>
-						<span className="h-0.5 w-6 bg-foreground transition" />
-						<span className="h-0.5 w-6 bg-foreground transition" />
-						<span className="h-0.5 w-6 bg-foreground transition" />
-					</button>
+					<Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+						<SheetTrigger
+							render={
+								<button
+									className="flex items-center justify-center p-2 text-foreground transition md:hidden"
+									aria-label="Toggle navigation menu"
+								>
+									<Menu className="h-6 w-6" />
+								</button>
+							}
+						/>
+						<SheetContent side="top" className="w-full pt-16">
+							<SheetHeader>
+								<SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+							</SheetHeader>
+							<nav className="flex flex-col gap-6 px-2 pb-6">
+								{navigation.map(({ label, href }) => {
+									const active = isActive(pathname, href);
+									return (
+										<Link
+											key={label}
+											href={href}
+											className={[
+												"text-lg font-medium transition-colors",
+												active
+													? "text-primary"
+													: "text-foreground hover:text-primary",
+											].join(" ")}
+											onClick={() => setIsMenuOpen(false)}
+										>
+											{label}
+										</Link>
+									);
+								})}
+							</nav>
+						</SheetContent>
+					</Sheet>
 
 					{/* MIDDLE: Nav links */}
 					<div className="hidden md:flex items-center md:-ml-30">
@@ -114,24 +150,6 @@ export default function Header() {
 					</a>
 				</div>
 			</nav>
-
-			{/* Mobile dropdown */}
-			{isMenuOpen && (
-				<div className="md:hidden border-t border-border bg-card">
-					<nav className="flex flex-col gap-4 px-6 py-4">
-						{navigation.map(({ label, href }) => (
-							<Link
-								key={label}
-								href={href}
-								className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								{label}
-							</Link>
-						))}
-					</nav>
-				</div>
-			)}
 		</header>
 	);
 }

@@ -69,7 +69,7 @@ function TestimonialCard({
 
 	return (
 		<div
-			className="shrink-0 snap-start flex h-full flex-col justify-between rounded-[32px] bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10)] min-h-112.5 w-[90vw] sm:w-100 md:w-112.5"
+			className="shrink-0 snap-start flex h-full flex-col justify-between rounded-4xl bg-card p-8 shadow-[0_6px_10px_0_rgba(19,80,226,0.10)] min-h-112.5 w-[90vw] sm:w-100 md:w-112.5"
 			style={{ backgroundImage: gradientStyle }}
 		>
 			<div>

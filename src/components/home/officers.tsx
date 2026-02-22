@@ -21,11 +21,7 @@ const officers = [
 		role: "Vice President for Internal Affairs",
 		image: "/officers/dave.svg",
 	},
-	{
-		name: "Clarence",
-		role: "External Associate for Partnerships",
-		image: "/officers/clarence.svg",
-	},
+
 	{
 		name: "Myk",
 		role: "Vice President for Technology",
@@ -35,6 +31,11 @@ const officers = [
 		name: "Angela",
 		role: "External Associate for Outreaches",
 		image: "/officers/angela.svg",
+	},
+	{
+		name: "Clarence",
+		role: "External Associate for Partnerships",
+		image: "/officers/clarence.svg",
 	},
 	{
 		name: "Babylyn",

@@ -61,10 +61,10 @@ export default function Footer() {
 					className="absolute inset-0 bg-center bg-cover bg-no-repeat"
 				/>
 				<div className="relative mx-auto flex h-full w-full items-center flex-col px-10 py-14 sm:px-20 md:py-16 lg:justify-end lg:mt-20">
-					<div className="flex gap-12 md:gap-37.5 w-full justify-center mt-12 md:mt-0 text-center md:text-left">
-						<div className="space-y-4 flex flex-col items-center md:items-start">
+					<div className="flex flex-col items-center lg:flex-row gap-13 xl:gap-30 2xl:gap-37.5 w-full justify-center mt-12 md:mt-0 text-center lg:text-left">
+						<div className="space-y-4 flex flex-col items-center lg:items-start">
 							<div className="flex items-center justify-center md:justify-start gap-4 md:gap-6">
-								<div className="relative w-30.5 h-17.75 lg:h-27.25 lg:w-46.5 shrink-0">
+								<div className="relative w-30.5 h-30 lg:h-27.25 lg:w-46.5 shrink-0">
 									<Image
 										src="/logo_1.svg"
 										alt="Centralian Developer Group logo"
@@ -82,11 +82,11 @@ export default function Footer() {
 							</div>
 						</div>
 
-						<div className="flex flex-col items-center md:items-start">
+						<div className="flex flex-col items-center lg:items-start">
 							<h2 className="text-[20px] font-semibold text-white">
 								Quick Links
 							</h2>
-							<ul className="mt-4 flex flex-col gap-2.5 items-center md:items-start">
+							<ul className="mt-4 flex flex-col gap-2.5 items-center lg:items-start">
 								{quickLinks.map((link) => (
 									<li key={link.name}>
 										<Link
@@ -100,12 +100,12 @@ export default function Footer() {
 							</ul>
 						</div>
 
-						<div className="flex flex-col items-center md:items-start">
+						<div className="flex flex-col items-center lg:items-start">
 							<h2 className="text-[20px] font-semibold text-white">
 								Contact Us
 							</h2>
-							<div className="mt-4 flex flex-col gap-5 md:gap-2.5 text-[16px] md:text-[18px] text-white items-center md:items-start">
-								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
+							<div className="mt-4 flex flex-col gap-5 md:gap-2.5 text-[16px] md:text-[18px] text-white items-center lg:items-start">
+								<div className="flex flex-col items-center lg:items-start md:flex-row md:gap-1">
 									<p>Email:</p>
 									<a
 										href="mailto:gdsc.cpu.ph@gmail.com"
@@ -118,14 +118,14 @@ export default function Footer() {
 									<p>Messenger:</p>
 									<p>Centralian Developer Group - CPU</p>
 								</div>
-								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
+								{/* <div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
 									<p>Phone:</p>
 									<p>+63 912-345-6789</p>
 								</div>
 								<div className="flex flex-col items-center md:items-start md:flex-row md:gap-1">
 									<p>Tel No.:</p>
 									<p>123-4567</p>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>
